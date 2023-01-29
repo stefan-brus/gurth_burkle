@@ -1,17 +1,10 @@
 import { print } from "kolmafia";
+import { L02Task } from "./ascension/L02_spooky_forest";
 import { CloversTask } from "./daily";
 import { Task } from "./task";
 
 export const AscensionTasks: Task[] = [
-  {
-    name: "L02: Spooky Forest",
-    subtasks: [
-      {
-        name: "Get Mosquito Larva",
-        completed: () => false,
-      },
-    ],
-  },
+  L02Task,
 ];
 
 export const DailyTasks: Task[] = [
