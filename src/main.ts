@@ -1,7 +1,10 @@
-import { print, myName } from "kolmafia";
-import { TrainSet } from "libram";
+import { print } from "kolmafia";
+import { AscensionTasks, DailyTasks, printTaskList } from "./tasks/tasks";
 
 export function main(): void {
-  print("Hello, " + myName());
-  print("Is the trainset currently configurable? " + TrainSet.canConfigure());
+  print("Daily Tasks:");
+  printTaskList(DailyTasks);
+
+  print("Ascension Tasks:");
+  printTaskList(AscensionTasks);
 }

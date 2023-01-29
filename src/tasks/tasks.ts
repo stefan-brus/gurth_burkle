@@ -1,0 +1,41 @@
+import { print } from "kolmafia";
+import { CloversTask } from "./daily";
+import { Task } from "./task";
+
+export const AscensionTasks: Task[] = [
+  {
+    name: "L02: Spooky Forest",
+    subtasks: [
+      {
+        name: "Get Mosquito Larva",
+        completed: () => false,
+      },
+    ],
+  },
+];
+
+export const DailyTasks: Task[] = [
+  CloversTask,
+];
+
+export function printTaskList(tasks: Task[]) {
+  tasks.forEach(task => {
+    print(`${task.name}:`);
+
+    let subtasksComplete = 0;
+    task.subtasks.forEach(subtask => {
+      const completed = subtask.completed();
+
+      if (completed)
+      {
+        subtasksComplete++;
+      }
+
+      print(`- ${subtask.name}: ${completed ? "" : "in"}complete`)
+    });
+
+    if (subtasksComplete == task.subtasks.length) {
+      print(`${task.name} complete.`);
+    }
+  });
+}
