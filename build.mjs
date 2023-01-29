@@ -15,7 +15,7 @@ build({
   target: "rhino1.7.14",
   external: ["kolmafia"],
   plugins: [babel()],
-  outdir: "dist/scripts/gurth_burkle",
+  outdir: "../../scripts/gurth_burkle",
   watch,
   loader: { ".json": "text" },
   inject: ["./kolmafia-polyfill.js"],
