@@ -1,4 +1,4 @@
-import { cloversLeft } from "../lib/hermit";
+import { buyClovers, cloversLeft } from "../lib/hermit";
 import { Task } from "./task";
 
 export const CloversTask: Task = {
@@ -6,7 +6,9 @@ export const CloversTask: Task = {
   subtasks: [
     {
       name: "Buy clovers from hermit",
-      completed: () => cloversLeft() == 0,
+      available: () => true,
+      completed: () => cloversLeft() === 0,
+      progress: () => buyClovers(),
     },
   ],
 };

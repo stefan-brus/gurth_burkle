@@ -1,14 +1,22 @@
-import { getProperty } from "kolmafia";
+import { getProperty, Location } from "kolmafia";
+import { Properties } from "../../properties";
 import { Task } from "../task";
 
-const L02_QUEST_PROPERTY = "questL02Larva";
+const L02QuestProperty = "questL02Larva";
 
 export const L02Task: Task = {
   name: "L02: Spooky Forest",
   subtasks: [
     {
       name: "Get mosquito larva",
-      completed: () => getProperty(L02_QUEST_PROPERTY) == "finished",
+      available: () => getProperty(L02QuestProperty) !== "unstarted",
+      completed: () => getProperty(L02QuestProperty) === "finished",
+      progress: () => {return},
+      delay: {
+        location: Location.get("The Spooky Forest"),
+        turns: 5,
+        property: Properties.Ascension.Delay.SpookyForest,
+      },
     },
   ],
 };

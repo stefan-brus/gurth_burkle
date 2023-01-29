@@ -11,6 +11,18 @@ export const DailyTasks: Task[] = [
   CloversTask,
 ];
 
+export const IdleTask: Task = {
+  name: "Idle",
+  subtasks: [
+    {
+      name: "Idle",
+      available: () => true,
+      progress: () => {return},
+      completed: () => false,
+    },
+  ],
+};
+
 export function printTaskList(tasks: Task[]) {
   tasks.forEach(task => {
     print(`${task.name}:`);
@@ -27,8 +39,8 @@ export function printTaskList(tasks: Task[]) {
       print(`- ${subtask.name}: ${completed ? "" : "in"}complete`)
     });
 
-    if (subtasksComplete == task.subtasks.length) {
+    if (subtasksComplete === task.subtasks.length) {
       print(`${task.name} complete.`);
     }
   });
-}
+};
