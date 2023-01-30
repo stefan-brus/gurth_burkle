@@ -1,7 +1,7 @@
-import { cliExecute, getProperty, haveSkill, hippyStoneBroken, pvpAttacksLeft, Skill } from "kolmafia";
-import { buyClovers, cloversLeft } from "../lib/hermit";
-import { myUseSkill } from "../lib/skills";
-import { Task } from "./task";
+import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myMaxmp, pvpAttacksLeft, Skill } from "kolmafia";
+import { buyClovers, cloversLeft } from "../lib/Hermit";
+import { myUseSkill } from "../lib/Skill";
+import { Task } from "./Task";
 
 export const CloversTask: Task = {
   name: "Buy clovers from hermit",
@@ -20,19 +20,19 @@ export const IngredientsTask: Task = {
   subtasks: [
     {
       name: "Summon cocktail ingredients",
-      available: () => haveSkill(Skill.get("Advanced Cocktailcrafting")),
+      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Advanced Cocktailcrafting")),
       progress: () => myUseSkill(1, Skill.get("Advanced Cocktailcrafting")),
       completed: () => parseInt(getProperty("cocktailSummons")) == 1,
     },
     {
       name: "Summon noodles",
-      available: () => haveSkill(Skill.get("Pastamastery")),
+      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Pastamastery")),
       progress: () => myUseSkill(1, Skill.get("Pastamastery")),
       completed: () => parseInt(getProperty("noodleSummons")) == 1,
     },
     {
       name: "Summon reagents",
-      available: () => haveSkill(Skill.get("Advanced Saucecrafting")),
+      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Advanced Saucecrafting")),
       progress: () => myUseSkill(1, Skill.get("Advanced Saucecrafting")),
       completed: () => parseInt(getProperty("reagentSummons")) == 1,
     },
@@ -49,4 +49,4 @@ export const PvpFightsTask: Task = {
       completed: () => pvpAttacksLeft() == 0,
     },
   ],
-}
+};

@@ -1,7 +1,7 @@
 import { print } from "kolmafia";
-import { L02Task } from "./ascension/L02_spooky_forest";
-import { CloversTask, IngredientsTask, PvpFightsTask } from "./daily";
-import { Task } from "./task";
+import { L02Task } from "./ascension/L02SpookyForest";
+import { CloversTask, IngredientsTask, PvpFightsTask } from "./Daily";
+import { Task } from "./Task";
 
 export const AscensionTasks: Task[] = [
   L02Task,

@@ -1,5 +1,5 @@
 import { Location } from "kolmafia";
-import { Modifier } from "./modifiers";
+import { Modifier } from "./Modifier";
 
 export type AdventureInfo = {
   location: Location,

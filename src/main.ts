@@ -1,6 +1,6 @@
 import { print, userConfirm } from "kolmafia";
-import { ascend } from "./ascend";
-import { AscensionTasks, DailyTasks, printTaskList } from "./tasks/tasks";
+import { ascend } from "./Ascend";
+import { AscensionTasks, DailyTasks, printTaskList } from "./tasks/Tasks";
 
 export function main(): void {
   print("Daily Tasks:");

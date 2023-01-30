@@ -1,7 +1,7 @@
 import { myAdventures, print, userConfirm } from "kolmafia";
-import { Constants } from "./constants";
-import { Subtask, Task } from "./tasks/task";
-import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/tasks";
+import { Constants } from "./Constants";
+import { Subtask, Task } from "./tasks/Task";
+import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
 
 export function ascend() {
   print("Starting main ascension loop");

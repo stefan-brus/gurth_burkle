@@ -1,5 +1,5 @@
 import { Location } from "kolmafia";
-import { AdventureInfo } from "../lib/adventure_info";
+import { AdventureInfo } from "../lib/AdventureInfo";
 
 export type Task = {
   name: string,

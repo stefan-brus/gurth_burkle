@@ -1,6 +1,6 @@
 import { getProperty, Location } from "kolmafia";
-import { Properties } from "../../properties";
-import { Task } from "../task";
+import { Properties } from "../../Properties";
+import { Task } from "../Task";
 
 const L02QuestProperty = "questL02Larva";
 
