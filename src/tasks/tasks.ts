@@ -1,6 +1,6 @@
 import { print } from "kolmafia";
 import { L02Task } from "./ascension/L02SpookyForest";
-import { CloversTask, IngredientsTask, PvpFightsTask } from "./Daily";
+import { CloversTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { Task } from "./Task";
 
 export const AscensionTasks: Task[] = [
@@ -11,6 +11,9 @@ export const DailyTasks: Task[] = [
   CloversTask,
   IngredientsTask,
   PvpFightsTask,
+  OliverFightsTask,
+  RockGardenTask,
+  MrKlawTask,
 ];
 
 export const IdleTask: Task = {

@@ -1,5 +1,6 @@
 import { myAdventures, print, userConfirm } from "kolmafia";
 import { Constants } from "./Constants";
+import { mainAdventure } from "./lib/Adventure";
 import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
 
@@ -29,7 +30,11 @@ export function ascend() {
 
     const progress = currentSubtask.progress();
     if (progress !== undefined) {
-      print(`Adventure location: ${progress.location}, modifiers: ${progress.modifiers}`);
+      mainAdventure(progress);
+    }
+
+    if (currentSubtask.completed()) {
+      print("Subtask " + currentSubtask.name + " completed.");
     }
   }
 

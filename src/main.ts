@@ -2,7 +2,7 @@ import { print, userConfirm } from "kolmafia";
 import { ascend } from "./Ascend";
 import { AscensionTasks, DailyTasks, printTaskList } from "./tasks/Tasks";
 
-export function main(): void {
+export function main() {
   print("Daily Tasks:");
   printTaskList(DailyTasks);
 

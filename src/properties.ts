@@ -2,13 +2,15 @@
 export const Properties = {
   // These are reset at the start of each ascension
   Ascension: {
+    // All of these are ints
     Delay: {
       SpookyForest: "mySpookyForestDelay",
     },
   },
 
-  // These are reset daily
+  // These are reset at the start of each day
   Daily: {
-    OliverFightsDone: "_myOliverFightsDone",
+    // Bitmask: 1 is plot 1, 2 is plot 2, 4 is plot 3
+    RockGardenHarvested: "_myRockGardenHarvested",
   },
 };

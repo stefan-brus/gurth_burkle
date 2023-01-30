@@ -1,6 +1,10 @@
-import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myMaxmp, pvpAttacksLeft, Skill } from "kolmafia";
+import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myMaxmp, pvpAttacksLeft, Skill, visitUrl } from "kolmafia";
+import { canVisitUrl } from "libram";
 import { buyClovers, cloversLeft } from "../lib/Hermit";
 import { myUseSkill } from "../lib/Skill";
+import { Properties } from "../Properties";
+import { Oliver } from "../shinies/Oliver";
+import { RockGarden } from "../shinies/RockGarden";
 import { Task } from "./Task";
 
 export const CloversTask: Task = {
@@ -47,6 +51,45 @@ export const PvpFightsTask: Task = {
       available: () => hippyStoneBroken(),
       progress: () => { cliExecute("swagger"); },
       completed: () => pvpAttacksLeft() == 0,
+    },
+  ],
+};
+
+export const OliverFightsTask: Task = {
+  name: "Do Oliver's Place free fights",
+  subtasks: [
+    {
+      name: "Do Oliver's Place free fights",
+      available: () => true,
+      progress: () => Oliver.freeFight(),
+      completed: () => Oliver.fightsDone() == 3,
+      mainstat: 50,
+    },
+  ],
+};
+
+export const RockGardenTask: Task = {
+  name: "Harvest rock garden",
+  subtasks: [
+    {
+      name: "Harvest rock garden",
+      available: () => true,
+      progress: () => RockGarden.harvestAll(),
+      completed: () => parseInt(getProperty(Properties.Daily.RockGardenHarvested)) >= 7,
+    },
+  ],
+};
+
+const KlawSummonsProperty = "_klawSummons";
+
+export const MrKlawTask: Task = {
+  name: "Mr. Klaw pulls",
+  subtasks: [
+    {
+      name: "Mr. Klaw pulls",
+      available: () => true,
+      progress: () => { visitUrl("clan_rumpus.php?action=click&spot=3&furni=3"); },
+      completed: () => parseInt(getProperty(KlawSummonsProperty)) >= 3,
     },
   ],
 };
