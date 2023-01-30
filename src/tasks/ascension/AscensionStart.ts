@@ -1,4 +1,4 @@
-import { adv1, autosell, buy, Class, getProperty, Item, itemAmount, Location, myClass, myMeat, runChoice, use, visitUrl } from "kolmafia";
+import { adv1, autosell, buy, Class, eat, getProperty, Item, itemAmount, Location, myClass, myMeat, runChoice, use, visitUrl } from "kolmafia";
 import { Constants } from "../../Constants";
 import { Task } from "../Task";
 
@@ -49,6 +49,12 @@ export const AscensionStartTask: Task = {
       available: () => !shiniesDeployed(),
       progress: () => deployShinies(),
       completed: () => shiniesDeployed(),
+    },
+    {
+      name: "Eat a hotdog",
+      available: () => itemAmount(Item.get("astral hot dog")) === 3,
+      progress: () => { eat(1, Item.get("astral hot dog")); },
+      completed: () => itemAmount(Item.get("astral hot dog")) < 3,
     },
   ],
 };
