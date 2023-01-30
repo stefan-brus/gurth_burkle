@@ -1,6 +1,7 @@
-import { myAdventures, print, userConfirm } from "kolmafia";
+import { council, myAdventures, print, userConfirm } from "kolmafia";
 import { Constants } from "./Constants";
 import { mainAdventure } from "./lib/Adventure";
+import { myMainstat } from "./lib/Utils";
 import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
 
@@ -35,6 +36,7 @@ export function ascend() {
 
     if (currentSubtask.completed()) {
       print("Subtask " + currentSubtask.name + " completed.");
+      council();
     }
   }
 
@@ -73,5 +75,9 @@ function hasAvailableIncompleteSubtask(task: Task): boolean {
 }
 
 function isAvailableIncompleteSubtask(subtask: Subtask): boolean {
+  if (subtask.mainstat && myMainstat() < subtask.mainstat) {
+    return false;
+  }
+  
   return subtask.available() && !subtask.completed();
 }

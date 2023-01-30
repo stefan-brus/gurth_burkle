@@ -1,10 +1,15 @@
 import { print } from "kolmafia";
+import { myMainstat } from "../lib/Utils";
+import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
+import { AscensionStartTask } from "./ascension/AscensionStart";
 import { L02Task } from "./ascension/L02SpookyForest";
 import { CloversTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { Task } from "./Task";
 
 export const AscensionTasks: Task[] = [
-  L02Task,
+  AscensionStartTask,
+  ConfigureTrainsetTask,
+  //L02Task,
 ];
 
 export const DailyTasks: Task[] = [
@@ -32,20 +37,16 @@ export function printTaskList(tasks: Task[]) {
   tasks.forEach(task => {
     print(`${task.name}:`);
 
-    let subtasksComplete = 0;
     task.subtasks.forEach(subtask => {
-      const completed = subtask.completed();
+      if (!subtask.available())
+        return;
 
-      if (completed)
-      {
-        subtasksComplete++;
-      }
+      if (subtask.mainstat && myMainstat() < subtask.mainstat)
+        return;
+
+      const completed = subtask.completed();
 
       print(`- ${subtask.name}: ${completed ? "" : "in"}complete`)
     });
-
-    if (subtasksComplete === task.subtasks.length) {
-      print(`${task.name} complete.`);
-    }
   });
 };

@@ -1,4 +1,4 @@
-import { print, userConfirm } from "kolmafia";
+import { getProperty, print, userConfirm } from "kolmafia";
 import { ascend } from "./Ascend";
 import { AscensionTasks, DailyTasks, printTaskList } from "./tasks/Tasks";
 
@@ -15,6 +15,10 @@ export function main() {
     return;
   }
 
+  if (isAscensionStart()) {
+    resetMyProperties();
+  }
+
   try {
     ascend();
   }
@@ -25,3 +29,11 @@ export function main() {
     }
   }
 };
+
+function isAscensionStart(): boolean {
+  return getProperty("questM05Toot") === "started";
+}
+
+function resetMyProperties() {
+
+}

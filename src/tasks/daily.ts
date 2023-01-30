@@ -1,5 +1,7 @@
-import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myMaxmp, pvpAttacksLeft, Skill, visitUrl } from "kolmafia";
+import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myAdventures, myMaxmp, myMeat, pvpAttacksLeft, Skill, visitUrl } from "kolmafia";
 import { canVisitUrl } from "libram";
+import { Constants } from "../Constants";
+import { DailyDungeon } from "../lib/DailyDungeon";
 import { buyClovers, cloversLeft } from "../lib/Hermit";
 import { myUseSkill } from "../lib/Skill";
 import { Properties } from "../Properties";
@@ -12,7 +14,7 @@ export const CloversTask: Task = {
   subtasks: [
     {
       name: "Buy clovers from hermit",
-      available: () => true,
+      available: () => myMeat() > 3000,
       completed: () => cloversLeft() === 0,
       progress: () => buyClovers(),
     },
@@ -93,3 +95,18 @@ export const MrKlawTask: Task = {
     },
   ],
 };
+
+const DailyDungeonDoneProperty = "dailyDungeonDone";
+
+export const DailyDungeonTask: Task = {
+  name: "Daily Dungeon",
+  subtasks: [
+    {
+      name: "Daily Dungeon",
+      available: () => myAdventures() > 15 + Constants.ReservedAdventures,
+      progress: () => DailyDungeon.run(),
+      completed: () => getProperty(DailyDungeonDoneProperty) === "true",
+      mainstat: 40,
+    }
+  ]
+}

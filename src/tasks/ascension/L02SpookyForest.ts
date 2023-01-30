@@ -11,7 +11,7 @@ export const L02Task: Task = {
       name: "Get mosquito larva",
       available: () => getProperty(L02QuestProperty) !== "unstarted",
       completed: () => getProperty(L02QuestProperty) === "finished",
-      progress: () => {return},
+      progress: () => {},
       delay: {
         location: Location.get("The Spooky Forest"),
         turns: 5,

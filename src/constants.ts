@@ -4,4 +4,10 @@ export const Constants = {
    */
 
   ReservedAdventures: 4,
+
+  /**
+   * The amount of days one ascension usually takes.
+   */
+
+  PredictedAscensionDays: 5,
 }
