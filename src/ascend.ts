@@ -7,6 +7,7 @@ import { myMainstat } from "./lib/Utils";
 import { fallbotRoutine } from "./shinies/Fallbot";
 import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
+import { selectBuffs } from "./buffs/Buffs";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -41,6 +42,7 @@ export function ascend() {
     if (progress !== undefined) { // Adventure time
       selectFamiliar(progress);
       selectEquipment(progress);
+      selectBuffs(progress);
       fallbotRoutine();
       mainAdventure(progress);
     }

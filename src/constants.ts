@@ -22,4 +22,10 @@ export const Constants = {
    */
 
   AdventuresPerInebriety: 3,
+
+  /**
+   * A buff will be applied if we have at least this much + buff cost MP
+   */
+
+  BuffCastMPBuffer: 10,
 }
