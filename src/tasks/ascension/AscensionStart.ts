@@ -1,6 +1,6 @@
-import { adv1, autosell, buy, Class, eat, getProperty, Item, itemAmount, Location, myClass, myMeat, runChoice, use, visitUrl } from "kolmafia";
-import { $item } from "libram";
-import { Constants } from "../../Constants";
+import { adv1, autosell, buy, Class, eat, getProperty, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, use, visitUrl } from "kolmafia";
+import { $item, $location, $stat } from "libram";
+import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Task } from "../Task";
 
 export const AscensionStartTask: Task = {
@@ -66,6 +66,18 @@ export const AscensionStartTask: Task = {
   ],
 };
 
+export const UnlockGuildTask: Task = {
+  name: "Unlock class guild",
+  subtasks: [
+    {
+      name: "Unlock class guild",
+      available: () => !guildQuestDone(),
+      progress: () => doGuildQuest(),
+      completed: () => guildQuestDone(),
+    },
+  ],
+};
+
 const TootOrioleQuestProperty = "questM05Toot";
 const DocGalaktikQuestProperty = "questM24Doc";
 
@@ -116,4 +128,51 @@ function getChewinggumItem(item: Item) {
       throw new Error("Unable to use chewing gum on a string");
     }
   }
+}
+
+function guildQuestDone(): boolean {
+  return getProperty(guildQuestProperty()) === "finished";
+}
+
+function doGuildQuest(): AdventureInfo | void {
+  if (getProperty(guildQuestProperty()) === "unstarted") {
+    visitUrl("guild.php?place=challenge");
+  }
+
+  if (getProperty(guildQuestProperty()) === "started") {
+    return {
+      location: guildQuestLocation(),
+      modifiers: [],
+    };
+  }
+
+  if (getProperty(guildQuestProperty()) === "step1") {
+    visitUrl("guild.php?place=challenge");
+  }
+}
+
+function guildQuestProperty(): string {
+  switch (myPrimestat()) {
+    case $stat`Muscle`:
+      return "questG09Muscle";
+    case $stat`Mysticality`:
+      return "questG07Myst";
+    case $stat`Moxie`:
+      return "questG08Moxie";
+  }
+
+  throw new Error("Unknown guild quest");
+}
+
+function guildQuestLocation(): Location {
+  switch (myPrimestat()) {
+    case $stat`Muscle`:
+      return $location`The Outskirts of Cobb's Knob`;
+    case $stat`Mysticality`:
+      return $location`The Haunted Pantry`;
+    case $stat`Moxie`:
+      return $location`The Sleazy Back Alley`;
+  }
+
+  throw new Error("Unknown guild quest location");
 }

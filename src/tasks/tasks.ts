@@ -2,7 +2,7 @@ import { print } from "kolmafia";
 import { myMainstat } from "../lib/Utils";
 import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
-import { AscensionStartTask } from "./ascension/AscensionStart";
+import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
 import { L02Task } from "./ascension/L02SpookyForest";
 import { CloversTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { Task } from "./Task";
@@ -11,6 +11,7 @@ export const AscensionTasks: Task[] = [
   AscensionStartTask,
   ConfigureTrainsetTask,
   UnlockFallbotLocationsTask,
+  UnlockGuildTask,
   //L02Task,
 ];
 
