@@ -12,7 +12,7 @@ export const AscensionTasks: Task[] = [
   ConfigureTrainsetTask,
   UnlockFallbotLocationsTask,
   UnlockGuildTask,
-  //L02Task,
+  L02Task,
 ];
 
 export const DailyTasks: Task[] = [
