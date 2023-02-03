@@ -10,4 +10,16 @@ export const Constants = {
    */
 
   PredictedAscensionDays: 5,
+
+  /**
+   * The (conservatively) estimated amount of adventures per fullness.
+   */
+
+  AdventuresPerFullness: 5,
+
+  /**
+   * The (conservatively) estimated amount of adventures per inebriety.
+   */
+
+  AdventuresPerInebriety: 3,
 }

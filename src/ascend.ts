@@ -3,6 +3,7 @@ import { Constants } from "./Constants";
 import { mainAdventure } from "./lib/Adventure";
 import { selectFamiliar } from "./lib/Familiar";
 import { myMainstat } from "./lib/Utils";
+import { fallbotRoutine } from "./shinies/Fallbot";
 import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
 
@@ -33,6 +34,7 @@ export function ascend() {
     const progress = currentSubtask.progress();
     if (progress !== undefined) { // Adventure time
       selectFamiliar(progress);
+      fallbotRoutine();
       mainAdventure(progress);
     }
 

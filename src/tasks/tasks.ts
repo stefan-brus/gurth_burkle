@@ -1,5 +1,6 @@
 import { print } from "kolmafia";
 import { myMainstat } from "../lib/Utils";
+import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { AscensionStartTask } from "./ascension/AscensionStart";
 import { L02Task } from "./ascension/L02SpookyForest";
@@ -9,6 +10,7 @@ import { Task } from "./Task";
 export const AscensionTasks: Task[] = [
   AscensionStartTask,
   ConfigureTrainsetTask,
+  UnlockFallbotLocationsTask,
   //L02Task,
 ];
 
