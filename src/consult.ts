@@ -1,13 +1,18 @@
-import { Class, Monster, myClass } from "kolmafia";
+import { Monster, myClass } from "kolmafia";
+import { $class } from "libram";
 import { consultAccordionThief } from "./combat/CombatAccordionThief";
 import { consultSauceror } from "./combat/CombatSauceror";
+import { consultTurtleTamer } from "./combat/CombatTurtleTamer";
 
 export function main(initRound: number, foe: Monster, page: string) {
   switch (myClass()) {
-    case Class.get("Sauceror"):
+    case $class`Turtle Tamer`:
+      consultTurtleTamer(initRound, foe, page);
+      break;
+    case $class`Sauceror`:
       consultSauceror(initRound, foe, page);
       break;
-    case Class.get("Accordion Thief"):
+    case $class`Accordion Thief`:
       consultAccordionThief(initRound, foe, page);
       break;
     default:
