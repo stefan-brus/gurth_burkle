@@ -8,6 +8,7 @@ import { fallbotRoutine } from "./shinies/Fallbot";
 import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
 import { selectBuffs } from "./buffs/Buffs";
+import { acquireTrainableSkills } from "./lib/Skill";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -40,6 +41,7 @@ export function ascend() {
 
     const progress = currentSubtask.progress();
     if (progress !== undefined) { // Adventure time
+      acquireTrainableSkills();
       selectFamiliar(progress);
       selectEquipment(progress);
       selectBuffs(progress);
