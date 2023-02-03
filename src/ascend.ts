@@ -1,6 +1,7 @@
 import { council, myAdventures, print, userConfirm } from "kolmafia";
 import { Constants } from "./Constants";
 import { mainAdventure } from "./lib/Adventure";
+import { selectFamiliar } from "./lib/Familiar";
 import { myMainstat } from "./lib/Utils";
 import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
@@ -30,7 +31,8 @@ export function ascend() {
     }
 
     const progress = currentSubtask.progress();
-    if (progress !== undefined) {
+    if (progress !== undefined) { // Adventure time
+      selectFamiliar(progress);
       mainAdventure(progress);
     }
 
