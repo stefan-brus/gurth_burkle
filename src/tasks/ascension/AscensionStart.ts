@@ -1,4 +1,4 @@
-import { adv1, autosell, buy, Class, eat, getProperty, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, use, visitUrl } from "kolmafia";
+import { adv1, autosell, buy, Class, cliExecute, eat, getProperty, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, use, visitUrl } from "kolmafia";
 import { $item, $location, $stat } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Properties } from "../../Properties";
@@ -31,12 +31,12 @@ export const AscensionStartTask: Task = {
     {
       name: "Buy antique accordion",
       available: () => myClass() != Class.get("Accordion Thief") && itemAmount($item`antique accordion`) < 1 && myMeat() >= 2500,
-      progress: () => { buy(1, $item`antique accordion`); },
+      progress: () => { cliExecute("/buy antique accordion"); },
       completed: () => itemAmount($item`antique accordion`) > 0,
     },
     {
       name: "Acquire saucepan",
-      available: () => itemAmount($item`saucepan`) < 1,
+      available: () => itemAmount($item`saucepan`) < 1 && myMeat() >= 1000,
       progress: () => getChewinggumItem($item`saucepan`),
       completed: () => itemAmount($item`saucepan`) > 0,
     },

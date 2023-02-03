@@ -49,7 +49,7 @@ export function fallbotRoutine() {
 }
 
 class Fallbot {
-  static availableLocations: Location[];
+  static availableLocations: Location[] = [];
 
   static refresh() {
     AutumnAton.upgrade();
@@ -65,7 +65,7 @@ class Fallbot {
   }
 
   static randomLocation(): Location {
-    return this.availableLocations[Math.floor(Math.random()*this.availableLocations.length)];
+    return this.availableLocations[Math.floor(Math.random() * this.availableLocations.length)];
   }
 }
 
@@ -84,7 +84,6 @@ const LocationsToUnlock: Location[] = [
   $location`Whitey's Grove`,
   $location`The Hidden Bowling Alley`,
   $location`The Hole in the Sky`,
-  $location`An Unusually Quiet Barroom Brawl`,
 ];
 
 function getUnlockableLocation(): AdventureInfo | void {

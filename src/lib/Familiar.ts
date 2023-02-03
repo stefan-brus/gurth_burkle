@@ -1,8 +1,8 @@
-import { Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, useFamiliar, userConfirm } from "kolmafia";
+import { Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, print, useFamiliar, userConfirm } from "kolmafia";
 import { $familiar, $item, $location } from "libram";
-import { Constants } from "../Constants";
 import { availableCbbFoods } from "../shinies/Cookbookbat";
 import { AdventureInfo } from "./AdventureInfo";
+import { ascensionDaysLeft } from "./Utils";
 
 export function selectFamiliar(info: AdventureInfo) {
   const chosenFamiliar = chooseFamiliar(info);
@@ -54,7 +54,7 @@ const FamiliarPriority: PriorityInfo[] = [
   {
     familiar: $familiar`Cookbookbat`,
     shouldUse: (_: AdventureInfo) => {
-      return availableCbbFoods() < Constants.PredictedAscensionDays * fullnessLimit();
+      return availableCbbFoods() < (ascensionDaysLeft() * fullnessLimit());
     },
   },
 
