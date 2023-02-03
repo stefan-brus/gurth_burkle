@@ -1,5 +1,6 @@
-import { getProperty, print, userConfirm } from "kolmafia";
+import { getProperty, print, setProperty, userConfirm } from "kolmafia";
 import { ascend } from "./Ascend";
+import { Properties } from "./Properties";
 import { AscensionTasks, DailyTasks, printTaskList } from "./tasks/Tasks";
 
 export function main() {
@@ -35,5 +36,19 @@ function isAscensionStart(): boolean {
 }
 
 function resetMyProperties() {
+  resetProperties(Properties);
+}
 
+function resetProperties(props: object) {
+  for (const [k, v] of Object.entries(props)) {
+    if (typeof(v) === 'string') {
+      setProperty(v, "");
+    }
+    else if (typeof(v) === 'object') {
+      resetProperties(v);
+    }
+    else {
+      throw new Error(`Cannot reset ${v} with type ${typeof(v)}`);
+    }
+  }
 }
