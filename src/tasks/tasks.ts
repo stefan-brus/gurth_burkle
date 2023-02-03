@@ -4,7 +4,7 @@ import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
 import { L02Task } from "./ascension/L02SpookyForest";
-import { CloversTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
+import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { Task } from "./Task";
 
 export const AscensionTasks: Task[] = [
@@ -22,6 +22,7 @@ export const DailyTasks: Task[] = [
   OliverFightsTask,
   RockGardenTask,
   MrKlawTask,
+  DailyDungeonTask,
 ];
 
 export const IdleTask: Task = {

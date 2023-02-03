@@ -1,40 +1,16 @@
-import { equip, equippedItem, Item, userConfirm } from "kolmafia";
+import { equip, equippedItem, Item, Slot, userConfirm } from "kolmafia";
 import { $item, $slot } from "libram";
 import { chooseItemFromPriorityList } from "./Utils";
 
-export function selectTurtleTamerGear() {
-  const curWeapon = equippedItem($slot`weapon`);
-  const newWeapon = chooseItemFromPriorityList(TurtleTamerWeapons, curWeapon);
-  if (newWeapon !== curWeapon) {
-    if (userConfirm(`Equip ${newWeapon} to weapon slot?`)) {
-      equip(newWeapon);
-    }
-    else {
-      throw new Error("User aborted on equipment change");
-    }
-  }
+export function selectTurtleTamerGear(reservedSlots: Slot[]) {
+  if (!reservedSlots.includes($slot`weapon`))
+    selectForSlot($slot`weapon`, TurtleTamerWeapons);
   
-  const curHat = equippedItem($slot`hat`);
-  const newHat = chooseItemFromPriorityList(TurtleTamerHats, curHat);
-  if (newHat !== curHat) {
-    if (userConfirm(`Equip ${newHat} to hat slot?`)) {
-      equip(newHat);
-    }
-    else {
-      throw new Error("User aborted on equipment change");
-    }
-  }
-  
-  const curPants = equippedItem($slot`pants`);
-  const newPants = chooseItemFromPriorityList(TurtleTamerPants, curPants);
-  if (newPants !== curPants) {
-    if (userConfirm(`Equip ${newPants} to pants slot?`)) {
-      equip(newPants);
-    }
-    else {
-      throw new Error("User aborted on equipment change");
-    }
-  }
+  if (!reservedSlots.includes($slot`hat`))
+    selectForSlot($slot`hat`, TurtleTamerHats);
+
+  if (!reservedSlots.includes($slot`pants`))
+    selectForSlot($slot`pants`, TurtleTamerPants);
 }
 
 const TurtleTamerWeapons: Item[] = [
@@ -48,3 +24,17 @@ const TurtleTamerHats: Item[] = [
 const TurtleTamerPants: Item[] = [
   $item`old sweatpants`,
 ];
+
+function selectForSlot(slot: Slot, items: Item[]) {
+  const curItem = equippedItem(slot);
+  const newItem = chooseItemFromPriorityList(items, curItem);
+
+  if (newItem !== curItem) {
+    if (userConfirm(`Equip ${newItem} to slot ${slot.toString()}?`)) {
+      equip(slot, newItem);
+    }
+    else {
+      throw new Error("User aborted on equipment change");
+    }
+  }
+}

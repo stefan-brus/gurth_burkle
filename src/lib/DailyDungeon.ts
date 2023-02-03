@@ -1,36 +1,18 @@
-import { Location, myBuffedstat, setProperty, Stat } from "kolmafia";
+import { equippedAmount, itemAmount, Location, myBuffedstat, setProperty, Stat } from "kolmafia";
+import { $item } from "libram";
 import { AdventureInfo } from "./AdventureInfo";
 
-export const DailyDungeon = {
-  run: runDailyDungeon,
-};
+export function haveDailyDungeonItems(): boolean {
+  return itemAmount($item`eleven-foot pole`) > 0 &&
+         itemAmount($item`Pick-O-Matic lockpicks`) > 0 &&
+         (itemAmount($item`ring of Detect Boring Doors`) > 0 || equippedAmount($item`ring of Detect Boring Doors`) > 0);
+}
 
-const DoorChoice = "choiceAdventure692";
-const TrapChoice = "choiceAdventure693";
-const FirstChestChoice = "choiceAdventure690";
-const SecondChestChoice = "choiceAdventure691";
-const FatLootChoice = "choiceAdventure689";
-
-function runDailyDungeon(): AdventureInfo {
-  // Open door based on highest stat
-  const muscle = myBuffedstat(Stat.get("Muscle"));
-  const mysticality = myBuffedstat(Stat.get("Mysticality"));
-  const moxie = myBuffedstat(Stat.get("Moxie"));
-
-  if (muscle >= mysticality && muscle >= moxie) {
-    setProperty(DoorChoice, "4");
-  }
-  else if (mysticality >= muscle && mysticality >=  moxie) {
-    setProperty(DoorChoice, "5");
-  }
-  else {
-    setProperty(DoorChoice, "6");
-  }
-
-  setProperty(TrapChoice, "1");
-  
-  setProperty(FirstChestChoice, "3");
-  setProperty(SecondChestChoice, "3");
+export function runDailyDungeon(): AdventureInfo {
+  setProperty(DoorChoice, "11");
+  setProperty(TrapChoice, "2");
+  setProperty(FirstChestChoice, "2");
+  setProperty(SecondChestChoice, "2");
   setProperty(FatLootChoice, "1");
 
   return {
@@ -39,3 +21,9 @@ function runDailyDungeon(): AdventureInfo {
     expectedNoncombat: "The Final Reward",
   };
 }
+
+const DoorChoice = "choiceAdventure692";
+const TrapChoice = "choiceAdventure693";
+const FirstChestChoice = "choiceAdventure690";
+const SecondChestChoice = "choiceAdventure691";
+const FatLootChoice = "choiceAdventure689";

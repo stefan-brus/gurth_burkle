@@ -1,7 +1,6 @@
 import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myAdventures, myMaxmp, myMeat, pvpAttacksLeft, Skill, visitUrl } from "kolmafia";
-import { canVisitUrl } from "libram";
 import { Constants } from "../Constants";
-import { DailyDungeon } from "../lib/DailyDungeon";
+import { haveDailyDungeonItems, runDailyDungeon } from "../lib/DailyDungeon";
 import { buyClovers, cloversLeft } from "../lib/Hermit";
 import { myUseSkill } from "../lib/Skill";
 import { Properties } from "../Properties";
@@ -103,8 +102,9 @@ export const DailyDungeonTask: Task = {
   subtasks: [
     {
       name: "Daily Dungeon",
-      available: () => myAdventures() > 15 + Constants.ReservedAdventures,
-      progress: () => DailyDungeon.run(),
+      available: () => myAdventures() > (6 - parseInt(getProperty("_lastDailyDungeonRoom"))) + Constants.ReservedAdventures &&
+                       haveDailyDungeonItems(),
+      progress: () => runDailyDungeon(),
       completed: () => getProperty(DailyDungeonDoneProperty) === "true",
       mainstat: 40,
     }
