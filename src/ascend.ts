@@ -1,6 +1,7 @@
 import { council, myAdventures, print, userConfirm } from "kolmafia";
 import { Constants } from "./Constants";
 import { mainAdventure } from "./lib/Adventure";
+import { selectEquipment } from "./gear/Equipment";
 import { selectFamiliar } from "./lib/Familiar";
 import { myMainstat } from "./lib/Utils";
 import { fallbotRoutine } from "./shinies/Fallbot";
@@ -39,6 +40,7 @@ export function ascend() {
     const progress = currentSubtask.progress();
     if (progress !== undefined) { // Adventure time
       selectFamiliar(progress);
+      selectEquipment(progress);
       fallbotRoutine();
       mainAdventure(progress);
     }
