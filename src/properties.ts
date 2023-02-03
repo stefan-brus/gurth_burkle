@@ -4,6 +4,7 @@ export const Properties = {
   Ascension: {
     // All of these are ints
     Delay: {
+      GuildQuest: "myGuildQuestDelay",
       SpookyForest: "mySpookyForestDelay",
     },
   },

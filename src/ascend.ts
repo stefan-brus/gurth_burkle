@@ -28,6 +28,11 @@ export function ascend() {
     const newSubtask = chooseSubtask(currentTask);
     if (newSubtask !== currentSubtask) {
       currentSubtask = newSubtask;
+
+      if (!userConfirm("Start subtask " + currentSubtask.name + "?")) {
+        throw new Error("User aborted on subtask " + currentSubtask.name);
+      }
+
       print("Completing subtask "+ currentSubtask.name);
     }
 

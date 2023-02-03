@@ -1,6 +1,7 @@
 import { adv1, autosell, buy, Class, eat, getProperty, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, use, visitUrl } from "kolmafia";
 import { $item, $location, $stat } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
+import { Properties } from "../../Properties";
 import { Task } from "../Task";
 
 export const AscensionStartTask: Task = {
@@ -74,6 +75,11 @@ export const UnlockGuildTask: Task = {
       available: () => !guildQuestDone(),
       progress: () => doGuildQuest(),
       completed: () => guildQuestDone(),
+      delay: {
+        location: guildQuestLocation(),
+        turns: 5,
+        property: Properties.Ascension.Delay.GuildQuest,
+      },
     },
   ],
 };
