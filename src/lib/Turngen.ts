@@ -1,5 +1,5 @@
-import { buy, create, drink, eat, Item, itemAmount, myPrimestat, userConfirm } from "kolmafia";
-import { $item, $stat } from "libram";
+import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
+import { $effect, $item, $skill, $stat } from "libram";
 import { cookCbbFoods } from "../shinies/Cookbookbat";
 import { liverRemaining, stomachRemaining } from "./Organs";
 
@@ -8,8 +8,18 @@ export function generateAdventures() {
   generateLiver();
 }
 
+const MilkUsedProperty = "_milkOfMagnesiumUsed";
+
 function generateStomach() {
   cookCbbFoods(stomachRemaining());
+
+  if (getProperty(MilkUsedProperty) === "false") {
+    if (itemAmount($item`milk of magnesium`) > 0 || create(1, $item`milk of magnesium`)) {
+      use(1, $item`milk of magnesium`);
+    }
+  }
+
+  use(itemAmount($item`whet stone`), $item`whet stone`);
 
   eatToMax($item`honey bun of Boris`);
   eatToMax($item`Boris's Bread`);
@@ -121,6 +131,12 @@ function tryBuyFromOlivers(inebriety: number): number {
 function drinkMax(booze: Item) {
   while (liverRemaining() >= booze.inebriety && itemAmount(booze) > 0) {
     if (userConfirm(`Drink 1 ${booze.name}?`)) {
+      while (haveEffect($effect`Ode to Booze`) < booze.inebriety) {
+        if (!useSkill(1, $skill`The Ode to Booze`)) {
+          throw new Error("Unable to cast The Ode to Booze");
+        }
+      }
+
       drink(1, booze);
     }
     else {
