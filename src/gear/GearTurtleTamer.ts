@@ -31,6 +31,7 @@ const TurtleTamerShirts: Item[] = [
 ];
 
 const TurtleTamerWeapons: Item[] = [
+  $item`skeleton bone`,
   $item`Knob Goblin scimitar`,
   $item`turtle totem`,
 ];

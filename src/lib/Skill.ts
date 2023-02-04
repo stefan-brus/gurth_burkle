@@ -39,6 +39,10 @@ const TurtleTamerSkills: SkillInfo[] = [
     skill: $skill`Testudinal Teachings`,
     urlId: 35,
   },
+  {
+    skill: $skill`Wisdom of the Elder Tortoises`,
+    urlId: 11,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {
