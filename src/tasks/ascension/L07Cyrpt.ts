@@ -38,7 +38,7 @@ export const L07Task: Task = {
                        parseInt(getProperty("cyrptAlcoveEvilness")) === 0 &&
                        parseInt(getProperty("cyrptCrannyEvilness")) === 0,
       progress: () => killBonerdagon(),
-      completed: () => getProperty(L07QuestProperty) === "step1",
+      completed: () => getProperty(L07QuestProperty) === "step1" || getProperty(L07QuestProperty) === "finished",
     },
   ],
 };
@@ -84,7 +84,7 @@ const CrannyChoice = "choiceAdventuer523";
 
 function undefileCranny(): AdventureInfo {
   setProperty(CrannyChoice, "4");
-  
+
   return {
     location: $location`The Defiled Cranny`,
     modifiers: [Modifier.NonCombat, Modifier.MonsterLevel],

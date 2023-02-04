@@ -10,7 +10,7 @@ export const ConfigureTrainsetTask: Task = {
       name: "Reconfigure trainset",
       available: () => TrainSet.canConfigure(),
       progress: () => configureTrainset(suggestedConfig()),
-      completed: () => suggestedConfig() == TrainSet.cycle(),
+      completed: () => suggestedConfig().toString() == TrainSet.cycle().toString(),
     },
   ],
 };
