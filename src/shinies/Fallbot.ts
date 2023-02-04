@@ -11,7 +11,7 @@ export const UnlockFallbotLocationsTask: Task = {
   subtasks: [
     {
       name: "Unlock locations for fallbot",
-      available: () => AutumnAton.available(),
+      available: () => AutumnAton.available() && hasUnlockableLocation(),
       progress: () => getUnlockableLocation(),
       completed: () => Fallbot.allLocationsUnlocked(),
     },
@@ -85,6 +85,18 @@ const LocationsToUnlock: Location[] = [
   $location`The Hidden Bowling Alley`,
   $location`The Hole in the Sky`,
 ];
+
+function hasUnlockableLocation(): boolean {
+  Fallbot.refresh();
+
+  for (const loc of Fallbot.locationsLeftToUnlock()) {
+    if (canAdventure(loc) && myMainstat() > loc.recommendedStat) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 function getUnlockableLocation(): AdventureInfo | void {
   Fallbot.refresh();
