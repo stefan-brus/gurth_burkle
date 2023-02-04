@@ -1,5 +1,7 @@
 import { adv1, buy, canAdventure, changeMcd, create, dispensaryAvailable, equip, equippedItem, getProperty, haveEquipped, haveOutfit, itemAmount, knollAvailable, myMeat, runChoice, setProperty, use, visitUrl } from "kolmafia";
 import { $item, $location, $slot } from "libram";
+import { AdventureInfo } from "../lib/AdventureInfo";
+import { Modifier } from "../lib/Modifier";
 import { ascensionDaysLeft, checkUseClover } from "../lib/Utils";
 import { Properties } from "../Properties";
 import { Task } from "./Task";
@@ -120,7 +122,7 @@ export const AcquireMeatMaidTask: Task = {
       available: () => canAdventure($location`The VERY Unquiet Garves`) && itemAmount($item`11-leaf clover`) > 0 && ascensionDaysLeft() > 1 && knollAvailable(),
       progress: () => acquireMeatMaid(),
       completed: () => getProperty(Properties.Ascension.MeatMaidInstalled) === "true",
-    }
+    },
   ],
 };
 
@@ -140,4 +142,26 @@ function acquireMeatMaid() {
   }
 
   setProperty(Properties.Ascension.MeatMaidInstalled, "true");
+}
+
+export const UnlockHoleInTheSkyTask: Task = {
+  name: "Unlock The Hole in the Sky",
+  subtasks: [
+    {
+      name: "Unlock The Hole in the Sky",
+      available: () => canAdventure($location`The Castle in the Clouds in the Sky (Top Floor)`),
+      progress: () => unlockHole(),
+      completed: () => canAdventure($location`The Hole in the Sky`),
+    },
+  ],
+};
+
+function unlockHole(): AdventureInfo {
+  const CopperChoice = "choiceAdventure677";
+  setProperty(CopperChoice, "2");
+
+  return {
+    location: $location`The Castle in the Clouds in the Sky (Top Floor)`,
+    modifiers: [Modifier.NonCombat],
+  };
 }

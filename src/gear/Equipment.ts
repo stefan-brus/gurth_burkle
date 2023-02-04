@@ -53,6 +53,22 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
         result.push($slot`hat`, $slot`pants`, $slot`acc1`, $slot`acc2`, $slot`acc3`);
       }
       break;
+    case $location`The Castle in the Clouds in the Sky (Basement)`:
+      if (itemAmount($item`amulet of extreme plot significance`) > 0) {
+        equip($slot`acc3`, $item`amulet of extreme plot significance`);
+        result.push($slot`acc3`);
+      }
+      if (itemAmount($item`titanium assault umbrella`) > 0) {
+        equip($slot`weapon`, $item`titanium assault umbrella`);
+        result.push($slot`weapon`);
+      }
+      break;
+    case $location`The Castle in the Clouds in the Sky (Top Floor)`:
+      if (itemAmount($item`mohawk wig`) > 0) {
+        equip($slot`hat`, $item`mohawk wig`);
+        result.push($slot`hat`);
+      }
+      break;
   }
 
   return result;
