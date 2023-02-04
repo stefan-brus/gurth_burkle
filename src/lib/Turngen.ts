@@ -1,11 +1,17 @@
-import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
+import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, mpCost, myMaxmp, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
 import { $effect, $item, $skill, $stat } from "libram";
 import { cookCbbFoods } from "../shinies/Cookbookbat";
 import { liverRemaining, stomachRemaining } from "./Organs";
+import { haveIngredients } from "./Utils";
 
 export function generateAdventures() {
-  generateStomach();
-  generateLiver();
+  if (stomachRemaining() > 0) {
+    generateStomach();
+  }
+
+  if (liverRemaining() > 0 && myMaxmp() > mpCost($skill`The Ode to Booze`)) {
+    generateLiver();
+  }
 }
 
 const MilkUsedProperty = "_milkOfMagnesiumUsed";
@@ -14,7 +20,7 @@ function generateStomach() {
   cookCbbFoods(stomachRemaining());
 
   if (getProperty(MilkUsedProperty) === "false") {
-    if (itemAmount($item`milk of magnesium`) > 0 || create(1, $item`milk of magnesium`)) {
+    if (itemAmount($item`milk of magnesium`) > 0 || (haveIngredients($item`milk of magnesium`) && create(1, $item`milk of magnesium`))) {
       use(1, $item`milk of magnesium`);
     }
   }
@@ -104,7 +110,7 @@ function tryCreateDrinks(drinks: Item[], inebriety: number): number {
   let inebrietyCreated = 0;
 
   for (const drink of drinks) {
-    while (inebrietyCreated < inebriety && create(1, drink)) {
+    while (inebrietyCreated < inebriety && haveIngredients(drink) && create(1, drink)) {
       inebrietyCreated += drink.inebriety;
     }
 

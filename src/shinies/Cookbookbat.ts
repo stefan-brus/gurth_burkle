@@ -1,5 +1,6 @@
 import { buy, create, itemAmount, knollAvailable, myPrimestat } from "kolmafia";
 import { $item, $stat } from "libram";
+import { haveIngredients } from "../lib/Utils";
 
 export function availableCbbFoods(): number {
   const knollFactor = knollAvailable() ? 1 : 2;
@@ -34,7 +35,7 @@ function cookBorisFoods(amount: number): number {
   const food = knollAvailable() ? $item`honey bun of Boris` : $item`Boris's bread`;
   let cooked = 0;
 
-  while (itemAmount(food) < amount) {
+  while (itemAmount(food) < amount && haveIngredients(food)) {
     if (knollAvailable() && !buy(1, $item`flat dough`)) {
       break;
     }
@@ -53,7 +54,7 @@ function cookPeteFoods(amount: number): number {
   const food = knollAvailable() ? $item`Pete's wiley whey bar` : $item`Pete's rich ricotta`;
   let cooked = 0;
 
-  while (itemAmount(food) < amount) {
+  while (itemAmount(food) < amount && haveIngredients(food)) {
     if (knollAvailable() && !buy(1, $item`wad of dough`)) {
       break;
     }
@@ -72,7 +73,7 @@ function cookJarlsbergFoods(amount: number): number {
   const food = $item`roasted vegetable of Jarlsberg`;
   let cooked = 0;
 
-  while (itemAmount(food) < amount) {
+  while (itemAmount(food) < amount && haveIngredients(food)) {
     if (!create(1, food)) {
       break;
     }
