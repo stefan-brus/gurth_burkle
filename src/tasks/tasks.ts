@@ -3,10 +3,12 @@ import { myMainstat } from "../lib/Utils";
 import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
+import { AzazelTask } from "./ascension/Azazel";
 import { L02Task } from "./ascension/L02SpookyForest";
 import { L03Task } from "./ascension/L03TypicalTavern";
 import { L04Task } from "./ascension/L04BossBat";
 import { L05Task } from "./ascension/L05GoblinKing";
+import { L06Task } from "./ascension/L06DeepFatFriars";
 import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { AcquireMcdTask, BitchinMeatcarTask, UnlockDispensaryTask, UnlockWhiteysGroveTask } from "./MiscTasks";
 import { Task } from "./Task";
@@ -20,6 +22,8 @@ export const AscensionTasks: Task[] = [
   UnlockWhiteysGroveTask,
   AcquireMcdTask,
   L02Task,
+  L06Task,
+  AzazelTask,
   L03Task,
   L04Task,
   UnlockDispensaryTask,

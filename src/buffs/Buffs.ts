@@ -1,11 +1,19 @@
-import { haveEffect, mpCost, myMaxmp, Skill, toEffect, userConfirm, useSkill } from "kolmafia";
-import { $skill } from "libram";
+import { haveEffect, mpCost, myClass, myMaxmp, Skill, toEffect, userConfirm, useSkill } from "kolmafia";
+import { $class, $skill } from "libram";
 import { Constants } from "../Constants";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
 
 export function selectBuffs(info: AdventureInfo) {
   tryApplyBuffs(BaseSkills);
+
+  switch (myClass()) {
+    case $class`Turtle Tamer`:
+      tryApplyBuffs(TurtleTamerSkills);
+      break;
+    default:
+      // Not all classes have specific buffs, do nothing
+  }
 
   AdventureModifiers.forEach(mod => {
     if (info.modifiers.includes(mod)) {
@@ -43,6 +51,10 @@ const ModifierSkills = {
     $skill`Elemental Saucesphere`,
   ],
 };
+
+const TurtleTamerSkills: Skill[] = [
+  $skill`Empathy of the Newt`,
+];
 
 function tryApplyBuffs(skills: Skill[]) {
   skills.forEach(skill => tryApplyBuff(skill));

@@ -32,8 +32,8 @@ const TurtleTamerSkills: SkillInfo[] = [
     urlId: 7,
   },
   {
-    skill: $skill`Ghostly Shell`,
-    urlId: 7,
+    skill: $skill`Empathy of the Newt`,
+    urlId: 9,
   },
 ];
 
