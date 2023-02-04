@@ -40,6 +40,12 @@ export const L07Task: Task = {
       progress: () => killBonerdagon(),
       completed: () => getProperty(L07QuestProperty) === "step1" || getProperty(L07QuestProperty) === "finished",
     },
+    {
+      name: "Use chest of the bonerdagon",
+      available: () => itemAmount($item`chest of the bonerdagon`) > 0,
+      progress: () => { use(1, $item`chest of the bonerdagon`); },
+      completed: () => itemAmount($item`chest of the bonerdagon`) === 0,
+    },
   ],
 };
 

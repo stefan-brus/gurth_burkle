@@ -9,6 +9,7 @@ export const Properties = {
     },
 
     WhiteysGroveVisited: "myWhiteysGroveVisited",
+    MeatMaidInstalled: "myMeatMaidInstalled",
   },
 
   // These are reset at the start of each day

@@ -1,5 +1,6 @@
-import { adv1, buy, changeMcd, create, dispensaryAvailable, getProperty, haveOutfit, itemAmount, knollAvailable, myMeat, runChoice, setProperty, visitUrl } from "kolmafia";
-import { $item, $location } from "libram";
+import { adv1, buy, canAdventure, changeMcd, create, dispensaryAvailable, equip, equippedItem, getProperty, haveEquipped, haveOutfit, itemAmount, knollAvailable, myMeat, runChoice, setProperty, use, visitUrl } from "kolmafia";
+import { $item, $location, $slot } from "libram";
+import { ascensionDaysLeft, checkUseClover } from "../lib/Utils";
 import { Properties } from "../Properties";
 import { Task } from "./Task";
 
@@ -75,3 +76,68 @@ export const UnlockDispensaryTask: Task = {
     },
   ],
 };
+
+export const CreateBadassBeltTask: Task = {
+  name: "Create badass belt",
+  subtasks: [
+    {
+      name: "Create badass belt",
+      available: () => itemAmount($item`skull of the bonerdagon`) > 0 && (itemAmount($item`batskin belt`) > 0 || haveEquipped($item`batskin belt`)),
+      progress: () => createBadassBelt(),
+      completed: () => itemAmount($item`badass belt`) > 0 || haveEquipped($item`badass belt`),
+    },
+  ],
+};
+
+function createBadassBelt() {
+  const batbelt = $item`batskin belt`;
+  
+  if (itemAmount(batbelt) === 0) {
+    if (equippedItem($slot`acc1`) === batbelt) {
+      equip($slot`acc1`, $item`none`);
+    }
+    else if (equippedItem($slot`acc2`) === batbelt) {
+      equip($slot`acc2`, $item`none`);
+    }
+    else if (equippedItem($slot`acc3`) === batbelt) {
+      equip($slot`acc3`, $item`none`);
+    }
+    else {
+      throw new Error("Cannot find batskin belt");
+    }
+  }
+
+  if (!create(1, $item`badass belt`)) {
+    throw new Error("Unable to create badass belt");
+  }
+}
+
+export const AcquireMeatMaidTask: Task = {
+  name: "Acquire meat maid",
+  subtasks: [
+    {
+      name: "Acquire meat maid",
+      available: () => canAdventure($location`The VERY Unquiet Garves`) && itemAmount($item`11-leaf clover`) > 0 && ascensionDaysLeft() > 1 && knollAvailable(),
+      progress: () => acquireMeatMaid(),
+      completed: () => getProperty(Properties.Ascension.MeatMaidInstalled) === "true",
+    }
+  ],
+};
+
+function acquireMeatMaid() {
+  checkUseClover("Acquire meat maid");
+
+  if (!adv1($location`The VERY Unquiet Garves`)) {
+    throw new Error("Unable to adventure for meat maid");
+  }
+
+  if (!create(1, $item`meat maid`)) {
+    throw new Error("Unable to create meat maid");
+  }
+
+  if (!use(1, $item`meat maid`)) {
+    throw new Error("Unable to install meat maid");
+  }
+
+  setProperty(Properties.Ascension.MeatMaidInstalled, "true");
+}

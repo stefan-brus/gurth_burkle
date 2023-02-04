@@ -49,6 +49,7 @@ const TurtleTamerPants: Item[] = [
 ];
 
 const TurtleTamerAccessories: Item[] = [
+  $item`badass belt`,
   $item`batskin belt`,
   $item`shiny ring`,
   $item`imp unity ring`,
