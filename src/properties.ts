@@ -7,6 +7,8 @@ export const Properties = {
       GuildQuest: "myGuildQuestDelay",
       SpookyForest: "mySpookyForestDelay",
     },
+
+    WhiteysGroveVisited: "myWhiteysGroveVisited",
   },
 
   // These are reset at the start of each day
