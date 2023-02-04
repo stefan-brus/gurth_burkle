@@ -8,26 +8,26 @@ export const L03Task: Task = {
   subtasks: [
     {
       name: "Talk to Bart Ender",
-      available: () => getProperty(questL03Property) === "started",
+      available: () => getProperty(L03QuestProperty) === "started",
       progress: () => bartEnder(),
-      completed: () => getProperty(questL03Property) !== "started",
+      completed: () => getProperty(L03QuestProperty) !== "started",
     },
     {
       name: "Explore the cellar",
-      available: () => getProperty(questL03Property) === "step1",
+      available: () => getProperty(L03QuestProperty) === "step1",
       progress: () => doL03TypicalTavern(),
-      completed: () => getProperty(questL03Property) !== "step1",
+      completed: () => getProperty(L03QuestProperty) !== "step1",
     },
     {
       name: "Return to Bart Ender",
-      available: () => getProperty(questL03Property) === "step2",
+      available: () => getProperty(L03QuestProperty) === "step2",
       progress: () => bartEnder(),
-      completed: () => getProperty(questL03Property) === "finished",
+      completed: () => getProperty(L03QuestProperty) === "finished",
     },
   ],
 };
 
-const questL03Property = "questL03Rat";
+const L03QuestProperty = "questL03Rat";
 
 function bartEnder() {
   visitUrl("tavern.php?place=barkeep");

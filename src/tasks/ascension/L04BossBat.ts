@@ -10,26 +10,26 @@ export const L04Task: Task = {
   subtasks: [
     {
       name: "Acquire stench resistance",
-      available: () => ["started", "step1", "step2"].some(val => val === getProperty(questL04Property)),
+      available: () => ["started", "step1", "step2"].some(val => val === getProperty(L04QuestProperty)),
       progress: () => { selectBuffsModifier(Modifier.StenchRes); },
       completed: () => numericModifier(toMafiaModifier(Modifier.StenchRes)) > 1,
     },
     {
       name: "Demolish walls",
-      available: () => ["started", "step1", "step2"].some(val => val === getProperty(questL04Property)) && numericModifier(toMafiaModifier(Modifier.StenchRes)) > 1,
+      available: () => ["started", "step1", "step2"].some(val => val === getProperty(L04QuestProperty)) && numericModifier(toMafiaModifier(Modifier.StenchRes)) > 1,
       progress: () => doDemolishWalls(),
-      completed: () => ["step3", "step4", "finished"].some(val => val === getProperty(questL04Property)),
+      completed: () => ["step3", "step4", "finished"].some(val => val === getProperty(L04QuestProperty)),
     },
     {
       name: "Kill boss bat",
-      available: () => getProperty(questL04Property) === "step3",
+      available: () => getProperty(L04QuestProperty) === "step3",
       progress: () => doKillBossBat(),
-      completed: () => ["step4", "finished"].some(val => val === getProperty(questL04Property)),
+      completed: () => ["step4", "finished"].some(val => val === getProperty(L04QuestProperty)),
     },
   ],
 };
 
-const questL04Property = "questL04Bat";
+const L04QuestProperty = "questL04Bat";
 
 function doDemolishWalls(): AdventureInfo {
   use(itemAmount($item`sonar-in-a-biscuit`), $item`sonar-in-a-biscuit`);

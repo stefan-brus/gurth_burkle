@@ -9,13 +9,13 @@ export const L05Task: Task = {
   subtasks: [
     {
       name: "Decrypt Cobb's Knob map",
-      available: () => getProperty(questL05Property) === "started",
+      available: () => getProperty(L05QuestProperty) === "started",
       progress: () => doDecryptMap(),
-      completed: () => getProperty(questL05Property) === "step1",
+      completed: () => getProperty(L05QuestProperty) === "step1",
     },
     {
       name: "Get guard outfit",
-      available: () => getProperty(questL05Property) === "step1",
+      available: () => getProperty(L05QuestProperty) === "step1",
       progress: () => doGetGuardOutfit(),
       completed: () => haveGuardOutfit(),
     },
@@ -35,12 +35,12 @@ export const L05Task: Task = {
       name: "Kill Goblin King",
       available: () => itemAmount($item`Knob cake`) > 0,
       progress: () => doKillGoblinKing(),
-      completed: () => getProperty(questL05Property) === "finished",
+      completed: () => getProperty(L05QuestProperty) === "finished",
     },
   ],
 };
 
-const questL05Property = "questL05Goblin";
+const L05QuestProperty = "questL05Goblin";
 
 function doDecryptMap(): AdventureInfo | void {
   if (itemAmount($item`Knob Goblin encryption key`) > 0) {
