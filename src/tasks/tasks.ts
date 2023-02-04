@@ -4,6 +4,7 @@ import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
 import { L02Task } from "./ascension/L02SpookyForest";
+import { L03Task } from "./ascension/L03TypicalTavern";
 import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { Task } from "./Task";
 
@@ -13,6 +14,7 @@ export const AscensionTasks: Task[] = [
   UnlockFallbotLocationsTask,
   UnlockGuildTask,
   L02Task,
+  L03Task,
 ];
 
 export const DailyTasks: Task[] = [
