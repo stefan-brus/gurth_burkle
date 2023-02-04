@@ -35,6 +35,10 @@ const TurtleTamerSkills: SkillInfo[] = [
     skill: $skill`Empathy of the Newt`,
     urlId: 9,
   },
+  {
+    skill: $skill`Testudinal Teachings`,
+    urlId: 35,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {
