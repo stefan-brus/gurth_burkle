@@ -1,4 +1,4 @@
-import { Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, print, useFamiliar, userConfirm } from "kolmafia";
+import { equippedAmount, Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, print, useFamiliar, userConfirm } from "kolmafia";
 import { $familiar, $item, $location } from "libram";
 import { availableCbbFoods } from "../shinies/Cookbookbat";
 import { AdventureInfo } from "./AdventureInfo";
@@ -47,7 +47,7 @@ const FamiliarPriority: PriorityInfo[] = [
     familiar: $familiar`Gelatinous Cubeling`,
     shouldUse: (_: AdventureInfo) => {
       return itemAmount($item`eleven-foot pole`) < 1 ||
-             itemAmount($item`ring of Detect Boring Doors`) < 1 ||
+             (itemAmount($item`ring of Detect Boring Doors`) < 1 && equippedAmount($item`ring of Detect Boring Doors`) < 1) ||
              itemAmount($item`Pick-O-Matic lockpicks`) < 1;
     },
   },
