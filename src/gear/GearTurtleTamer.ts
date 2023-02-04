@@ -24,6 +24,7 @@ const TurtleTamerHats: Item[] = [
 ];
 
 const TurtleTamerCloaks: Item[] = [
+  $item`frozen turtle shell`,
   $item`whatsit-covered turtle shell`,
 ];
 
@@ -45,6 +46,7 @@ const TurtleTamerOffhands: Item[] = [
 ];
 
 const TurtleTamerPants: Item[] = [
+  $item`snowboarder pants`,
   $item`ninja hotpants`,
   $item`Knob Goblin elite pants`,
   $item`Knob Goblin pants`,
@@ -54,6 +56,7 @@ const TurtleTamerPants: Item[] = [
 const TurtleTamerAccessories: Item[] = [
   $item`badass belt`,
   $item`batskin belt`,
+  $item`tortoboggan`,
   $item`shiny ring`,
   $item`imp unity ring`,
 ];
