@@ -76,7 +76,7 @@ export const RockGardenTask: Task = {
       name: "Harvest rock garden",
       available: () => true,
       progress: () => RockGarden.harvestAll(),
-      completed: () => parseInt(getProperty(Properties.Daily.RockGardenHarvested)) >= 7,
+      completed: () => getProperty(Properties.Daily.RockGardenHarvested) !== "" && parseInt(getProperty(Properties.Daily.RockGardenHarvested)) >= 7,
     },
   ],
 };

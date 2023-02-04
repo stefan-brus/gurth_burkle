@@ -1,5 +1,5 @@
 import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, mpCost, myMaxmp, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
-import { $effect, $item, $skill, $stat } from "libram";
+import { $coinmaster, $effect, $item, $skill, $stat } from "libram";
 import { cookCbbFoods } from "../shinies/Cookbookbat";
 import { liverRemaining, stomachRemaining } from "./Organs";
 import { haveIngredients } from "./Utils";
@@ -98,7 +98,7 @@ function generateLiver() {
   inebrietyCreated += tryCreateDrinks(FruityGirlDrinks, liverRemaining() - inebrietyCreated);
   inebrietyCreated += tryCreateDrinks([$item`Boris's beer`], liverRemaining() - inebrietyCreated);
   inebrietyCreated += tryBuyFromOlivers(liverRemaining() - inebrietyCreated);
-
+  
   for (const drink of BoozePriority) {
     if (itemAmount(drink) > 0) {
       drinkMax(drink);
@@ -110,7 +110,7 @@ function tryCreateDrinks(drinks: Item[], inebriety: number): number {
   let inebrietyCreated = 0;
 
   for (const drink of drinks) {
-    while (inebrietyCreated < inebriety && haveIngredients(drink) && create(1, drink)) {
+    while (haveIngredients(drink) && inebrietyCreated < inebriety && create(1, drink)) {
       inebrietyCreated += drink.inebriety;
     }
 
@@ -126,7 +126,7 @@ function tryBuyFromOlivers(inebriety: number): number {
   let inebrietyBought = 0;
 
   while (inebrietyBought < inebriety && itemAmount($item`drink chit`) > 0) {
-    if (buy(1, $item`Charleston Choo-Choo`)) {
+    if (buy($coinmaster`Fancy Dan the Cocktail Man`, 1, $item`Charleston Choo-Choo`)) {
       inebrietyBought += 3;
     }
   }

@@ -71,7 +71,7 @@ export const UnlockDispensaryTask: Task = {
       name: "Unlock Dispensary",
       available: () => haveOutfit("Knob Goblin Elite Guard Uniform"),
       progress: () => { return { location: $location`Cobb's Knob Barracks`, modifiers: [] }},
-      completed: () => dispensaryAvailable(),
+      completed: () => getProperty("lastDispensaryOpen") === getProperty("knownAscensions"),
     },
   ],
 };
