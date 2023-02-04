@@ -1,6 +1,6 @@
 import { getProperty, itemAmount, numericModifier, use } from "kolmafia";
 import { $item, $location } from "libram";
-import { selectBuffsModifier } from "../../buffs/Buffs";
+import { selectBuffsModifier } from "../../lib/Buffs";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Modifier, toMafiaModifier } from "../../lib/Modifier";
 import { Task } from "../Task";

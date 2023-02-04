@@ -7,9 +7,10 @@ import { myMainstat } from "./lib/Utils";
 import { fallbotRoutine } from "./shinies/Fallbot";
 import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
-import { selectBuffs } from "./buffs/Buffs";
+import { selectBuffs } from "./lib/Buffs";
 import { acquireTrainableSkills } from "./lib/Skill";
 import { generateAdventures } from "./lib/Turngen";
+import { selectPotions } from "./lib/Potion";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -47,6 +48,7 @@ export function ascend() {
       selectFamiliar(progress);
       selectEquipment(progress);
       selectBuffs(progress);
+      selectPotions(progress);
       fallbotRoutine();
       mainAdventure(progress);
     }

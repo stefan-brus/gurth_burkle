@@ -1,8 +1,8 @@
 import { haveEffect, mpCost, myClass, myMaxmp, Skill, toEffect, userConfirm, useSkill } from "kolmafia";
 import { $class, $skill } from "libram";
 import { Constants } from "../Constants";
-import { AdventureInfo } from "../lib/AdventureInfo";
-import { Modifier } from "../lib/Modifier";
+import { AdventureInfo } from "./AdventureInfo";
+import { Modifier } from "./Modifier";
 
 export function selectBuffs(info: AdventureInfo) {
   tryApplyBuffs(BaseSkills);
