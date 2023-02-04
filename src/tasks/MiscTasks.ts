@@ -1,4 +1,4 @@
-import { adv1, buy, changeMcd, create, getProperty, itemAmount, knollAvailable, myMeat, runChoice, setProperty, visitUrl } from "kolmafia";
+import { adv1, buy, changeMcd, create, dispensaryAvailable, getProperty, haveOutfit, itemAmount, knollAvailable, myMeat, runChoice, setProperty, visitUrl } from "kolmafia";
 import { $item, $location } from "libram";
 import { Properties } from "../Properties";
 import { Task } from "./Task";
@@ -60,6 +60,18 @@ export const UnlockWhiteysGroveTask: Task = {
       available: () => getProperty(questWhiteCitadelProperty) === "started",
       progress: () => { adv1($location`Whitey's Grove`); setProperty(Properties.Ascension.WhiteysGroveVisited, "true"); },
       completed: () => getProperty(Properties.Ascension.WhiteysGroveVisited) === "true",
+    },
+  ],
+};
+
+export const UnlockDispensaryTask: Task = {
+  name: "Unlock Dispensary",
+  subtasks: [
+    {
+      name: "Unlock Dispensary",
+      available: () => haveOutfit("Knob Goblin Elite Guard Uniform"),
+      progress: () => { return { location: $location`Cobb's Knob Barracks`, modifiers: [] }},
+      completed: () => dispensaryAvailable(),
     },
   ],
 };
