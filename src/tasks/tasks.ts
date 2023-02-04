@@ -10,6 +10,7 @@ import { L04Task } from "./ascension/L04BossBat";
 import { L05Task } from "./ascension/L05GoblinKing";
 import { L06Task } from "./ascension/L06DeepFatFriars";
 import { L07Task } from "./ascension/L07Cyrpt";
+import { L08Task } from "./ascension/L08Trapper";
 import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { AcquireMcdTask, AcquireMeatMaidTask, BitchinMeatcarTask, CreateBadassBeltTask, UnlockDispensaryTask, UnlockWhiteysGroveTask } from "./MiscTasks";
 import { Task } from "./Task";
@@ -32,6 +33,7 @@ export const AscensionTasks: Task[] = [
   L07Task,
   CreateBadassBeltTask,
   AcquireMeatMaidTask,
+  L08Task,
 ];
 
 export const DailyTasks: Task[] = [

@@ -43,6 +43,16 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
         result.push($slot`hat`, $slot`weapon`, $slot`pants`);
       }
       break;
+    case $location`The eXtreme Slope`:
+    case $location`Mist-Shrouded Peak`:
+      if (haveOutfit("eXtreme Cold-Weather Gear")) {
+        if (!outfit("eXtreme Cold-Weather Gear")) {
+          throw new Error("Unable to equip eXtreme Cold-Weather Gear");
+        }
+
+        result.push($slot`hat`, $slot`pants`, $slot`acc1`, $slot`acc2`, $slot`acc3`);
+      }
+      break;
   }
 
   return result;
