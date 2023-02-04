@@ -7,10 +7,10 @@ export function estimateAdventuresRemaining() {
     Constants.AdventuresPerInebriety * liverRemaining();
 }
 
-function stomachRemaining(): number {
+export function stomachRemaining(): number {
   return fullnessLimit() - myFullness();
 }
 
-function liverRemaining(): number {
+export function liverRemaining(): number {
   return inebrietyLimit() - myInebriety();
 }

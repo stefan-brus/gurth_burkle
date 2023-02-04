@@ -9,6 +9,7 @@ import { Subtask, Task } from "./tasks/Task";
 import { AscensionTasks, DailyTasks, IdleTask } from "./tasks/Tasks";
 import { selectBuffs } from "./buffs/Buffs";
 import { acquireTrainableSkills } from "./lib/Skill";
+import { generateAdventures } from "./lib/Turngen";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -37,6 +38,7 @@ export function ascend() {
       }
 
       print("Completing subtask "+ currentSubtask.name);
+      generateAdventures();
     }
 
     const progress = currentSubtask.progress();
