@@ -9,15 +9,20 @@ export function selectBuffs(info: AdventureInfo) {
 
   AdventureModifiers.forEach(mod => {
     if (info.modifiers.includes(mod)) {
-      switch (mod) {
-        case Modifier.NonCombat:
-          tryApplyBuffs(ModifierSkills[Modifier.NonCombat]);
-          break;
-        default:
-          break;
-      }
+      selectBuffsModifier(mod);
     }
   });
+}
+
+export function selectBuffsModifier(mod: Modifier) {
+  switch (mod) {
+    case Modifier.NonCombat:
+    case Modifier.StenchRes:
+      tryApplyBuffs(ModifierSkills[mod]);
+      break;
+    default:
+      break;
+  }
 }
 
 const AdventureModifiers: Modifier[] = [
@@ -33,6 +38,9 @@ const ModifierSkills = {
   [Modifier.NonCombat]: [
     $skill`Smooth Movement`,
     $skill`The Sonata of Sneakiness`,
+  ],
+  [Modifier.StenchRes]: [
+    $skill`Elemental Saucesphere`,
   ],
 };
 
