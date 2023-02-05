@@ -47,6 +47,18 @@ const TurtleTamerSkills: SkillInfo[] = [
     skill: $skill`Astral Shell`,
     urlId: 12,
   },
+  {
+    skill: $skill`Cold-Blooded Fearlessness`,
+    urlId: 16,
+  },
+  {
+    skill: $skill`Hero of the Half-Shell`,
+    urlId: 20,
+  },
+  {
+    skill: $skill`Tao of the Terrapin`,
+    urlId: 21,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {
