@@ -14,7 +14,12 @@ export function mainAdventure(info: AdventureInfo) {
 
 function checkModifier([mod, val]: [Modifier, number]) {
   const mafiaMod = toMafiaModifier(mod);
-  const myVal = numericModifier(mafiaMod);
+  let myVal = numericModifier(mafiaMod);
+
+  if (mod === Modifier.FoodDrop || mod === Modifier.BoozeDrop) { // For adventuring requirements, these factor in item drop
+    myVal += numericModifier(toMafiaModifier(Modifier.ItemDrop));
+  } 
+
   if (myVal < val) {
     throw new Error(`Modifier ${mafiaMod} too low (${myVal}, expected: ${val})`);
   }

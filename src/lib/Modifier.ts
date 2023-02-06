@@ -3,6 +3,8 @@ export enum Modifier {
   NonCombat,
   MonsterLevel,
   ItemDrop,
+  FoodDrop,
+  BoozeDrop,
   Initiative,
   HotRes,
   ColdRes,
@@ -22,6 +24,10 @@ export function toMafiaModifier(modifier: Modifier): string {
       return "monster level";
     case Modifier.ItemDrop:
       return "item drop";
+    case Modifier.FoodDrop:
+      return "food drop";
+    case Modifier.BoozeDrop:
+      return "booze drop";
     case Modifier.Initiative:
       return "initiative";
     case Modifier.HotRes:
