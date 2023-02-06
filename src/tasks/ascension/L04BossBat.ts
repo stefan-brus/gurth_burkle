@@ -30,6 +30,7 @@ function doDemolishWalls(): AdventureInfo {
   return {
     location: $location`Guano Junction`,
     modifiers: [Modifier.StenchRes],
+    minModifier: [Modifier.StenchRes, 1],
   };
 }
 
