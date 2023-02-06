@@ -1,6 +1,5 @@
 import { getProperty, itemAmount, numericModifier, use } from "kolmafia";
 import { $item, $location } from "libram";
-import { selectBuffsModifier } from "../../lib/Buffs";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Modifier, toMafiaModifier } from "../../lib/Modifier";
 import { Task } from "../Task";
@@ -8,12 +7,6 @@ import { Task } from "../Task";
 export const L04Task: Task = {
   name: "L04: Boss Bat",
   subtasks: [
-    {
-      name: "Acquire stench resistance",
-      available: () => ["started", "step1", "step2"].some(val => val === getProperty(L04QuestProperty)),
-      progress: () => { selectBuffsModifier(Modifier.StenchRes); },
-      completed: () => numericModifier(toMafiaModifier(Modifier.StenchRes)) > 1,
-    },
     {
       name: "Demolish walls",
       available: () => ["started", "step1", "step2"].some(val => val === getProperty(L04QuestProperty)) && numericModifier(toMafiaModifier(Modifier.StenchRes)) > 1,
@@ -36,7 +29,7 @@ function doDemolishWalls(): AdventureInfo {
   
   return {
     location: $location`Guano Junction`,
-    modifiers: [],
+    modifiers: [Modifier.StenchRes],
   };
 }
 
