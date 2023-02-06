@@ -25,7 +25,11 @@ export function selectBuffs(info: AdventureInfo) {
 export function selectBuffsModifier(mod: Modifier) {
   switch (mod) {
     case Modifier.NonCombat:
+    case Modifier.HotRes:
+    case Modifier.ColdRes:
     case Modifier.StenchRes:
+    case Modifier.SpookyRes:
+    case Modifier.SleazeRes:
       tryApplyBuffs(ModifierSkills[mod]);
       break;
     default:
@@ -35,6 +39,11 @@ export function selectBuffsModifier(mod: Modifier) {
 
 const AdventureModifiers: Modifier[] = [
   Modifier.NonCombat,
+  Modifier.HotRes,
+  Modifier.ColdRes,
+  Modifier.StenchRes,
+  Modifier.SpookyRes,
+  Modifier.SleazeRes,
 ];
 
 const BaseSkills: Skill[] = [
@@ -47,8 +56,25 @@ const ModifierSkills = {
     $skill`Smooth Movement`,
     $skill`The Sonata of Sneakiness`,
   ],
+  [Modifier.HotRes]: [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ],
+  [Modifier.ColdRes]: [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ],
   [Modifier.StenchRes]: [
     $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ],
+  [Modifier.SpookyRes]: [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ],
+  [Modifier.SleazeRes]: [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
   ],
 };
 

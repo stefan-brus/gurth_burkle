@@ -1,10 +1,13 @@
-import { equip, haveOutfit, itemAmount, lockFamiliarEquipment, myClass, outfit, Slot } from "kolmafia";
+import { equip, haveOutfit, Item, itemAmount, lockFamiliarEquipment, myClass, outfit, Slot, toSlot } from "kolmafia";
 import { $class, $item, $location, $slot } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
+import { Modifier } from "../lib/Modifier";
 import { selectTurtleTamerGear } from "./GearTurtleTamer";
+import { findEquippedAccSlot } from "./Utils";
 
 export function selectEquipment(info: AdventureInfo) {
-  const reservedSlots = selectAdventureEquipment(info);
+  let reservedSlots = selectAdventureEquipment(info);
+  reservedSlots = selectModifierEquipment(info, reservedSlots);
 
   switch (myClass()) {
     case $class`Turtle Tamer`:
@@ -16,6 +19,20 @@ export function selectEquipment(info: AdventureInfo) {
 
   selectFamiliarEquipment();
 }
+
+const AdventureModifiers: Modifier[] = [
+  Modifier.StenchRes,
+]
+
+const ModifierGear = {
+  [Modifier.StenchRes]: [
+    $item`Whoompa Fur Pants`,
+    $item`Pants of the Slug Lord`,
+    $item`ass hat`,
+    $item`bum cheek`,
+    $item`Pine-Fresh air freshener`,
+  ],
+};
 
 function selectFamiliarEquipment() {
   if (itemAmount($item`astral pet sweater`) > 0) {
@@ -50,7 +67,7 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
           throw new Error("Unable to equip eXtreme Cold-Weather Gear");
         }
 
-        result.push($slot`hat`, $slot`pants`, $slot`acc1`, $slot`acc2`, $slot`acc3`);
+        result.push($slot`hat`, $slot`pants`, findEquippedAccSlot($item`eXtreme mittens`));
       }
       break;
     case $location`The Castle in the Clouds in the Sky (Basement)`:
@@ -72,4 +89,64 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
   }
 
   return result;
+}
+
+function selectModifierEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[] {
+  AdventureModifiers.forEach(mod => {
+    if (info.modifiers.includes(mod)) {
+      reservedSlots = reservedSlots.concat(selectEquipmentModifier(mod, reservedSlots));
+    }
+  });
+
+  return reservedSlots;
+}
+
+function selectEquipmentModifier(mod: Modifier, reservedSlots: Slot[]): Slot[] {
+  switch (mod) {
+    case Modifier.StenchRes:
+      return tryEquipGear(ModifierGear[mod], reservedSlots);
+    default:
+      return [];
+  }
+}
+
+function tryEquipGear(items: Item[], reservedSlots: Slot[]): Slot[] {
+  let result: Slot[] = [];
+
+  items.filter(item => itemAmount(item) > 0).forEach(item => {
+    const slot = tryEquipItem(item, reservedSlots);
+    if (slot !== null) {
+      result.push(slot);
+    }
+  });
+
+  return result;
+}
+
+function tryEquipItem(item: Item, reservedSlots: Slot[]): Slot | null {
+  const itemSlot = toSlot(item);
+  if (itemSlot === $slot`acc1`) {
+    if (reservedSlots.includes($slot`acc1`)) {
+      if (reservedSlots.includes($slot`acc2`)) {
+        if (!reservedSlots.includes($slot`acc3`)) {
+          equip($slot`acc3`, item);
+          return $slot`acc3`;
+        }
+      }
+      else {
+        equip($slot`acc2`, item);
+        return $slot`acc2`;
+      }
+    }
+    else {
+      equip($slot`acc1`, item);
+      return $slot`acc1`;
+    }
+  }
+  else if (itemSlot !== $slot`none` && !reservedSlots.includes(itemSlot)) {
+    equip(itemSlot, item);
+    return itemSlot;
+  }
+  
+  return null;
 }

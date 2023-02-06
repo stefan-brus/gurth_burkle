@@ -39,6 +39,17 @@ export function selectGear(
     selectForSlot($slot`acc3`, accessories);
 }
 
+export function findEquippedAccSlot(acc: Item): Slot {
+  if (equippedItem($slot`acc1`) === acc)
+    return $slot`acc1`;
+  else if (equippedItem($slot`acc2`) === acc)
+    return $slot`acc2`;
+  else if (equippedItem($slot`acc3`) === acc)
+    return $slot`acc3`;
+  else
+    throw new Error("Accessory " + acc.name + " is not equipped");
+}
+
 function selectForSlot(slot: Slot, items: Item[]) {
   const curItem = equippedItem(slot);
   const newItem = chooseItemFromPriorityList(items, curItem);

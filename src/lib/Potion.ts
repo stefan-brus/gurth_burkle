@@ -11,29 +11,34 @@ export function selectPotions(info: AdventureInfo) {
   });
 }
 
-export function selectPotionsModifier(mod: Modifier) {
+const AdventureModifiers: Modifier[] = [
+  Modifier.Initiative,
+  Modifier.StenchRes,
+];
+
+const ModifierPotions = {
+  [Modifier.Initiative]: [
+    $item`giraffe-necked turtle`,
+  ],
+  [Modifier.StenchRes]: [
+    $item`Polysniff Perfume`,
+  ],
+};
+
+const PotionEffects: { [item: string]: Effect } = {
+  "giraffe-necked turtle": $effect`Adorable Lookout`,
+};
+
+function selectPotionsModifier(mod: Modifier) {
   switch (mod) {
     case Modifier.Initiative:
+    case Modifier.StenchRes:
       tryUsePotions(ModifierPotions[mod]);
       break;
     default:
       break;
   }
 }
-
-const AdventureModifiers: Modifier[] = [
-  Modifier.Initiative,
-];
-
-const ModifierPotions = {
-  [Modifier.Initiative]: [
-    $item`giraffe-necked turtle`,
-  ]
-};
-
-const PotionEffects: { [item: string]: Effect } = {
-  "giraffe-necked turtle": $effect`Adorable Lookout`,
-};
 
 function tryUsePotions(items: Item[]) {
   items.filter(item => itemAmount(item) > 0).forEach(item => tryUsePotion(item));
