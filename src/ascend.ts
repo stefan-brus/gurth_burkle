@@ -39,11 +39,11 @@ export function ascend() {
       }
 
       print("Completing subtask "+ currentSubtask.name);
-      generateAdventures();
     }
 
     const progress = currentSubtask.progress();
     if (progress !== undefined) { // Adventure time
+      generateAdventures();
       acquireTrainableSkills();
       selectFamiliar(progress);
       selectEquipment(progress);
