@@ -55,6 +55,7 @@ function startAzazel() {
   visitUrl("pandamonium.php?action=sven");
   visitUrl("pandamonium.php?action=beli");
   visitUrl("pandamonium.php?action=mourn");
+  visitUrl("pandamonium.php?action=moan");
 }
 
 function azazelLollipop(): AdventureInfo | void {
@@ -140,7 +141,6 @@ function azazelUnicorn(): AdventureInfo | void {
 
 function azazelTutu() {
   // Assume that fallbot has collected the imp airs and bus passes
-  visitUrl("pandamonium.php?action=moan"); // May need to do this twice for some reason
   visitUrl("pandamonium.php?action=moan");
 }
 
