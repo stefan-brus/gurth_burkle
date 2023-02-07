@@ -1,5 +1,5 @@
-import { adv1, autosell, buy, Class, cliExecute, eat, getProperty, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, use, visitUrl } from "kolmafia";
-import { $item, $location, $stat } from "libram";
+import { adv1, autosell, buy, Class, cliExecute, eat, getProperty, haveSkill, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, setProperty, use, visitUrl } from "kolmafia";
+import { $item, $location, $skill, $stat } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Properties } from "../../Properties";
 import { Task } from "../Task";
@@ -57,6 +57,12 @@ export const AscensionStartTask: Task = {
       available: () => !shiniesDeployed(),
       progress: () => deployShinies(),
       completed: () => shiniesDeployed(),
+    },
+    {
+      name: "Get S.I.T skill (Insectologist)",
+      available: () => itemAmount($item`S.I.T. Course Completion Certificate`) > 0 && !haveSkill($skill`Insectologist`),
+      progress: () => learnSITSkill(),
+      completed: () => haveSkill($skill`Insectologist`),
     },
     {
       name: "Eat a hotdog",
@@ -122,6 +128,12 @@ function deployShinies() {
 
   // Visit workshed to refresh kolmafia trainset properties
   visitUrl("campground.php?action=workshed");
+}
+
+function learnSITSkill() {
+  const SITCourseChoice = "choiceAdventure1494";
+  setProperty(SITCourseChoice, "2");
+  use(1, $item`S.I.T. Course Completion Certificate`);
 }
 
 function getChewinggumItem(item: Item) {
