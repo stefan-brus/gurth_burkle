@@ -1,4 +1,4 @@
-import { adv1, buy, canAdventure, changeMcd, create, dispensaryAvailable, equip, equippedItem, getProperty, haveEquipped, haveOutfit, itemAmount, knollAvailable, myMeat, runChoice, setProperty, use, visitUrl } from "kolmafia";
+import { adv1, buy, canAdventure, changeMcd, create, dispensaryAvailable, equip, equippedItem, getProperty, haveEquipped, haveOutfit, itemAmount, knollAvailable, myLevel, myMeat, runChoice, setProperty, use, visitUrl } from "kolmafia";
 import { $item, $location, $slot } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
@@ -12,7 +12,7 @@ export const AcquireMcdTask: Task = {
   subtasks: [
     {
       name: "Acquire Mind Control Device",
-      available: () => knollAvailable() && itemAmount($item`detuned radio`) < 1 && myMeat() > 1000,
+      available: () => knollAvailable() && myLevel() >= 5 && itemAmount($item`detuned radio`) < 1 && myMeat() > 1000,
       progress: () => { buy(1, $item`detuned radio`); changeMcd(10); },
       completed: () => itemAmount($item`detuned radio`) > 0,
       mainstat: 50,
