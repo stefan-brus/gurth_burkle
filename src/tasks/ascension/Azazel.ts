@@ -9,7 +9,7 @@ export const AzazelTask: Task = {
   subtasks: [
     {
       name: "Talk to Pandemonium people",
-      available: () => getProperty(AzazelQuestProperty) === "unstarted",
+      available: () => getProperty("questL06Friar") === "finished" && getProperty(AzazelQuestProperty) === "unstarted",
       progress: () => startAzazel(),
       completed: () => getProperty(AzazelQuestProperty) !== "unstarted",
     },
