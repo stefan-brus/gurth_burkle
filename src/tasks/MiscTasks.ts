@@ -2,7 +2,7 @@ import { adv1, buy, canAdventure, changeMcd, create, dispensaryAvailable, equip,
 import { $item, $location, $slot } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
-import { ascensionDaysLeft, checkUseClover } from "../lib/Utils";
+import { ascensionDaysLeft, checkUseClover, myMainstat } from "../lib/Utils";
 import { Properties } from "../Properties";
 import { Task } from "./Task";
 
@@ -63,6 +63,7 @@ export const UnlockWhiteysGroveTask: Task = {
       available: () => getProperty(questWhiteCitadelProperty) === "started",
       progress: () => { adv1($location`Whitey's Grove`); setProperty(Properties.Ascension.WhiteysGroveVisited, "true"); },
       completed: () => getProperty(Properties.Ascension.WhiteysGroveVisited) === "true",
+      mainstat: $location`Whitey's Grove`.recommendedStat,
     },
   ],
 };
