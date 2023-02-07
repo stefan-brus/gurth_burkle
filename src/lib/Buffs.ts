@@ -1,4 +1,4 @@
-import { haveEffect, mpCost, myClass, myMaxmp, Skill, toEffect, userConfirm, useSkill } from "kolmafia";
+import { haveEffect, haveSkill, mpCost, myClass, myMaxmp, Skill, toEffect, userConfirm, useSkill } from "kolmafia";
 import { $class, $skill } from "libram";
 import { Constants } from "../Constants";
 import { AdventureInfo } from "./AdventureInfo";
@@ -87,11 +87,7 @@ function tryApplyBuffs(skills: Skill[]) {
 }
 
 function tryApplyBuff(skill: Skill) {
-  if (haveEffect(toEffect(skill)) > 1) {
-    return;
-  }
-
-  if (mpCost(skill) + Constants.BuffCastMPBuffer > myMaxmp()) {
+  if (!haveSkill(skill) || haveEffect(toEffect(skill)) > 1 || mpCost(skill) + Constants.BuffCastMPBuffer > myMaxmp()) {
     return;
   }
 
