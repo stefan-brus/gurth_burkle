@@ -23,11 +23,11 @@ export function fallbotRoutine() {
     return;
   }
 
-  Fallbot.refresh();
-
   if (AutumnAton.turnsForQuest() > estimateAdventuresRemaining()) {
     return;
   }
+
+  Fallbot.refresh();
 
   for (const task of FallbotTasks) {
     if (!Fallbot.availableLocations.includes(task.location)) {
