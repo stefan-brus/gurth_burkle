@@ -1,4 +1,4 @@
-import { canEquip, equip, equippedItem, Item, itemAmount, Slot, userConfirm } from "kolmafia";
+import { canEquip, equip, equippedItem, Item, itemAmount, Slot, userConfirm, weaponHands } from "kolmafia";
 import { $slot } from "libram";
 
 export function selectGear(
@@ -24,7 +24,7 @@ export function selectGear(
   if (!reservedSlots.includes($slot`weapon`))
     selectForSlot($slot`weapon`, weapons);
 
-  if (!reservedSlots.includes($slot`off-hand`))
+  if (!reservedSlots.includes($slot`off-hand`) && weaponHands(equippedItem($slot`weapon`)) === 1)
     selectForSlot($slot`off-hand`, offhands);
 
   if (!reservedSlots.includes($slot`pants`))
