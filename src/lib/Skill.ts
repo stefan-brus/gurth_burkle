@@ -1,4 +1,4 @@
-import { haveSkill, myClass, myLevel, myMeat, Skill, userConfirm, useSkill, visitUrl } from "kolmafia";
+import { guildStoreAvailable, haveSkill, myClass, myLevel, myMeat, Skill, userConfirm, useSkill, visitUrl } from "kolmafia";
 import { $class, $skill } from "libram";
 
 export function myUseSkill(qty: number, skill: Skill) {
@@ -63,7 +63,7 @@ const TurtleTamerSkills: SkillInfo[] = [
 
 function checkTrainSkills(skills: SkillInfo[]) {
   skills.forEach(info => {
-    if (!haveSkill(info.skill) && myLevel() >= info.skill.level && myMeat() > info.skill.traincost) {
+    if (!haveSkill(info.skill) && myLevel() >= info.skill.level && myMeat() > info.skill.traincost && guildStoreAvailable()) {
       if (userConfirm(`Train skill ${info.skill.name} for ${info.skill.traincost} meat?`)) {
         visitUrl(`guild.php?action=buyskill&skillid=${info.urlId}`)
       }
