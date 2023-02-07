@@ -1,5 +1,5 @@
-import { attack, Monster, throwItem } from "kolmafia";
-import { $item } from "libram";
+import { attack, Monster, throwItem, useSkill, willUsuallyMiss } from "kolmafia";
+import { $item, $skill } from "libram";
 import { combatOver, shouldThrowFlyers } from "./Utils";
 
 export function consultTurtleTamer(initRound: number, foe: Monster, page: string) {
@@ -28,7 +28,12 @@ function doRound(foe: Monster, state: CombatState): [string, CombatState] {
     resultPage = throwItem($item`rock band flyers`);
   }
   else {
-    resultPage = attack();
+    if (willUsuallyMiss()) {
+      resultPage = useSkill($skill`Toss`);
+    }
+    else {
+      resultPage = attack();
+    }
   }
 
   return [resultPage, newState];
