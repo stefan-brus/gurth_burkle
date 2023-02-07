@@ -14,6 +14,7 @@ import { L07Task } from "./ascension/L07Cyrpt";
 import { L08Task } from "./ascension/L08Trapper";
 import { L09Task } from "./ascension/L09OrcChasm";
 import { L10Task } from "./ascension/L10GiantTrash";
+import { SpookyravenFloor1Task, SpookyravenFloor2Task } from "./ascension/Spookyraven";
 import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { AcquireMcdTask, AcquireMeatMaidTask, BitchinMeatcarTask, CreateBadassBeltTask, UnlockDispensaryTask, UnlockHoleInTheSkyTask, UnlockWhiteysGroveTask } from "./MiscTasks";
 import { Task } from "./Task";
@@ -29,6 +30,8 @@ export const AscensionTasks: Task[] = [
   L02Task,
   L06Task,
   AzazelTask,
+  SpookyravenFloor1Task,
+  SpookyravenFloor2Task,
   L03Task,
   HiddenTempleTask,
   L04Task,

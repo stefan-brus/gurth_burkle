@@ -86,6 +86,11 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
         result.push($slot`hat`);
       }
       break;
+    case $location`The Haunted Billiards Room`:
+      if (itemAmount($item`pool cue`) > 0) {
+        equip($slot`weapon`, $item`pool cue`);
+        result.push($slot`weapon`);
+      }
   }
 
   return result;

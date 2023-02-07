@@ -1,6 +1,7 @@
-import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, mpCost, myMaxmp, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
+import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, mpCost, myAdventures, myInebriety, myMaxmp, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
 import { $coinmaster, $effect, $item, $skill, $stat } from "libram";
 import { cookCbbFoods } from "../shinies/Cookbookbat";
+import { billiardsRoomDone } from "../tasks/ascension/Spookyraven";
 import { liverRemaining, stomachRemaining } from "./Organs";
 import { haveIngredients } from "./Utils";
 
@@ -136,6 +137,11 @@ function tryBuyFromOlivers(inebriety: number): number {
 
 function drinkMax(booze: Item) {
   while (liverRemaining() >= booze.inebriety && itemAmount(booze) > 0) {
+    if (!billiardsRoomDone() && myInebriety() + booze.inebriety > 10 && myAdventures() > 10) {
+      // Try to keep inebriety around 10 until billiards room is done, unless we really need adventures
+      break;
+    }
+
     if (userConfirm(`Drink 1 ${booze.name}?`)) {
       while (haveEffect($effect`Ode to Booze`) < booze.inebriety) {
         if (!useSkill(1, $skill`The Ode to Booze`)) {
