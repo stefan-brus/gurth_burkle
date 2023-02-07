@@ -12,6 +12,7 @@ export function selectTurtleTamerGear(reservedSlots: Slot[]) {
     TurtleTamerOffhands,
     TurtleTamerPants,
     TurtleTamerAccessories,
+    TurtleTamerFamiliar,
   );
 }
 
@@ -62,4 +63,8 @@ const TurtleTamerAccessories: Item[] = [
   $item`tortoboggan`,
   $item`shiny ring`,
   $item`imp unity ring`,
+];
+
+const TurtleTamerFamiliar: Item[] = [
+  $item`astral pet sweater`,
 ];

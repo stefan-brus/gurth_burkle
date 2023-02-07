@@ -10,6 +10,7 @@ export function selectGear(
   offhands: Item[],
   pants: Item[],
   accessories: Item[],
+  familiar: Item[],
 ) {
   if (!reservedSlots.includes($slot`hat`))
     selectForSlot($slot`hat`, hats);
@@ -37,6 +38,9 @@ export function selectGear(
 
   if (!reservedSlots.includes($slot`acc3`))
     selectForSlot($slot`acc3`, accessories);
+
+  if (!reservedSlots.includes($slot`familiar`))
+    selectForSlot($slot`familiar`, familiar);
 }
 
 export function findEquippedAccSlot(acc: Item): Slot {
