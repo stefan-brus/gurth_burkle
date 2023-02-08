@@ -18,7 +18,7 @@ export const L09Task: Task = {
     {
       name: "Build the bridge",
       available: () => getProperty(L09QuestProperty) === "started" && parseInt(getProperty(BridgeProgressProperty)) < 30 &&
-                       parseInt(getProperty(BridgeProgressProperty)) >= 29, // Try not to do this manually, let trainset and fallbot gather materials
+                       parseInt(getProperty(BridgeProgressProperty)) >= 25, // Try not to do this manually, let trainset and fallbot gather most materials
       progress: () => buildTheBridge(),
       completed: () => getProperty(L09QuestProperty) !== "started",
     },
