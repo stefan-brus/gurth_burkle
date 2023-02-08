@@ -9,7 +9,7 @@ export const L04Task: Task = {
   subtasks: [
     {
       name: "Demolish walls",
-      available: () => ["started", "step1", "step2"].some(val => val === getProperty(L04QuestProperty)) && numericModifier(toMafiaModifier(Modifier.StenchRes)) > 1,
+      available: () => ["started", "step1", "step2"].some(val => val === getProperty(L04QuestProperty)),
       progress: () => doDemolishWalls(),
       completed: () => ["step3", "step4", "finished"].some(val => val === getProperty(L04QuestProperty)),
     },
