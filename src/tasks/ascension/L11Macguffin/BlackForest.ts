@@ -38,7 +38,7 @@ export const L11BlackForestTask: Task = {
     },
     {
       name: "Get MacGuffin diary",
-      available: () => itemAmount($item`your father's MacGuffin diary`) < 1 && myAdventures() > Constants.ReservedAdventures + 3,
+      available: () => itemAmount($item`forged identification documents`) > 0  && itemAmount($item`your father's MacGuffin diary`) < 1 && myAdventures() > Constants.ReservedAdventures + 3,
       progress: () => shoreAdventure(),
       completed: () => itemAmount($item`your father's MacGuffin diary`) > 0,
     },
@@ -81,8 +81,8 @@ function doBlackForest(): AdventureInfo {
   else if (getProperty("lastEncounter") === "The Blackberry Cobbler") { // Escape from cobbler choice
     setProperty(MapChoice, "1");
     setProperty(ThrillChoice, "2");
-    setProperty(CobblerChoice, "5");
-    setProperty(CobblerChoiceAlt, "5");
+    setProperty(CobblerChoice, "6");
+    setProperty(CobblerChoiceAlt, "6");
   }
   else { // Get blackberries
     setProperty(MapChoice, "1");
