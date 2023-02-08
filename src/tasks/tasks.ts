@@ -14,6 +14,7 @@ import { L07Task } from "./ascension/L07Cyrpt";
 import { L08Task } from "./ascension/L08Trapper";
 import { L09Task } from "./ascension/L09OrcChasm";
 import { L10Task } from "./ascension/L10GiantTrash";
+import { L11BlackForestTask } from "./ascension/L11Macguffin/BlackForest";
 import { L12Part1Task, L12Part2Task, L12Part3Task } from "./ascension/L12MysteriousIsland";
 import { SpookyravenFloor1Task, SpookyravenFloor2Task } from "./ascension/Spookyraven";
 import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
@@ -47,6 +48,7 @@ export const AscensionTasks: Task[] = [
   UnlockHoleInTheSkyTask,
   L09Task,
   L12Part2Task,
+  L11BlackForestTask,
   L12Part3Task,
 ];
 

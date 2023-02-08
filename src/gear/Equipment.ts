@@ -115,6 +115,12 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
 
       result.push($slot`hat`, $slot`pants`, findEquippedAccSlot($item`bejeweled pledge pin`));
       break;
+    case $location`The Black Forest`:
+      if (itemAmount($item`blackberry galoshes`) > 0) {
+        equip($slot`acc3`, $item`blackberry galoshes`);
+        result.push($slot`acc3`);
+      }
+      break;
   }
 
   return result;

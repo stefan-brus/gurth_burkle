@@ -12,6 +12,7 @@ export const Properties = {
     MeatMaidInstalled: "myMeatMaidInstalled",
     LighthouseSidequestStarted: "myLighthouseSidequestStarted",
     WarItemsSold: "myWarItemsSold",
+    MacGuffinDiaryRead: "myMacGuffinDiaryRead",
   },
 
   // These are reset at the start of each day
