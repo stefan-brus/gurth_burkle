@@ -107,8 +107,8 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
     case $location`Out by that Rusted-Out Car`:
     case $location`The Hatching Chamber`:
     case $location`The Feeding Chamber`:
-    case $location`The Guards' Chamber`:
-    case $location`The Queen's Chamber`:
+    case $location`The Royal Guard Chamber`:
+    case $location`The Filthworm Queen's Chamber`:
       if (!outfit("Frat Warrior Fatigues")) {
         throw new Error("Unable to equip Frat Warrior Fatigues");
       }

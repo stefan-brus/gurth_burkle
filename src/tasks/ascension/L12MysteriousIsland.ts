@@ -209,7 +209,7 @@ function doOrchardSidequest(): AdventureInfo | void {
   use(itemAmount($item`filthworm royal guard scent gland`), $item`filthworm royal guard scent gland`);
   if (haveEffect($effect`Filthworm Guard Stench`) > 0) {
     return {
-      location: $location`The Queen's Chamber`,
+      location: $location`The Filthworm Queen's Chamber`,
       modifiers: [],
     };
   }
@@ -217,7 +217,7 @@ function doOrchardSidequest(): AdventureInfo | void {
   use(itemAmount($item`filthworm drone scent gland`), $item`filthworm drone scent gland`);
   if (haveEffect($effect`Filthworm Drone Stench`) > 0) {
     return {
-      location: $location`The Guards' Chamber`,
+      location: $location`The Royal Guard Chamber`,
       modifiers: [Modifier.ItemDrop],
     };
   }
