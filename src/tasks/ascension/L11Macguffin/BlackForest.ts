@@ -16,6 +16,7 @@ export const L11BlackForestTask: Task = {
       available: () => !blackMarketFound(),
       progress: () => doBlackForest(),
       completed: () => blackMarketFound(),
+      mainstat: $location`The Black Forest`.recommendedStat,
     },
     {
       name: "Get beehive",
