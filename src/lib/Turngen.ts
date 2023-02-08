@@ -84,13 +84,13 @@ const FruityGirlDrinks: Item[] = [
 ];
 
 const BoozePriority: Item[] = [
-  ...ExtraFruityDrinks,
-  ...FruityGirlDrinks,
-  $item`Charleston Choo-Choo`,
   $item`Boris's Beer`,
+  ...ExtraFruityDrinks,
   $item`shot of wasp venom`,
   $item`AutumnFest ale`,
   $item`void lager`,
+  ...FruityGirlDrinks,
+  $item`Charleston Choo-Choo`,
 ]
 
 function generateLiver() {
