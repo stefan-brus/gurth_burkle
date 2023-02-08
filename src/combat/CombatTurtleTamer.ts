@@ -1,12 +1,13 @@
 import { attack, Monster, throwItem, useSkill, willUsuallyMiss } from "kolmafia";
 import { $item, $skill } from "libram";
-import { combatOver, shouldThrowFlyers } from "./Utils";
+import { checkSpecialActions, combatOver, shouldThrowFlyers } from "./Utils";
 
 export function consultTurtleTamer(initRound: number, foe: Monster, page: string) {
   let lastResult = page;
   let state = InitState;
 
   while (!combatOver(lastResult)) {
+    checkSpecialActions(foe, lastResult);
     [lastResult, state] = doRound(foe, state);
   }
 }

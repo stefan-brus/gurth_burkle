@@ -91,6 +91,30 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
         equip($slot`weapon`, $item`pool cue`);
         result.push($slot`weapon`);
       }
+      break;
+    case $location`Frat House (Frat Disguise)`:
+      if (!outfit("Frat Boy Ensemble")) {
+        throw new Error("Unable to equip Frat Boy Ensemble");
+      }
+
+      result.push($slot`hat`, $slot`weapon`, $slot`pants`);
+      break;
+    case $location`Wartime Hippy Camp (Frat Disguise)`:
+    case $location`The Battlefield (Frat Uniform)`:
+    case $location`Next to that Barrel with Something Burning in it`:
+    case $location`Over Where the Old Tires Are`:
+    case $location`Near an Abandoned Refrigerator`:
+    case $location`Out by that Rusted-Out Car`:
+    case $location`The Hatching Chamber`:
+    case $location`The Feeding Chamber`:
+    case $location`The Guards' Chamber`:
+    case $location`The Queen's Chamber`:
+      if (!outfit("Frat Warrior Fatigues")) {
+        throw new Error("Unable to equip Frat Warrior Fatigues");
+      }
+
+      result.push($slot`hat`, $slot`pants`, findEquippedAccSlot($item`bejeweled pledge pin`));
+      break;
   }
 
   return result;

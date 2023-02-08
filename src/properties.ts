@@ -10,6 +10,8 @@ export const Properties = {
 
     WhiteysGroveVisited: "myWhiteysGroveVisited",
     MeatMaidInstalled: "myMeatMaidInstalled",
+    LighthouseSidequestStarted: "myLighthouseSidequestStarted",
+    WarItemsSold: "myWarItemsSold",
   },
 
   // These are reset at the start of each day
