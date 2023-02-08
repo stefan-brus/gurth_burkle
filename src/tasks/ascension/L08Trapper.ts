@@ -21,6 +21,12 @@ export const L08Task: Task = {
       completed: () => getProperty(L08QuestProperty) !== "step1" || itemAmount($item`goat cheese`) >= 3,
     },
     {
+      name: "Give items to trapper",
+      available: () => getProperty(L08QuestProperty) === "step1" && itemAmount($item`goat cheese`) >= 3 && itemAmount($item`${getProperty(TrapperOreProperty)}`) >= 3,
+      progress: () => { visitUrl("place.php?whichplace=mclargehuge&action=trappercabin"); },
+      completed: () => getProperty(L08QuestProperty) !== "step1",
+    },
+    {
       name: "Acquire eXtreme Cold-Weather Gear",
       available: () => getProperty(L08QuestProperty) === "step2",
       progress: () => acquireColdWeatherGear(),
@@ -48,6 +54,7 @@ export const L08Task: Task = {
 };
 
 const L08QuestProperty = "questL08Trapper";
+const TrapperOreProperty = "trapperOre";
 
 function acquireColdWeatherGear(): AdventureInfo {
   setExtremeSlopeNoncombats();
