@@ -19,10 +19,10 @@ export function checkSpecialActions(foe: Monster, page: string) {
 
 export function checkYossarianTools(foe: Monster, page: string) {
   const ToolMonsters = [
-    $monster`batwinged  germlin (tool)`,
+    $monster`batwinged  gremlin (tool)`,
     $monster`erudite gremlin (tool)`,
     $monster`spider gremlin (tool)`,
-    $monster`vegetable germlin (tool)`,
+    $monster`vegetable gremlin (tool)`,
   ];
 
   const ToolMessages = [
