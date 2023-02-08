@@ -1,4 +1,4 @@
-import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, mpCost, myAdventures, myInebriety, myMaxmp, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
+import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, mpCost, myAdventures, myInebriety, myLevel, myMaxmp, myPrimestat, use, userConfirm, useSkill } from "kolmafia";
 import { $coinmaster, $effect, $item, $skill, $stat } from "libram";
 import { cookCbbFoods } from "../shinies/Cookbookbat";
 import { billiardsRoomDone } from "../tasks/ascension/Spookyraven";
@@ -18,6 +18,10 @@ export function generateAdventures() {
 const MilkUsedProperty = "_milkOfMagnesiumUsed";
 
 function generateStomach() {
+  if (myLevel() >= 11) {
+    eatToMax($item`astral hot dog`);
+  }
+
   cookCbbFoods(stomachRemaining());
 
   if (getProperty(MilkUsedProperty) === "false") {
