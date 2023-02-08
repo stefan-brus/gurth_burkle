@@ -94,15 +94,16 @@ const BoozePriority: Item[] = [
 ]
 
 function generateLiver() {
+  const inebrietyAvailable = BoozePriority.reduce<number>((acc, item) => acc + item.inebriety * itemAmount(item), 0);
   let inebrietyCreated = 0;
 
   if (myPrimestat === $stat`Moxie`) {
-    inebrietyCreated += tryCreateDrinks(ExtraFruityDrinks, liverRemaining() - inebrietyCreated);
+    inebrietyCreated += tryCreateDrinks(ExtraFruityDrinks, liverRemaining() - inebrietyAvailable - inebrietyCreated);
   }
 
-  inebrietyCreated += tryCreateDrinks(FruityGirlDrinks, liverRemaining() - inebrietyCreated);
-  inebrietyCreated += tryCreateDrinks([$item`Boris's beer`], liverRemaining() - inebrietyCreated);
-  inebrietyCreated += tryBuyFromOlivers(liverRemaining() - inebrietyCreated);
+  inebrietyCreated += tryCreateDrinks(FruityGirlDrinks, liverRemaining() - inebrietyAvailable - inebrietyCreated);
+  inebrietyCreated += tryCreateDrinks([$item`Boris's beer`], liverRemaining() - inebrietyAvailable - inebrietyCreated);
+  inebrietyCreated += tryBuyFromOlivers(liverRemaining() - inebrietyAvailable - inebrietyCreated);
   
   for (const drink of BoozePriority) {
     if (itemAmount(drink) > 0) {
