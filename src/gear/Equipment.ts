@@ -92,12 +92,11 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
         result.push($slot`weapon`);
       }
       break;
-    case $location`Frat House (Frat Disguise)`:
-      if (!outfit("Frat Boy Ensemble")) {
-        throw new Error("Unable to equip Frat Boy Ensemble");
+    case $location`Frat House`:
+      if (haveOutfit("Frat Boy Ensemble")) {
+        outfit("Frat Boy Ensemble");
+        result.push($slot`hat`, $slot`weapon`, $slot`pants`);
       }
-
-      result.push($slot`hat`, $slot`weapon`, $slot`pants`);
       break;
     case $location`Wartime Hippy Camp (Frat Disguise)`:
     case $location`The Battlefield (Frat Uniform)`:

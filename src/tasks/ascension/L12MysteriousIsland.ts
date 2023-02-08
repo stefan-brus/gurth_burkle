@@ -1,4 +1,4 @@
-import { buy, cliExecute, getProperty, haveEffect, haveOutfit, Item, itemAmount, myAdventures, outfit, sell, setProperty, use, userConfirm } from "kolmafia";
+import { buy, cliExecute, getProperty, haveEffect, haveOutfit, Item, itemAmount, myAdventures, outfit, sell, setProperty, use, userConfirm, visitUrl } from "kolmafia";
 import { $coinmaster, $effect, $item, $location } from "libram";
 import { Constants } from "../../Constants";
 import { AdventureInfo } from "../../lib/AdventureInfo";
@@ -154,7 +154,7 @@ function getFratBoyEnsemble(): AdventureInfo {
 
 function getFratWarriorFatigues(): AdventureInfo {
   return {
-    location: $location`Frat House (Frat Disguise)`,
+    location: $location`Frat House`,
     modifiers: [Modifier.NonCombat],
   };
 }
@@ -171,20 +171,20 @@ function startTheWar(): AdventureInfo {
 
 function visitArenaSidequest() {
   outfit("Frat Warrior Fatigues")
-  throw new Error("TODO");
+  visitUrl("bigisland.php?place=concert");
 }
 
 function visitLighthouseSidequest() {
   outfit("Frat Warrior Fatigues");
-  throw new Error("TODO");
-  //setProperty(Properties.Ascension.LighthouseSidequestStarted, "true");
+  visitUrl("bigisland.php?place=lighthouse&action=pyro&pwd");
+  setProperty(Properties.Ascension.LighthouseSidequestStarted, "true");
 }
 
 function doJunkyardSidequest(): AdventureInfo | void {
   outfit("Frat Warrior Fatigues");
-  throw new Error("TODO");// Visit Yossarian in between adventures
+  visitUrl("bigisland.php?action=junkman&pwd");
 
-  /*if (getProperty(JunkyardSidequestProperty) !== "none") {
+  if (getProperty(JunkyardSidequestProperty) !== "none") {
     return;
   }
 
@@ -195,14 +195,14 @@ function doJunkyardSidequest(): AdventureInfo | void {
   return {
     location: $location`${getProperty("currentJunkyardLocation")}`,
     modifiers: [],
-  };*/
+  };
 }
 
 function doOrchardSidequest(): AdventureInfo | void {
   outfit("Frat Warrior Fatigues");
-  throw new Error("TODO");// Visit stand
+  visitUrl("bigisland.php?place=orchard&action=stand&pwd");
 
-  /*if (getProperty(OrchardSidequestProperty) !== "none") {
+  if (getProperty(OrchardSidequestProperty) !== "none") {
     return;
   }
 
@@ -233,7 +233,7 @@ function doOrchardSidequest(): AdventureInfo | void {
   return {
     location: $location`The Hatching Chamber`,
     modifiers: [Modifier.ItemDrop],
-  };*/
+  };
 }
 
 function tradeWithQuartersmaster() {
