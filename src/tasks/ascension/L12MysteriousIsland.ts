@@ -53,7 +53,7 @@ export const L12Part1Task: Task = {
     },
     {
       name: "Finish Arena Sidequest",
-      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(ArenaSidequestProperty) === "none" && parseInt(getProperty(FlyeredMLProperty)) >= 10100,
+      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(ArenaSidequestProperty) === "none" && parseInt(getProperty(FlyeredMLProperty)) >= 10000,
       progress: () => visitArenaSidequest(),
       completed: () => getProperty(ArenaSidequestProperty) !== "none",
     },
@@ -175,7 +175,12 @@ function startTheWar(): AdventureInfo {
 }
 
 function visitArenaSidequest() {
-  outfit("Frat Warrior Fatigues")
+  // Sometimes Mafia tracks the flyeredML incorrectly and we need to do some more flyering...
+  if (parseInt(getProperty(FlyeredMLProperty)) >= 10000 && itemAmount($item`rock band flyers`) > 0) {
+    setProperty(FlyeredMLProperty, "9900");
+  }
+  
+  outfit("Frat Warrior Fatigues");
   visitUrl("bigisland.php?place=concert");
 }
 
