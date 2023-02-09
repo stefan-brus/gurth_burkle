@@ -113,15 +113,13 @@ function doTwinPeak(): AdventureInfo {
   const PaintingRequired = (parseInt(getProperty(TwinPeakProperty)) & 4) === 0;
   const DoubleRequired = (parseInt(getProperty(TwinPeakProperty)) & 8) === 0;
 
-  if (itemAmount($item`rusty hedge trimmers`) > 0) {
-    use(1, $item`rusty hedge trimmers`);
-  }
+  let result: AdventureInfo = { location: $location`Twin Peak`, modifiers: [] };
 
   if (Room237Required) {
     setProperty(OverlookChoice, "1");
     setProperty(Room237Choice, "1");
 
-    return {
+    result = {
       location: $location`Twin Peak`,
       modifiers: [Modifier.NonCombat, Modifier.StenchRes],
       minModifier: [Modifier.StenchRes, 4],
@@ -131,7 +129,7 @@ function doTwinPeak(): AdventureInfo {
     setProperty(OverlookChoice, "2");
     setProperty(PantryChoice, "1");
 
-    return {
+    result = {
       location: $location`Twin Peak`,
       modifiers: [Modifier.NonCombat, Modifier.FoodDrop],
       minModifier: [Modifier.FoodDrop, 50],
@@ -149,7 +147,7 @@ function doTwinPeak(): AdventureInfo {
     setProperty(OverlookChoice, "3");
     setProperty(PaintingChoice, "1");
 
-    return {
+    result = {
       location: $location`Twin Peak`,
       modifiers: [Modifier.NonCombat],
     };
@@ -158,12 +156,16 @@ function doTwinPeak(): AdventureInfo {
     setProperty(OverlookChoice, "4");
     setProperty(DoubleChoice, "1");
 
-    return {
+    result = {
       location: $location`Twin Peak`,
       modifiers: [Modifier.NonCombat, Modifier.Initiative],
       minModifier: [Modifier.Initiative, 40],
     };
   }
 
-  throw new Error("Twin Peak should already be completed");
+  if (itemAmount($item`rusty hedge trimmers`) > 0) {
+    use(1, $item`rusty hedge trimmers`);
+  }
+
+  return result;
 }
