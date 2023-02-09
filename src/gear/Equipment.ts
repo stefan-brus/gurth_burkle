@@ -1,4 +1,4 @@
-import { equip, haveOutfit, Item, itemAmount, lockFamiliarEquipment, myClass, outfit, Slot, toSlot } from "kolmafia";
+import { equip, equippedAmount, haveOutfit, Item, itemAmount, lockFamiliarEquipment, myClass, outfit, Slot, toSlot } from "kolmafia";
 import { $class, $item, $location, $slot } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
@@ -71,23 +71,23 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
       }
       break;
     case $location`The Castle in the Clouds in the Sky (Basement)`:
-      if (itemAmount($item`amulet of extreme plot significance`) > 0) {
+      if (itemAmount($item`amulet of extreme plot significance`) > 0 || equippedAmount($item`amulet of extreme plot significance`) > 0) {
         equip($slot`acc3`, $item`amulet of extreme plot significance`);
         result.push($slot`acc3`);
       }
-      if (itemAmount($item`titanium assault umbrella`) > 0) {
+      if (itemAmount($item`titanium assault umbrella`) > 0 || equippedAmount($item`titanium assault umbrella`) > 0) {
         equip($slot`weapon`, $item`titanium assault umbrella`);
         result.push($slot`weapon`);
       }
       break;
     case $location`The Castle in the Clouds in the Sky (Top Floor)`:
-      if (itemAmount($item`mohawk wig`) > 0) {
+      if (itemAmount($item`mohawk wig`) > 0 || equippedAmount($item`mohawk wig`) > 0) {
         equip($slot`hat`, $item`mohawk wig`);
         result.push($slot`hat`);
       }
       break;
     case $location`The Haunted Billiards Room`:
-      if (itemAmount($item`pool cue`) > 0) {
+      if (itemAmount($item`pool cue`) > 0 || equippedAmount($item`pool cue`) > 0) {
         equip($slot`weapon`, $item`pool cue`);
         result.push($slot`weapon`);
       }
@@ -115,9 +115,38 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
       result.push($slot`hat`, $slot`pants`, findEquippedAccSlot($item`bejeweled pledge pin`));
       break;
     case $location`The Black Forest`:
-      if (itemAmount($item`blackberry galoshes`) > 0) {
+      if (itemAmount($item`blackberry galoshes`) > 0 || equippedAmount($item`blackberry galoshes`) > 0) {
         equip($slot`acc3`, $item`blackberry galoshes`);
         result.push($slot`acc3`);
+      }
+      break;
+    case $location`An Overgrown Shrine (Northwest)`:
+    case $location`An Overgrown Shrine (Northeast)`:
+    case $location`An Overgrown Shrine (Southwest)`:
+    case $location`An Overgrown Shrine (Southeast)`:
+      equip($slot`weapon`, $item`antique machete`);
+      result.push($slot`weapon`);
+      break;
+    case $location`The Hidden Hospital`:
+      if (itemAmount($item`half-size scalpel`) > 0 || equippedAmount($item`half-size scalpel`) > 0) {
+        equip($slot`weapon`, $item`half-size scalpel`);
+        result.push($slot`weapon`);
+      }
+      if (itemAmount($item`head mirror`) > 0 || equippedAmount($item`head mirror`) > 0) {
+        equip($slot`acc2`, $item`head mirror`);
+        result.push($slot`acc2`);
+      }
+      if (itemAmount($item`surgical mask`) > 0 || equippedAmount($item`surgical mask`) > 0) {
+        equip($slot`acc3`, $item`surgical mask`);
+        result.push($slot`acc3`);
+      }
+      if (itemAmount($item`surgical apron`) > 0 || equippedAmount($item`surgical apron`) > 0) {
+        equip($slot`shirt`, $item`surgical apron`);
+        result.push($slot`shirt`);
+      }
+      if (itemAmount($item`bloodied surgical dungarees`) > 0 || equippedAmount($item`bloodied surgical dungarees`) > 0) {
+        equip($slot`pants`, $item`bloodied surgical dungarees`);
+        result.push($slot`pants`);
       }
       break;
   }

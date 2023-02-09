@@ -1,5 +1,5 @@
-import { cliExecute, getProperty, itemAmount, myAdventures, myHash, setProperty, use, visitUrl } from "kolmafia";
-import { $item, $location } from "libram";
+import { buy, canAdventure, cliExecute, equippedAmount, getProperty, haveEffect, itemAmount, Location, myAdventures, myHash, setProperty, use, visitUrl } from "kolmafia";
+import { $effect, $item, $location } from "libram";
 import { Constants } from "../../../Constants";
 import { AdventureInfo } from "../../../lib/AdventureInfo";
 import { Modifier } from "../../../lib/Modifier";
@@ -31,11 +31,96 @@ export const L11HiddenTempleTask: Task = {
 export const L11HiddenCityTask: Task = {
   name: "L11: Hidden City",
   subtasks: [
-
+    {
+      name: "Get antique machete",
+      available: () => getProperty(L11HiddenCityProperty) === "step3",
+      progress: () => doHiddenPark(),
+      completed: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
+    },
+    {
+      name: "Relocate pygmy janitors",
+      available: () => getProperty(L11HiddenCityProperty) === "step3",
+      progress: () => doHiddenPark(),
+      completed: () => parseInt(getProperty(JanitorProperty)) === parseInt(getProperty("knownAscensions")),
+    },
+    {
+      name: "Unlock The Hidden Tavern",
+      available: () => parseInt(getProperty(JanitorProperty)) === parseInt(getProperty("knownAscensions")),
+      progress: () => doHiddenPark(),
+      completed: () => parseInt(getProperty(TavernProperty)) === parseInt(getProperty("knownAscensions")),
+    },
+    {
+      name: "Unlock The Hidden Apartment Building",
+      available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
+      progress: () => clearVines($location`An Overgrown Shrine (Northwest)`),
+      completed: () => canAdventure($location`The Hidden Apartment Building`),
+    },
+    {
+      name: "Unlock The Hidden Office Building",
+      available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
+      progress: () => clearVines($location`An Overgrown Shrine (Northeast)`),
+      completed: () => canAdventure($location`The Hidden Office Building`),
+    },
+    {
+      name: "Unlock The Hidden Apartment Building",
+      available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
+      progress: () => clearVines($location`An Overgrown Shrine (Southwest)`),
+      completed: () => canAdventure($location`The Hidden Apartment Building`),
+    },
+    {
+      name: "Unlock The Hidden Apartment Building",
+      available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
+      progress: () => clearVines($location`An Overgrown Shrine (Southeast)`),
+      completed: () => canAdventure($location`The Hidden Apartment Building`),
+    },
+    {
+      name: "Clear the ziggurat",
+      available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
+      progress: () => clearVines($location`A Massive Ziggurat`),
+      completed: () => parseInt(getProperty(ZigguratProperty)) === 1,
+    },
+    {
+      name: "Do The Hidden Apartment Building",
+      available: () => canAdventure($location`The Hidden Apartment Building`),
+      progress: () => doApartmentBuilding(),
+      completed: () => parseInt(getProperty(ApartmentBuildingProperty)) === 8 && parseInt(getProperty(LawyerProperty)) === parseInt(getProperty("knownAscensions")),
+    },
+    {
+      name: "Do The Hidden Office Building",
+      available: () => canAdventure($location`The Hidden Office Building`),
+      progress: () => doOfficeBuilding(),
+      completed: () => parseInt(getProperty(OfficeBuildingProperty)) === 8,
+    },
+    {
+      name: "Do The Hidden Hospital",
+      available: () => canAdventure($location`The Hidden Hospital`),
+      progress: () => doHospital(),
+      completed: () => parseInt(getProperty(HospitalProperty)) === 8,
+    },
+    {
+      name: "Do The Hidden Bowling Alley",
+      available: () => canAdventure($location`The Hidden Bowling Alley`),
+      progress: () => doBowlingAlley(),
+      completed: () => parseInt(getProperty(BowlingAlleyProperty)) === 8,
+    },
+    {
+      name: "Get ancient amulet",
+      available: () => getProperty(L11HiddenCityProperty) === "step4",
+      progress: () => getAncientAmulet(),
+      completed: () => getProperty(L11HiddenCityProperty) === "finished",
+    },
   ],
 };
 
 const L11HiddenCityProperty = "questL11Worship";
+const JanitorProperty = "relocatePygmyJanitor";
+const LawyerProperty = "relocatePygmyLawyer";
+const TavernProperty = "hiddenTavernUnlock";
+const ZigguratProperty = "zigguratLianas";
+const ApartmentBuildingProperty = "hiddenApartmentProgress";
+const OfficeBuildingProperty = "hiddenOfficeProgress";
+const HospitalProperty = "hiddenHospitalProgress";
+const BowlingAlleyProperty = "hiddenBowlingAlleyProgress";
 
 function getNostril(): AdventureInfo {
   const StoneWoolChoice = "choiceAdventure582";
@@ -57,18 +142,6 @@ function getNostril(): AdventureInfo {
 function unlockHiddenCity() {
   // Mafia has some trouble with the choice adventures here, so we do the whole sequence manually
   // 1 stone wool is assumed
-  /**
-   *       visitUrl("adventure.php?snarfblat=280");
-      manualChoice(582, 2);
-      manualChoice(580, 2);
-      manualChoice(584, 4);
-      manualChoice(580, 1);
-      manualChoice(123, 2);
-      visitUrl("choice.php");
-      cliExecute("dvorak");
-      manualChoice(125, 3);
-   */
-
   if (itemAmount($item`stone wool`) < 1 || !use(1, $item`stone wool`)) {
     throw new Error("Unable to use stone wool for hidden city unlock");
   }
@@ -82,4 +155,158 @@ function unlockHiddenCity() {
   visitUrl("choice.php?");
   cliExecute("dvorak");
   visitUrl("choice.php?whichchoice=125&option=3&pwd=" + myHash());
+}
+
+function doHiddenPark(): AdventureInfo | void {
+  const DumpsterChoice = "choiceAdventure789";
+
+  if (parseInt(getProperty(JanitorProperty)) === parseInt(getProperty("knownAscensions"))) {
+    setProperty(DumpsterChoice, "1");
+  }
+  else {
+    setProperty(DumpsterChoice, "2");
+  }
+
+  if (itemAmount($item`book of matches`) > 0) {
+    use(1, $item`book of matches`);
+    return;
+  }
+
+  return {
+    location: $location`The Hidden Park`,
+    modifiers: [Modifier.NonCombat],
+  };
+}
+
+function clearVines(loc: Location): AdventureInfo {
+  const NWZigguratChoice = "choiceAdventure781";
+  const NEZigguratChoice = "choiceAdventure785";
+  const SWZigguratChoice = "choiceAdventure783";
+  const SEZigguratChoice = "choiceAdventure787";
+
+  setProperty(NWZigguratChoice, "1");
+  setProperty(NEZigguratChoice, "1");
+  setProperty(SWZigguratChoice, "1");
+  setProperty(SEZigguratChoice, "1");
+
+  return {
+    location: loc,
+    modifiers: [],
+  };
+}
+
+function doApartmentBuilding(): AdventureInfo {
+  const ApartmentChoice = "choiceAdventure780";
+
+  if (parseInt(getProperty(LawyerProperty)) < parseInt(getProperty("knownAscensions"))) {
+    setProperty(ApartmentChoice, "3");
+  }
+  else if (haveEffect($effect`Thrice-Cursed`) < 1) {
+    setProperty(ApartmentChoice, "2");
+  }
+  else {
+    setProperty(ApartmentChoice, "1");
+  }
+
+  if (itemAmount($item`moss-covered stone sphere`) < 1) {
+    return {
+      location: $location`The Hidden Apartment Building`,
+      modifiers: [Modifier.NonCombat],
+    };
+  }
+  else {
+    if (haveEffect($effect`Thrice-Cursed`) > 0) {
+      cliExecute("uneffect Thrice-Cursed");
+    }
+
+    return {
+      location: $location`An Overgrown Shrine (Northwest)`,
+      modifiers: [],
+      expectedNoncombat: "Earthbound and Down",
+    };
+  }
+}
+
+function doOfficeBuilding(): AdventureInfo {
+  const OfficeChoice = "choiceAdventure786";
+
+  if (itemAmount($item`McClusky file (complete)`) < 1) {
+    if (itemAmount($item`boring binder clip`) < 1) {
+      setProperty(OfficeChoice, "2");
+    }
+    else {
+      setProperty(OfficeBuildingProperty, "3");
+    }
+  }
+  else {
+    setProperty(OfficeChoice, "1");
+  }
+
+  if (itemAmount($item`crackling stone sphere`) < 1) {
+    return {
+      location: $location`The Hidden Office Building`,
+      modifiers: [Modifier.NonCombat],
+    };
+  }
+  else {
+    return {
+      location: $location`An Overgrown Shrine (Northeast)`,
+      modifiers: [],
+      expectedNoncombat: "Air Apparent",
+    };
+  }
+}
+
+function doHospital(): AdventureInfo {
+  const HospitalChoice = "choiceAdventure784";
+  setProperty(HospitalChoice, "1");
+
+  if (itemAmount($item`dripping stone sphere`) < 1) {
+    return {
+      location: $location`The Hidden Hospital`,
+      modifiers: [Modifier.ItemDrop]
+    };
+  }
+  else {
+    return {
+      location: $location`An Overgrown Shrine (Southwest)`,
+      modifiers: [],
+      expectedNoncombat: "Water You Dune",
+    };
+  }
+}
+
+function doBowlingAlley(): AdventureInfo {
+    const BowlingAlleyChoice = "choiceAdventure788";
+    setProperty(BowlingAlleyChoice, "1");
+
+    const DrunkPygmyProperty = "_drunkPygmyBanishes";
+    if (parseInt(getProperty(DrunkPygmyProperty)) < 11 && itemAmount($item`Bowl of Scorpions`) < 1) {
+      buy(1, $item`Bowl of Scorpions`);
+    }
+
+    if (itemAmount($item`scorched stone sphere`) < 1) {
+      return {
+        location: $location`The Hidden Bowling Alley`,
+        modifiers: [Modifier.ItemDrop],
+      };
+    }
+    else {
+      return {
+        location: $location`An Overgrown Shrine (Southeast)`,
+        modifiers: [],
+        expectedNoncombat: "Fire When Ready",
+      };
+    }
+}
+
+function getAncientAmulet(): AdventureInfo {
+  const ZigguratChoice = "choiceAdventure791";
+  setProperty(ZigguratChoice, "1");
+
+  return {
+    location: $location`A Massive Ziggurat`,
+    modifiers: [],
+    expectedNoncombat: "Protector Spectre",
+  };
 }
