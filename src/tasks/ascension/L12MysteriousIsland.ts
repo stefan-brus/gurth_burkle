@@ -79,14 +79,16 @@ export const L12Part2Task: Task = {
     },
     {
       name: "Unlock Orchard",
-      available: () => getProperty(L12QuestProperty) === "step1" && parseInt(getProperty(HippiesDefeatedProperty)) < 64,
+      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(JunkyardSidequestProperty) === "none" &&
+                       getProperty(ArenaSidequestProperty) !== "none" && getProperty(LighthouseSidequestProperty) !== "none" && 
+                       parseInt(getProperty(HippiesDefeatedProperty)) < 64,
       progress: () => { return { location: $location`The Battlefield (Frat Uniform)`, modifiers: [] }; },
       completed: () => parseInt(getProperty(HippiesDefeatedProperty)) >= 64,
       mainstat: $location`The Battlefield (Frat Uniform)`.recommendedStat,
     },
     {
       name: "Do Orchard Sidequest",
-      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(OrchardSidequestProperty) === "none",
+      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(OrchardSidequestProperty) === "none" && parseInt(getProperty(HippiesDefeatedProperty)) >= 64,
       progress: () => doOrchardSidequest(),
       completed: () => getProperty(OrchardSidequestProperty) !== "none",
       mainstat: $location`The Battlefield (Frat Uniform)`.recommendedStat,
