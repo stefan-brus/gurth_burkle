@@ -53,7 +53,7 @@ export const L12Part1Task: Task = {
     },
     {
       name: "Finish Arena Sidequest",
-      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(ArenaSidequestProperty) === "none" && parseInt(FlyeredMLProperty) >= 10000,
+      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(ArenaSidequestProperty) === "none" && parseInt(getProperty(FlyeredMLProperty)) >= 10100,
       progress: () => visitArenaSidequest(),
       completed: () => getProperty(ArenaSidequestProperty) !== "none",
     },
