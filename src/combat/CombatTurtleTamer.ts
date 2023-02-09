@@ -7,8 +7,13 @@ export function consultTurtleTamer(initRound: number, foe: Monster, page: string
   let state = InitState;
 
   while (!combatOver(lastResult)) {
-    checkSpecialActions(foe, lastResult);
-    [lastResult, state] = doRound(foe, state);
+    const specialResult = checkSpecialActions(foe, lastResult);
+    if (specialResult === undefined) {
+      [lastResult, state] = doRound(foe, state);
+    }
+    else {
+      lastResult = specialResult;
+    }
   }
 }
 

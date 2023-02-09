@@ -202,6 +202,10 @@ function doJunkyardSidequest(): AdventureInfo | void {
     throw new Error("Failed to obtain molybdenum magnet");
   }
 
+  if (getProperty("currentJunkyardLocation") === "Yossarian") {
+    visitUrl("bigisland.php?action=junkman&pwd");
+  }
+
   return {
     location: $location`${getProperty("currentJunkyardLocation")}`,
     modifiers: [],
