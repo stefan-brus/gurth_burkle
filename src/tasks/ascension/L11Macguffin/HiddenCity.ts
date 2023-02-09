@@ -62,16 +62,16 @@ export const L11HiddenCityTask: Task = {
       completed: () => canAdventure($location`The Hidden Office Building`),
     },
     {
-      name: "Unlock The Hidden Apartment Building",
+      name: "Unlock The Hidden Hospital",
       available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
       progress: () => clearVines($location`An Overgrown Shrine (Southwest)`),
-      completed: () => canAdventure($location`The Hidden Apartment Building`),
+      completed: () => canAdventure($location`The Hidden Hospital`),
     },
     {
-      name: "Unlock The Hidden Apartment Building",
+      name: "Unlock The Hidden Bowling Alley",
       available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
       progress: () => clearVines($location`An Overgrown Shrine (Southeast)`),
-      completed: () => canAdventure($location`The Hidden Apartment Building`),
+      completed: () => canAdventure($location`The Hidden Bowling Alley`),
     },
     {
       name: "Clear the ziggurat",
@@ -179,19 +179,28 @@ function doHiddenPark(): AdventureInfo | void {
 }
 
 function clearVines(loc: Location): AdventureInfo {
-  const NWZigguratChoice = "choiceAdventure781";
-  const NEZigguratChoice = "choiceAdventure785";
-  const SWZigguratChoice = "choiceAdventure783";
-  const SEZigguratChoice = "choiceAdventure787";
+  const NWShrineChoice = "choiceAdventure781";
+  const NEShrineChoice = "choiceAdventure785";
+  const SWShrineChoice = "choiceAdventure783";
+  const SEShrinceChoice = "choiceAdventure787";
 
-  setProperty(NWZigguratChoice, "1");
-  setProperty(NEZigguratChoice, "1");
-  setProperty(SWZigguratChoice, "1");
-  setProperty(SEZigguratChoice, "1");
+  const ExpectedNCs = new Map<Location, string>([
+    [$location`An Overgrown Shrine (Northwest)`, "Earthbound and Down"],
+    [$location`An Overgrown Shrine (Northeast)`, "Air Apparent"],
+    [$location`An Overgrown Shrine (Southwest)`, "Water You Dune"],
+    [$location`An Overgrown Shrine (Southeast)`, "Fire When Ready"],
+    [$location`A Massive Ziggurat`, "Legend of the Temple in the Hidden City"],
+  ]);
+
+  setProperty(NWShrineChoice, "1");
+  setProperty(NEShrineChoice, "1");
+  setProperty(SWShrineChoice, "1");
+  setProperty(SEShrinceChoice, "1");
 
   return {
     location: loc,
     modifiers: [],
+    expectedNoncombat: ExpectedNCs.get(loc),
   };
 }
 

@@ -7,7 +7,7 @@ export function mainAdventure(info: AdventureInfo) {
     checkModifier(info.minModifier);
   }
 
-  if (!adv1(info.location) && getProperty("lastEncounter") != info.expectedNoncombat) {
+  if (!adv1(info.location) && getProperty("lastEncounter") !== info.expectedNoncombat) {
     throw new Error("Error adventuring in " + info.location.toString());
   }
 }
