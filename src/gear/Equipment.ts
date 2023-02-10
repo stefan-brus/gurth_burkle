@@ -149,6 +149,14 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
         result.push($slot`pants`);
       }
       break;
+    case $location`The Haunted Boiler Room`:
+      if (equip($slot`off-hand`, $item`unstable fulminate`)) {
+        result.push($slot`off-hand`);
+      }
+      else {
+        throw new Error("Need to equip unstable fulminate to adventure in The Haunted Boiler Room");
+      }
+      break;
   }
 
   return result;
