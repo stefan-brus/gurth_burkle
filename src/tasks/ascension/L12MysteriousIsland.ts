@@ -1,4 +1,4 @@
-import { buy, cliExecute, getProperty, haveEffect, haveOutfit, Item, itemAmount, myAdventures, outfit, sell, setProperty, use, userConfirm, visitUrl } from "kolmafia";
+import { buy, cliExecute, getProperty, haveEffect, haveOutfit, Item, itemAmount, myAdventures, outfit, runCombat, sell, setProperty, use, userConfirm, visitUrl } from "kolmafia";
 import { $coinmaster, $effect, $item, $location } from "libram";
 import { Constants } from "../../Constants";
 import { AdventureInfo } from "../../lib/AdventureInfo";
@@ -115,7 +115,7 @@ export const L12Part3Task: Task = {
     {
       name: "Kill Hippy Boss",
       available: () => getProperty(L12QuestProperty) === "step1" && getProperty(Properties.Ascension.WarItemsSold) === "true",
-      progress: () => { return { location: $location`Wartime Hippy Camp (Frat Disguise)`, modifiers: [] }; },
+      progress: () => killHippyBoss(),
       completed: () => getProperty(L12QuestProperty) === "finished",
     },
   ],
@@ -293,4 +293,12 @@ function tradeWithQuartersmaster() {
   buy($coinmaster`Quartersmaster`, steinAmount, $item`commemorative war stein`);
 
   setProperty(Properties.Ascension.WarItemsSold, "true");
+}
+
+function killHippyBoss() {
+  outfit("Frat Warrior Fatigues");
+  visitUrl("bigisland.php?place=camp&whichcamp=1&confirm7=1");
+  visitUrl("bigisland.php?action=bossfight&pwd");
+  runCombat();
+  visitUrl("main.php");
 }
