@@ -17,6 +17,7 @@ import { L10Task } from "./ascension/L10GiantTrash";
 import { L11BlackForestTask } from "./ascension/L11Macguffin/BlackForest";
 import { L11HiddenCityTask, L11HiddenTempleTask } from "./ascension/L11Macguffin/HiddenCity";
 import { L11ManorCellarTask } from "./ascension/L11Macguffin/ManorCellar";
+import { L11ShenCopperheadTask } from "./ascension/L11Macguffin/ShenCopperhead";
 import { L12Part1Task, L12Part2Task, L12Part3Task } from "./ascension/L12MysteriousIsland";
 import { SpookyravenFloor1Task, SpookyravenFloor2Task } from "./ascension/Spookyraven";
 import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
@@ -54,6 +55,7 @@ export const AscensionTasks: Task[] = [
   L11HiddenTempleTask,
   L11HiddenCityTask,
   L11ManorCellarTask,
+  L11ShenCopperheadTask,
   L12Part3Task,
 ];
 
