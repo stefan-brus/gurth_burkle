@@ -79,7 +79,7 @@ export const L12Part2Task: Task = {
     },
     {
       name: "Unlock Orchard",
-      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(JunkyardSidequestProperty) === "none" &&
+      available: () => getProperty(L12QuestProperty) === "step1" && getProperty(JunkyardSidequestProperty) !== "none" &&
                        getProperty(ArenaSidequestProperty) !== "none" && getProperty(LighthouseSidequestProperty) !== "none" && 
                        parseInt(getProperty(HippiesDefeatedProperty)) < 64,
       progress: () => { return { location: $location`The Battlefield (Frat Uniform)`, modifiers: [] }; },
