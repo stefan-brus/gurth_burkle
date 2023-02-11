@@ -5,7 +5,7 @@ import { checkUseClover, haveOrEquipped } from "../../lib/Utils";
 import { Task } from "../Task";
 
 export const L05Task: Task = {
-  name: "L04: Goblin King",
+  name: "L05: Goblin King",
   subtasks: [
     {
       name: "Decrypt Cobb's Knob map",
