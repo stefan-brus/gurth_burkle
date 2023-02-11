@@ -12,18 +12,21 @@ export const AzazelTask: Task = {
       available: () => getProperty("questL06Friar") === "finished" && getProperty(AzazelQuestProperty) === "unstarted",
       progress: () => startAzazel(),
       completed: () => getProperty(AzazelQuestProperty) !== "unstarted",
+      mainstat: $location`The Laugh Floor`.recommendedStat,
     },
     {
       name: "Get Azazel's lollipop",
       available: () => getProperty(AzazelQuestProperty) === "started",
       progress: () => azazelLollipop(),
       completed: () => itemAmount($item`Azazel's lollipop`) > 0,
+      mainstat: $location`The Laugh Floor`.recommendedStat,
     },
     {
       name: "Get Azazel's unicorn",
       available: () => getProperty(AzazelQuestProperty) === "started",
       progress: () => azazelUnicorn(),
       completed: () => itemAmount($item`Azazel's unicorn`) > 0,
+      mainstat: $location`Infernal Rackets Backstage`.recommendedStat,
     },
     {
       name: "Get Azazel's tutu",
