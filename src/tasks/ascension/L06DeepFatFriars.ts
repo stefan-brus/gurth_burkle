@@ -11,6 +11,7 @@ export const L06Task: Task = {
       available: () => getProperty(L06QuestProperty) === "started",
       progress: () => { visitUrl("friars.php?action=friars&pwd"); },
       completed: () => getProperty(L06QuestProperty) !== "started",
+      mainstat: $location`The Dark Neck of the Woods`.recommendedStat,
     },
     {
       name: "Get dodecagram",
