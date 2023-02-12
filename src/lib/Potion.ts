@@ -25,9 +25,10 @@ const ModifierPotions = {
   ],
 };
 
-const PotionEffects: { [item: string]: Effect } = {
-  "giraffe-necked turtle": $effect`Adorable Lookout`,
-};
+const PotionEffects = new Map<Item, Effect>([
+  [$item`giraffe-necked turtle`, $effect`Adorable Lookout`],
+]);
+
 
 function selectPotionsModifier(mod: Modifier) {
   switch (mod) {
@@ -45,7 +46,8 @@ function tryUsePotions(items: Item[]) {
 }
 
 function tryUsePotion(item: Item) {
-  if (haveEffect(PotionEffects[item.name]) > 1) {
+  const effect = PotionEffects.get(item)
+  if (effect !== undefined && haveEffect(effect) > 1) {
     return;
   }
 
