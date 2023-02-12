@@ -35,8 +35,8 @@ function cookBorisFoods(amount: number): number {
   const food = knollAvailable() ? $item`honey bun of Boris` : $item`Boris's bread`;
   let cooked = 0;
 
-  while (itemAmount(food) < amount && haveIngredients(food)) {
-    if (!knollAvailable() || !buy(1, $item`flat dough`)) {
+  while (itemAmount(food) < amount) {
+    if (!haveIngredients(food) || !knollAvailable() || !buy(1, $item`flat dough`)) {
       break;
     }
 
@@ -54,8 +54,8 @@ function cookPeteFoods(amount: number): number {
   const food = knollAvailable() ? $item`Pete's wiley whey bar` : $item`Pete's rich ricotta`;
   let cooked = 0;
 
-  while (itemAmount(food) < amount && haveIngredients(food)) {
-    if (!knollAvailable() || !buy(1, $item`wad of dough`)) {
+  while (itemAmount(food) < amount) {
+    if (!haveIngredients(food) || !knollAvailable() || !buy(1, $item`wad of dough`)) {
       break;
     }
 

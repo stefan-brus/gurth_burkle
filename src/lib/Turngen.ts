@@ -18,7 +18,7 @@ export function generateAdventures() {
 const MilkUsedProperty = "_milkOfMagnesiumUsed";
 
 function generateStomach() {
-  if (myLevel() >= 11) {
+  if (myLevel() >= 11 && stomachRemaining() >= $item`astral hot dog`.fullness) {
     eatToMax($item`astral hot dog`);
   }
 
