@@ -1,5 +1,6 @@
 import { haveEffect, haveSkill, mpCost, myClass, myMaxmp, Skill, toEffect, userConfirm, useSkill } from "kolmafia";
 import { $class, $skill } from "libram";
+import { Config } from "../Config";
 import { Constants } from "../Constants";
 import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
@@ -91,7 +92,7 @@ function tryApplyBuff(skill: Skill) {
     return;
   }
 
-  if (userConfirm("Cast buff skill " + skill.name + "?")) {
+  if (!Config.PromptBuffs || userConfirm("Cast buff skill " + skill.name + "?")) {
     useSkill(1, skill);
   }
   else {
