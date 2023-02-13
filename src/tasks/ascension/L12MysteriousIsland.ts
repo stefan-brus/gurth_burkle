@@ -283,7 +283,7 @@ function tradeWithQuartersmaster() {
     gauzeGarterAmount++;
   }
 
-  const steinAmount = (availableQuarters - gauzeGarterAmount) / 5;
+  const steinAmount = Math.floor((availableQuarters - gauzeGarterAmount) / 5);
 
   if (!userConfirm(`Buy ${gauzeGarterAmount} gauze garters and ${steinAmount} steins?`)) {
     throw new Error("User aborted on buying war supplies");
