@@ -157,6 +157,10 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
         throw new Error("Need to equip unstable fulminate to adventure in The Haunted Boiler Room");
       }
       break;
+    case $location`Inside the Palindome`:
+      equip($slot`acc3`, $item`Talisman o' Namsilat`);
+      result.push($slot`acc3`);
+      break;
   }
 
   return result;

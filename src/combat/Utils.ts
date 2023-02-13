@@ -17,6 +17,10 @@ export function checkSpecialActions(foe: Monster, page: string): string | void {
   let result = checkYossarianTools(foe, page);
   if (result !== undefined)
     return result;
+
+  result = checkPalindomeMonster(foe);
+  if (result !== undefined)
+    return result;
   
   result = checkLocationSpecificActions();
   if (result !== undefined)
@@ -45,6 +49,16 @@ function checkYossarianTools(foe: Monster, page: string): string | void {
     else {
       return useSkill(myLevel0Skill());
     }
+  }
+}
+
+function checkPalindomeMonster(foe: Monster): string | void {
+  if (
+      myLocation() === $location`Inside the Palindome` && 
+      itemAmount($item`disposable instant camera`) > 0 &&
+      (foe === $monster`Racecar Bob` || foe === $monster`Bob Racecar`)
+  ) {
+    return throwItem($item`disposable instant camera`);
   }
 }
 
