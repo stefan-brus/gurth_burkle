@@ -1,5 +1,5 @@
-import { getProperty, Item, itemAmount, Monster, myClass, Skill, throwItem, useSkill } from "kolmafia";
-import { $class, $item, $monster, $skill } from "libram";
+import { getProperty, Item, itemAmount, Monster, myClass, myLocation, Skill, throwItem, useSkill } from "kolmafia";
+import { $class, $item, $location, $monster, $skill } from "libram";
 
 export function combatOver(page: string): boolean {
   const combatOverRegex = /(WINWINWIN|LOSELOSELOSE)/;
@@ -14,10 +14,16 @@ export function shouldThrowFlyers(): boolean {
 }
 
 export function checkSpecialActions(foe: Monster, page: string): string | void {
-  return checkYossarianTools(foe, page);
+  let result = checkYossarianTools(foe, page);
+  if (result !== undefined)
+    return result;
+  
+  result = checkLocationSpecificActions();
+  if (result !== undefined)
+    return result;
 }
 
-export function checkYossarianTools(foe: Monster, page: string): string | void {
+function checkYossarianTools(foe: Monster, page: string): string | void {
   const ToolMonsters = [
     $monster`batwinged  gremlin (tool)`,
     $monster`erudite gremlin (tool)`,
@@ -40,6 +46,18 @@ export function checkYossarianTools(foe: Monster, page: string): string | void {
       return useSkill(myLevel0Skill());
     }
   }
+}
+
+function checkLocationSpecificActions(): string | void {
+  const loc = myLocation();
+
+  // Cigarette lighter to clear protesters
+  if (loc === $location`A Mob of Zeppelin Protesters` && itemAmount($item`cigarette lighter`) > 0)
+    return throwItem($item`cigarette lighter`);
+  
+  // Glark cable for free red zeppelin fights
+  if (loc === $location`The Red Zeppelin` && itemAmount($item`glark cable`) > 0)
+    return throwItem($item`glark cable`);
 }
 
 function myLevel0Skill(): Skill {

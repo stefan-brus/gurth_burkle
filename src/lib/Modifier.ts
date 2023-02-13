@@ -11,6 +11,16 @@ export enum Modifier {
   StenchRes,
   SpookyRes,
   SleazeRes,
+  HotDmg,
+  ColdDmg,
+  StenchDmg,
+  SpookyDmg,
+  SleazeDmg,
+  HotSpellDmg,
+  ColdSpellDmg,
+  StenchSpellDmg,
+  SpookySpellDmg,
+  SleazeSpellDmg,
 };
 
 export function toMafiaModifier(modifier: Modifier): string {
@@ -40,6 +50,26 @@ export function toMafiaModifier(modifier: Modifier): string {
       return "spooky resistance";
     case Modifier.SleazeRes:
       return "sleaze resistance";
+    case Modifier.HotDmg:
+      return "hot damage";
+    case Modifier.ColdDmg:
+      return "cold damage";
+    case Modifier.StenchDmg:
+      return "stench damage";
+    case Modifier.SpookyDmg:
+      return "spooky damage";
+    case Modifier.SleazeDmg:
+      return "sleaze damage";
+    case Modifier.HotSpellDmg:
+      return "hot spell damage";
+    case Modifier.ColdSpellDmg:
+      return "cold spell damage";
+    case Modifier.StenchSpellDmg:
+      return "stench spell damage";
+    case Modifier.SpookySpellDmg:
+      return "spooky spell damage";
+    case Modifier.SleazeSpellDmg:
+      return "sleaze spell damage";
     default:
       throw new Error("Unhandled modifier: " + modifier);
   }
