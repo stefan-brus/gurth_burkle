@@ -47,7 +47,7 @@ export const L11HiddenCityTask: Task = {
       name: "Unlock The Hidden Tavern",
       available: () => parseInt(getProperty(JanitorProperty)) === parseInt(getProperty("knownAscensions")),
       progress: () => doHiddenPark(),
-      completed: () => parseInt(getProperty(TavernProperty)) === parseInt(getProperty("knownAscensions")),
+      completed: () => tavernUnlocked(),
     },
     {
       name: "Unlock The Hidden Apartment Building",
@@ -157,6 +157,10 @@ function unlockHiddenCity() {
   visitUrl("choice.php?whichchoice=125&option=3&pwd=" + myHash());
 }
 
+function tavernUnlocked(): boolean {
+  return parseInt(getProperty(TavernProperty)) === parseInt(getProperty("knownAscensions"));
+}
+
 function doHiddenPark(): AdventureInfo | void {
   const DumpsterChoice = "choiceAdventure789";
 
@@ -167,7 +171,7 @@ function doHiddenPark(): AdventureInfo | void {
     setProperty(DumpsterChoice, "2");
   }
 
-  if (itemAmount($item`book of matches`) > 0) {
+  if (!tavernUnlocked() && itemAmount($item`book of matches`) > 0) {
     use(1, $item`book of matches`);
     return;
   }
