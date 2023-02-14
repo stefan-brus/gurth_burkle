@@ -1,4 +1,5 @@
-import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myAdventures, myMaxmp, myMeat, pvpAttacksLeft, Skill, visitUrl } from "kolmafia";
+import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myAdventures, myClass, myMaxmp, myMeat, pvpAttacksLeft, Skill, useSkill, visitUrl } from "kolmafia";
+import { $class, $skill } from "libram";
 import { Constants } from "../Constants";
 import { haveDailyDungeonItems, runDailyDungeon } from "../lib/DailyDungeon";
 import { buyClovers, cloversLeft } from "../lib/Hermit";
@@ -107,6 +108,20 @@ export const DailyDungeonTask: Task = {
       progress: () => runDailyDungeon(),
       completed: () => getProperty(DailyDungeonDoneProperty) === "true",
       mainstat: 40,
-    }
-  ]
+    },
+  ],
 }
+
+const KnifeSummonedProperty = "_discoKnife";
+
+export const ClassSpecificDailyTask: Task = {
+  name: "Class-specific daily task",
+  subtasks: [
+    {
+      name: "Summon Disco Bandit knife",
+      available: () => myClass() === $class`Disco Bandit` && haveSkill($skill`That's Not a Knife`),
+      progress: () => { useSkill(1, $skill`That's Not a Knife`); },
+      completed: () => getProperty(KnifeSummonedProperty) === "true",
+    },
+  ],
+};

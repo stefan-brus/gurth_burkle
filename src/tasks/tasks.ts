@@ -22,7 +22,7 @@ import { L11RedZeppelinTask } from "./ascension/L11Macguffin/RedZeppelin";
 import { L11ShenCopperheadTask } from "./ascension/L11Macguffin/ShenCopperhead";
 import { L12Part1Task, L12Part2Task, L12Part3Task } from "./ascension/L12MysteriousIsland";
 import { SpookyravenFloor1Task, SpookyravenFloor2Task } from "./ascension/Spookyraven";
-import { CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
+import { ClassSpecificDailyTask, CloversTask, DailyDungeonTask, IngredientsTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
 import { AcquireMcdTask, AcquireMeatMaidTask, BitchinMeatcarTask, CreateBadassBeltTask, UnlockDispensaryTask, UnlockHoleInTheSkyTask, UnlockWhiteysGroveTask } from "./MiscTasks";
 import { Task } from "./Task";
 
@@ -71,6 +71,7 @@ export const DailyTasks: Task[] = [
   RockGardenTask,
   MrKlawTask,
   DailyDungeonTask,
+  ClassSpecificDailyTask,
 ];
 
 export const IdleTask: Task = {
