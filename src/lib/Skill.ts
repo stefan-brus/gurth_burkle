@@ -67,7 +67,7 @@ const TurtleTamerSkills: SkillInfo[] = [
 const DiscoBanditSkills: SkillInfo[] = [
   {
     skill: $skill`Deft Hands`,
-    urlId: 2,
+    urlId: 25,
   },
   {
     skill: $skill`Disco Dance of Doom`,
