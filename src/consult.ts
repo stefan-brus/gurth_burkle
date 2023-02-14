@@ -1,6 +1,7 @@
 import { Monster, myClass } from "kolmafia";
 import { $class } from "libram";
 import { consultAccordionThief } from "./combat/CombatAccordionThief";
+import { consultDiscoBandit } from "./combat/CombatDiscoBandit";
 import { consultSauceror } from "./combat/CombatSauceror";
 import { consultTurtleTamer } from "./combat/CombatTurtleTamer";
 
@@ -11,6 +12,9 @@ export function main(initRound: number, foe: Monster, page: string) {
       break;
     case $class`Sauceror`:
       consultSauceror(initRound, foe, page);
+      break;
+    case $class`Disco Bandit`:
+      consultDiscoBandit(initRound, foe, page);
       break;
     case $class`Accordion Thief`:
       consultAccordionThief(initRound, foe, page);
