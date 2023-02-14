@@ -64,8 +64,39 @@ const TurtleTamerSkills: SkillInfo[] = [
   },
 ];
 
-const DiscoBanditSkills: Skill[] = [
-
+const DiscoBanditSkills: SkillInfo[] = [
+  {
+    skill: $skill`Deft Hands`,
+    urlId: 2,
+  },
+  {
+    skill: $skill`Disco Dance of Doom`,
+    urlId: 5,
+  },
+  {
+    skill: $skill`Overdeveloped Sense of Self Preservation`,
+    urlId: 10,
+  },
+  {
+    skill: $skill`Disco State of Mind`,
+    urlId: 26,
+  },
+  {
+    skill: $skill`Disco Dance II: Electric Boogaloo`,
+    urlId: 8,
+  },
+  {
+    skill: $skill`Frantic Gyrations`,
+    urlId: 27,
+  },
+  {
+    skill: $skill`That's Not a Knife`,
+    urlId: 28,
+  },
+  {
+    skill: $skill`Nimble Fingers`,
+    urlId: 4,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {
