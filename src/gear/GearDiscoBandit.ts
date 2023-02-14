@@ -35,7 +35,9 @@ const DiscoBanditWeapons: Item[] = [
   $item`candy knife`,
   $item`sharpened spoon`,
   $item`broken beer bottle`,
+  $item`diamond-studded cane`,
   $item`boot knife`,
+  $item`infernal fife`,
   $item`sewer snake`,
   $item`disco ball`,
 ];
@@ -46,6 +48,8 @@ const DiscoBanditOffhands: Item[] = [
 ];
 
 const DiscoBanditPants: Item[] = [
+  $item`ninja hot pants`,
+  $item`Knob Goblin elite pants`,
   $item`old sweatpants`,
 ];
 
@@ -53,6 +57,7 @@ const DiscoBanditAccessories: Item[] = [
   $item`badass belt`,
   $item`batskin belt`,
   $item`shiny ring`,
+  $item`ghost of a necklace`,
   $item`imp unity ring`,
   $item`dirty hobo gloves`,
 ];
