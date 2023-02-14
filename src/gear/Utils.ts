@@ -21,9 +21,13 @@ export function selectGear(
   if (!reservedSlots.includes($slot`shirt`))
     selectForSlot($slot`shirt`, shirts);
     
-  if (!reservedSlots.includes($slot`weapon`))
-    selectForSlot($slot`weapon`, weapons);
-
+  if (!reservedSlots.includes($slot`weapon`)) {
+    if (reservedSlots.includes($slot`off-hand`))
+      selectForSlot($slot`weapon`, weapons.filter(item => weaponHands(item) === 1))
+    else
+      selectForSlot($slot`weapon`, weapons);
+  }
+    
   if (!reservedSlots.includes($slot`off-hand`) && weaponHands(equippedItem($slot`weapon`)) === 1)
     selectForSlot($slot`off-hand`, offhands);
 
