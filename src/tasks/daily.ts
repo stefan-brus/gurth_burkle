@@ -25,19 +25,19 @@ export const IngredientsTask: Task = {
   subtasks: [
     {
       name: "Summon cocktail ingredients",
-      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Advanced Cocktailcrafting")),
+      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Advanced Cocktailcrafting")) && myMeat() > 2000,
       progress: () => myUseSkill(1, Skill.get("Advanced Cocktailcrafting")),
       completed: () => parseInt(getProperty("cocktailSummons")) == 1,
     },
     {
       name: "Summon noodles",
-      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Pastamastery")),
+      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Pastamastery")) && myMeat() > 2000,
       progress: () => myUseSkill(1, Skill.get("Pastamastery")),
       completed: () => parseInt(getProperty("noodleSummons")) == 1,
     },
     {
       name: "Summon reagents",
-      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Advanced Saucecrafting")),
+      available: () => myMaxmp() > 20 && haveSkill(Skill.get("Advanced Saucecrafting")) && myMeat() > 2000,
       progress: () => myUseSkill(1, Skill.get("Advanced Saucecrafting")),
       completed: () => parseInt(getProperty("reagentSummons")) == 1,
     },
