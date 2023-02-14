@@ -30,6 +30,7 @@ const DiscoBanditShirts: Item[] = [
 ];
 
 const DiscoBanditWeapons: Item[] = [
+  $item`sewer snake`,
   $item`disco ball`,
 ];
 
@@ -47,6 +48,7 @@ const DiscoBanditAccessories: Item[] = [
   $item`batskin belt`,
   $item`shiny ring`,
   $item`imp unity ring`,
+  $item`dirty hobo gloves`,
 ];
 
 const DiscoBanditFamiliar: Item[] = [
