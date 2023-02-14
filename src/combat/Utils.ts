@@ -22,7 +22,7 @@ export function checkSpecialActions(foe: Monster, page: string): string | void {
   if (result !== undefined)
     return result;
   
-  result = checkLocationSpecificActions();
+  result = checkLocationSpecificActions(foe);
   if (result !== undefined)
     return result;
 }
@@ -62,7 +62,7 @@ function checkPalindomeMonster(foe: Monster): string | void {
   }
 }
 
-function checkLocationSpecificActions(): string | void {
+function checkLocationSpecificActions(foe: Monster): string | void {
   const loc = myLocation();
 
   // Cigarette lighter to clear protesters
@@ -70,7 +70,7 @@ function checkLocationSpecificActions(): string | void {
     return throwItem($item`cigarette lighter`);
   
   // Glark cable for free red zeppelin fights
-  if (loc === $location`The Red Zeppelin` && itemAmount($item`glark cable`) > 0)
+  if (loc === $location`The Red Zeppelin` && itemAmount($item`glark cable`) > 0 && foe !== $monster`Ron "The Weasel" Copperhead`)
     return throwItem($item`glark cable`);
 }
 
