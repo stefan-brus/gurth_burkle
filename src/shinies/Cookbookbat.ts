@@ -36,7 +36,7 @@ function cookBorisFoods(amount: number): number {
   let cooked = 0;
 
   while (itemAmount(food) < amount) {
-    if (!haveIngredients(food) || !knollAvailable() || !buy(1, $item`flat dough`)) {
+    if (!haveIngredients(food) && (!knollAvailable() || !buy(1, $item`flat dough`))) {
       break;
     }
 
@@ -55,7 +55,7 @@ function cookPeteFoods(amount: number): number {
   let cooked = 0;
 
   while (itemAmount(food) < amount) {
-    if (!haveIngredients(food) || !knollAvailable() || !buy(1, $item`wad of dough`)) {
+    if (!haveIngredients(food) && (!knollAvailable() || !buy(1, $item`wad of dough`))) {
       break;
     }
 
