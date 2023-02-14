@@ -12,6 +12,9 @@ export function acquireTrainableSkills() {
     case $class`Turtle Tamer`:
       checkTrainSkills(TurtleTamerSkills);
       break;
+    case $class`Disco Bandit`:
+      checkTrainSkills(DiscoBanditSkills);
+      break;
     default:
       throw new Error("No trainable skill list for class " + myClass().toString());
   }
@@ -59,6 +62,10 @@ const TurtleTamerSkills: SkillInfo[] = [
     skill: $skill`Tao of the Terrapin`,
     urlId: 21,
   },
+];
+
+const DiscoBanditSkills: Skill[] = [
+
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {
