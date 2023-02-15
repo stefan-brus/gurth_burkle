@@ -109,6 +109,22 @@ const DiscoBanditSkills: SkillInfo[] = [
     skill: $skill`Disco Greed`,
     urlId: 32,
   },
+  {
+    skill: $skill`Disco Bravado`,
+    urlId: 34,
+  },
+  {
+    skill: $skill`Disco Dance 3: Back in the Habit`,
+    urlId: 36,
+  },
+  {
+    skill: $skill`Ambidextrous Funkslinging`,
+    urlId: 15,
+  },
+  {
+    skill: $skill`Heart of Polyester`,
+    urlId: 16,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {

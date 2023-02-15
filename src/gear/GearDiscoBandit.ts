@@ -17,6 +17,7 @@ export function selectDiscoBanditGear(reservedSlots: Slot[]) {
 }
 
 const DiscoBanditHats: Item[] = [
+  $item`fuzzy montera`,
   $item`brown paper bag mask`,
   $item`disco mask`,
 ];
@@ -44,6 +45,7 @@ const DiscoBanditWeapons: Item[] = [
 
 const DiscoBanditOffhands: Item[] = [
   $item`autumn debris shield`,
+  $item`orcish stud-finder`,
   $item`hot plate`,
 ];
 
