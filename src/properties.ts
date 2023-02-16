@@ -14,6 +14,8 @@ export const Properties = {
     WarItemsSold: "myWarItemsSold",
     MacGuffinDiaryRead: "myMacGuffinDiaryRead",
     DesertAdventuresDone: "myDesertAdventuresDone",
+    PyramidWheelsGathered: "myPyramidWheelsGathered",
+    ConfettiUsed: "myConfettiUsed",
   },
 
   // These are reset at the start of each day
