@@ -1,13 +1,19 @@
 import { attack, haveSkill, Monster, steal, throwItem, useSkill, willUsuallyMiss } from "kolmafia";
 import { $item, $skill } from "libram";
-import { combatOver, shouldThrowFlyers } from "./Utils";
+import { checkSpecialActions, combatOver, shouldThrowFlyers } from "./Utils";
 
 export function consultDiscoBandit(initRound: number, foe: Monster, page: string) {
   let lastResult = page;
   let state = InitState;
 
   while (!combatOver(lastResult)) {
-    [lastResult, state] = doRound(foe, state);
+    const specialResult = checkSpecialActions(foe, lastResult);
+    if (specialResult === undefined) {
+      [lastResult, state] = doRound(foe, state);
+    }
+    else {
+      lastResult = specialResult;
+    }
   }
 }
 
