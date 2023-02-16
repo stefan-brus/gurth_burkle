@@ -30,9 +30,9 @@ export const L09Task: Task = {
     },
     {
       name: "De-pressurize Oil Peak",
-      available: () => getProperty(L09QuestProperty) === "step2" && (getProperty(OilPeakProperty) === "false" || itemAmount($item`bubblin' crude`) < 12),
+      available: () => getProperty(L09QuestProperty) === "step2" && (getProperty(OilPeakProperty) === "false" || (itemAmount($item`bubblin' crude`) < 12 && itemAmount($item`jar of oil`) < 1) && (parseInt(getProperty(TwinPeakProperty)) & 4) === 0),
       progress: () => doOilPeak(),
-      completed: () => getProperty(OilPeakProperty) === "true" && itemAmount($item`bubblin' crude`) >= 12,
+      completed: () => getProperty(OilPeakProperty) === "true" && (itemAmount($item`bubblin' crude`) >= 12 || itemAmount($item`jar of oil`) > 0 || (parseInt(getProperty(TwinPeakProperty)) & 4) === 1),
     },
     {
       name: "De-haunt A-Boo Peak",
