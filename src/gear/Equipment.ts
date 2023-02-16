@@ -165,6 +165,10 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
       equip($slot`acc3`, $item`Talisman o' Namsilat`);
       result.push($slot`acc3`);
       break;
+    case $location`The Arid, Extra-Dry Desert`:
+      equip($slot`off-hand`, $item`UV-resistant compass`);
+      result.push($slot`off-hand`);
+      break;
   }
 
   return result;

@@ -13,6 +13,7 @@ export const Properties = {
     LighthouseSidequestStarted: "myLighthouseSidequestStarted",
     WarItemsSold: "myWarItemsSold",
     MacGuffinDiaryRead: "myMacGuffinDiaryRead",
+    DesertAdventuresDone: "myDesertAdventuresDone",
   },
 
   // These are reset at the start of each day

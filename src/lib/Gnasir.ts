@@ -1,4 +1,4 @@
-import { getProperty, Item } from "kolmafia";
+import { getProperty, Item, itemAmount, runChoice, use, visitUrl } from "kolmafia";
 import { $item } from "libram";
 
 export function gnasirWants(item: Item): boolean {
@@ -9,6 +9,31 @@ export function gnasirWants(item: Item): boolean {
   }
   
   return (parseInt(getProperty(GnasirProperty)) & bit) === 0;
+}
+
+export function gnasirSatisfied(): boolean {
+  for (const item of GnasirItemBits.keys()) {
+    if (gnasirWants(item))
+      return false;
+  }
+
+  return true;
+}
+
+export function doGnasir() {
+  let page = visitUrl("place.php?whichplace=desertbeach&action=db_gnasir");
+
+  while (page.includes("value=2")) {
+    page = runChoice(2);
+  }
+
+  runChoice(1);
+
+  use(itemAmount($item`desert sightseeing pamphlet`), $item`desert sightseeing pamphlet`);
+
+  if (itemAmount($item`worm-riding hooks`) > 0 && itemAmount($item`drum machine`) > 0) {
+    use(1, $item`drum machine`);
+  }
 }
 
 const GnasirProperty = "gnasirProgress";

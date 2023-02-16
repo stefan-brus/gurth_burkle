@@ -15,6 +15,7 @@ import { L08Task } from "./ascension/L08Trapper";
 import { L09Task } from "./ascension/L09OrcChasm";
 import { L10Task } from "./ascension/L10GiantTrash";
 import { L11BlackForestTask } from "./ascension/L11Macguffin/BlackForest";
+import { L11DesertTask } from "./ascension/L11Macguffin/Desert";
 import { L11HiddenCityTask, L11HiddenTempleTask } from "./ascension/L11Macguffin/HiddenCity";
 import { L11ManorCellarTask } from "./ascension/L11Macguffin/ManorCellar";
 import { L11PalindomeTask } from "./ascension/L11Macguffin/Palindome";
@@ -61,6 +62,7 @@ export const AscensionTasks: Task[] = [
   L11RedZeppelinTask,
   L11PalindomeTask,
   L12Part3Task,
+  L11DesertTask,
 ];
 
 export const DailyTasks: Task[] = [
