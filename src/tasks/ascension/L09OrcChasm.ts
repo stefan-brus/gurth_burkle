@@ -78,6 +78,7 @@ function doOilPeak(): AdventureInfo {
   return {
     location: $location`Oil Peak`,
     modifiers: [Modifier.MonsterLevel],
+    expectedNoncombat: "Unimpressed with Pressure",
   };
 }
 
