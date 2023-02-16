@@ -92,12 +92,14 @@ function doBooPeak(): AdventureInfo {
     return {
       location: $location`A-Boo Peak`,
       modifiers: [Modifier.ColdRes, Modifier.SpookyRes],
+      expectedNoncombat: "Come On Ghosty, Light My Pyre",
     };
   } 
   else {
     return {
       location: $location`A-Boo Peak`,
       modifiers: [],
+      expectedNoncombat: "Come On Ghosty, Light My Pyre",
     };
   }
 }
