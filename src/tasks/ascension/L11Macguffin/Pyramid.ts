@@ -10,6 +10,12 @@ export const L11PyramidTask: Task = {
   name: "L11: Pyramid",
   subtasks: [
     {
+      name: "Unlock Pyramid",
+      available: () => getProperty("questL11Desert") === "finished",
+      progress: () => { visitUrl("place.php?whichplace=desertbeach&action=db_pyramid1"); },
+      completed: () => getProperty(L11PyramidProperty) !== "unstarted",
+    },
+    {
       name: "Unlock The Middle Chamber",
       available: () => getProperty(L11PyramidProperty) === "started" && canAdventure($location`The Upper Chamber`),
       progress: () => unlockMiddleChamber(),
