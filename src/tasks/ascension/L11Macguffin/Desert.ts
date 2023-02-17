@@ -21,7 +21,7 @@ export const L11DesertTask: Task = {
       name: "Do initial 10 desert adventures",
       available: () => itemAmount($item`UV-resistant compass`) > 0 || equippedAmount($item`UV-resistant compass`) > 0,
       progress: () => exploreDesert(),
-      completed: () => parseInt(getProperty(Properties.Ascension.DesertAdventuresDone)) === 10,
+      completed: () => parseInt(getProperty(Properties.Ascension.DesertAdventuresDone)) >= 10,
     },
     {
       name: "Use milestone",
