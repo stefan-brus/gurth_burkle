@@ -56,7 +56,7 @@ export const UnlockWhiteysGroveTask: Task = {
       name: "Get White Citadel quest",
       available: () => getProperty(questMeatcarProperty) === "finished",
       progress: () => { visitUrl("guild.php?place=paco"); runChoice(1); },
-      completed: () => getProperty(questWhiteCitadelProperty) === "started",
+      completed: () => getProperty(questWhiteCitadelProperty) === "started" || getProperty(Properties.Ascension.WhiteysGroveVisited) === "true",
     },
     {
       name: "Visit Whitey's Grove",
