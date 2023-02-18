@@ -56,6 +56,8 @@ const DiscoBanditPants: Item[] = [
 ];
 
 const DiscoBanditAccessories: Item[] = [
+  $item`World's Best Adventurer sash`,
+  $item`Nickel Gamma of Frugality`,
   $item`badass belt`,
   $item`batskin belt`,
   $item`shiny ring`,

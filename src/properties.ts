@@ -16,6 +16,7 @@ export const Properties = {
     DesertAdventuresDone: "myDesertAdventuresDone",
     PyramidWheelsGathered: "myPyramidWheelsGathered",
     ConfettiUsed: "myConfettiUsed",
+    NSRegistrationDeskVisited: "myNSRegistrationDeskVisited",
   },
 
   // These are reset at the start of each day

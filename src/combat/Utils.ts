@@ -1,4 +1,4 @@
-import { getProperty, Item, itemAmount, Monster, myClass, myLocation, Skill, throwItem, useSkill } from "kolmafia";
+import { getProperty, Item, itemAmount, Monster, myClass, myLocation, Skill, throwItem, throwItems, useSkill } from "kolmafia";
 import { $class, $item, $location, $monster, $skill } from "libram";
 
 export function combatOver(page: string): boolean {
@@ -23,6 +23,10 @@ export function checkSpecialActions(foe: Monster, page: string): string | void {
     return result;
   
   result = checkLocationSpecificActions(foe);
+  if (result !== undefined)
+    return result;
+
+  result = checkMonsterSpecificActions(foe);
   if (result !== undefined)
     return result;
 }
@@ -72,6 +76,20 @@ function checkLocationSpecificActions(foe: Monster): string | void {
   // Glark cable for free red zeppelin fights
   if (loc === $location`The Red Zeppelin` && itemAmount($item`glark cable`) > 0 && foe !== $monster`Ron "The Weasel" Copperhead`)
     return throwItem($item`glark cable`);
+  
+  // Shadow in Sorceress' tower
+  if (loc === $location`Tower Level 5` && itemAmount($item`gauze garter`) > 2)
+    return throwItems($item`gauze garter`, $item`gauze garter`);
+}
+
+function checkMonsterSpecificActions(foe: Monster): string | void {
+  // Wall of Skin
+  if (foe === $monster`wall of skin` && itemAmount($item`beehive`) > 0)
+    return throwItem($item`beehive`);
+  
+  // Wall of Bones
+  if (foe === $monster`wall of bones` && itemAmount($item`electric boning knife`) > 0)
+    return throwItem($item`electric boning knife`);
 }
 
 function myLevel0Skill(): Skill {

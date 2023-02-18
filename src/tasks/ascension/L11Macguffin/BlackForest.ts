@@ -22,7 +22,7 @@ export const L11BlackForestTask: Task = {
       name: "Get beehive",
       available: () => itemAmount($item`beehive`) < 1,
       progress: () => doBlackForest(),
-      completed: () => itemAmount($item`beehive`) > 0,
+      completed: () => itemAmount($item`beehive`) > 0 || getProperty(L11BlackForestProperty) === "finished",
     },
     {
       name: "Get forged identification documents",

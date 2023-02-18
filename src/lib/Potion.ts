@@ -12,11 +12,16 @@ export function selectPotions(info: AdventureInfo) {
 }
 
 const AdventureModifiers: Modifier[] = [
+  Modifier.MeatDrop,
   Modifier.Initiative,
   Modifier.StenchRes,
 ];
 
 const ModifierPotions = {
+  [Modifier.MeatDrop]: [
+    $item`flapper fly`,
+    $item`autumn dollar`,
+  ],
   [Modifier.Initiative]: [
     $item`giraffe-necked turtle`,
   ],
@@ -27,11 +32,14 @@ const ModifierPotions = {
 
 const PotionEffects = new Map<Item, Effect>([
   [$item`giraffe-necked turtle`, $effect`Adorable Lookout`],
+  [$item`flapper fly`, $effect`Flapper Dancin'`],
+  [$item`autumn dollar`, $effect`Bet Your Autumn Dollar`],
 ]);
 
 
 function selectPotionsModifier(mod: Modifier) {
   switch (mod) {
+    case Modifier.MeatDrop:
     case Modifier.Initiative:
     case Modifier.StenchRes:
       tryUsePotions(ModifierPotions[mod]);
