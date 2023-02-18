@@ -36,15 +36,16 @@ function cookBorisFoods(amount: number): number {
   let cooked = 0;
 
   while (itemAmount(food) < amount) {
-    if (!haveIngredients(food) && (!knollAvailable() || !buy(1, $item`flat dough`))) {
-      break;
+    if (knollAvailable()) {
+      if (itemAmount($item`Yeast of Boris`) > 0 && (itemAmount($item`flat dough`) > 0 || buy(1, $item`flat dough`))) {
+        create(1, food);
+        cooked++;
+      }
     }
-
-    if (!create(1, food)) {
-      break;
+    else if (itemAmount($item`Yeast of Boris`) >= 2) {
+      create(1, food);
+      cooked++;
     }
-
-    cooked++;
   }
 
   return cooked;
@@ -55,15 +56,16 @@ function cookPeteFoods(amount: number): number {
   let cooked = 0;
 
   while (itemAmount(food) < amount) {
-    if (!haveIngredients(food) && (!knollAvailable() || !buy(1, $item`wad of dough`))) {
-      break;
+    if (knollAvailable()) {
+      if (itemAmount($item`St. Sneaky Pete's Whey`) > 0 && (itemAmount($item`wad of dough`) > 0 || buy(1, $item`wad of dough`))) {
+        create(1, food);
+        cooked++;
+      }
     }
-
-    if (!create(1, food)) {
-      break;
+    else if (itemAmount($item`St. Sneaky Pete's Whey`) >= 2) {
+      create(1, food);
+      cooked++;
     }
-
-    cooked++;
   }
 
   return cooked;

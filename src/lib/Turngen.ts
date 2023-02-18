@@ -1,4 +1,4 @@
-import { buy, create, drink, eat, getProperty, haveEffect, Item, itemAmount, mpCost, myAdventures, myInebriety, myLevel, myMaxmp, myPrimestat, stillsAvailable, use, userConfirm, useSkill } from "kolmafia";
+import { buy, create, drink, eat, getCampground, getProperty, haveEffect, Item, itemAmount, mpCost, myAdventures, myInebriety, myLevel, myMaxmp, myMeat, myPrimestat, stillsAvailable, use, userConfirm, useSkill } from "kolmafia";
 import { $coinmaster, $effect, $item, $skill, $stat } from "libram";
 import { cookCbbFoods } from "../shinies/Cookbookbat";
 import { billiardsRoomDone } from "../tasks/ascension/Spookyraven";
@@ -18,6 +18,10 @@ export function generateAdventures() {
 const MilkUsedProperty = "_milkOfMagnesiumUsed";
 
 function generateStomach() {
+  if (!Object.keys(getCampground()).includes("Dramatic&trade; range") && myMeat() < 1000) {
+    return;
+  }
+
   if (myLevel() >= 11 && stomachRemaining() >= $item`astral hot dog`.fullness) {
     eatToMax($item`astral hot dog`);
   }
@@ -94,6 +98,10 @@ const BoozePriority: Item[] = [
 ]
 
 function generateLiver() {
+  if (!Object.keys(getCampground()).includes("Queue Du Coq cocktailcrafting kit") && myMeat() < 1000) {
+    return;
+  }
+  
   const inebrietyAvailable = BoozePriority.reduce<number>((acc, item) => acc + item.inebriety * itemAmount(item), 0);
   let inebrietyCreated = 0;
 
