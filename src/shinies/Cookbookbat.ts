@@ -41,10 +41,16 @@ function cookBorisFoods(amount: number): number {
         create(1, food);
         cooked++;
       }
+      else {
+        break;
+      }
     }
     else if (itemAmount($item`Yeast of Boris`) >= 2) {
       create(1, food);
       cooked++;
+    }
+    else {
+      break;
     }
   }
 
@@ -61,10 +67,16 @@ function cookPeteFoods(amount: number): number {
         create(1, food);
         cooked++;
       }
+      else {
+        break;
+      }
     }
     else if (itemAmount($item`St. Sneaky Pete's Whey`) >= 2) {
       create(1, food);
       cooked++;
+    }
+    else {
+      break;
     }
   }
 
