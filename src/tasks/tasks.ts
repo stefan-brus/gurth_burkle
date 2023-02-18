@@ -75,11 +75,11 @@ export const DailyTasks: Task[] = [
   CloversTask,
   IngredientsTask,
   PvpFightsTask,
-  OliverFightsTask,
   RockGardenTask,
   MrKlawTask,
   DailyDungeonTask,
   ClassSpecificDailyTask,
+  OliverFightsTask,
 ];
 
 export const IdleTask: Task = {
