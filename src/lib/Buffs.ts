@@ -26,6 +26,7 @@ export function selectBuffs(info: AdventureInfo) {
 export function selectBuffsModifier(mod: Modifier) {
   switch (mod) {
     case Modifier.NonCombat:
+    case Modifier.DamageAbsorption:
     case Modifier.HotRes:
     case Modifier.ColdRes:
     case Modifier.StenchRes:
@@ -40,6 +41,7 @@ export function selectBuffsModifier(mod: Modifier) {
 
 const AdventureModifiers: Modifier[] = [
   Modifier.NonCombat,
+  Modifier.DamageAbsorption,
   Modifier.HotRes,
   Modifier.ColdRes,
   Modifier.StenchRes,
@@ -56,6 +58,10 @@ const ModifierSkills = {
   [Modifier.NonCombat]: [
     $skill`Smooth Movement`,
     $skill`The Sonata of Sneakiness`,
+  ],
+  [Modifier.DamageAbsorption]: [
+    $skill`Astral Shell`,
+    $skill`Ghostly Shell`,
   ],
   [Modifier.HotRes]: [
     $skill`Elemental Saucesphere`,

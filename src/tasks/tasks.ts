@@ -4,6 +4,7 @@ import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
 import { AzazelTask } from "./ascension/Azazel";
+import { DigitalKeyTask } from "./ascension/DigitalKey";
 import { HiddenTempleTask } from "./ascension/HiddenTemple";
 import { L02Task } from "./ascension/L02SpookyForest";
 import { L03Task } from "./ascension/L03TypicalTavern";
@@ -65,6 +66,7 @@ export const AscensionTasks: Task[] = [
   L12Part3Task,
   L11DesertTask,
   L11PyramidTask,
+  DigitalKeyTask,
 ];
 
 export const DailyTasks: Task[] = [

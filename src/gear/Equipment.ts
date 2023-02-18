@@ -25,10 +25,16 @@ export function selectEquipment(info: AdventureInfo) {
 }
 
 const AdventureModifiers: Modifier[] = [
+  Modifier.DamageAbsorption,
   Modifier.StenchRes,
 ]
 
 const ModifierGear = {
+  [Modifier.DamageAbsorption]: [
+    $item`reinforced beaded headband`,
+    $item`midriff scrubs`,
+    $item`bullet-proof corduroys`,
+  ],
   [Modifier.StenchRes]: [
     $item`Whoompa Fur Pants`,
     $item`Pants of the Slug Lord`,
@@ -169,6 +175,13 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
       equip($slot`off-hand`, $item`UV-resistant compass`);
       result.push($slot`off-hand`);
       break;
+    case $location`Vanya's Castle`:
+    case $location`Megalo-City`:
+    case $location`Hero's Field`:
+    case $location`The Fungus Plains`:
+      equip($slot`acc3`, $item`continuum transfunctioner`);
+      result.push($slot`acc3`);
+      break;
   }
 
   return result;
@@ -186,6 +199,7 @@ function selectModifierEquipment(info: AdventureInfo, reservedSlots: Slot[]): Sl
 
 function selectEquipmentModifier(mod: Modifier, reservedSlots: Slot[]): Slot[] {
   switch (mod) {
+    case Modifier.DamageAbsorption:
     case Modifier.StenchRes:
       return tryEquipGear(ModifierGear[mod], reservedSlots);
     default:
@@ -196,7 +210,18 @@ function selectEquipmentModifier(mod: Modifier, reservedSlots: Slot[]): Slot[] {
 function tryEquipGear(items: Item[], reservedSlots: Slot[]): Slot[] {
   let result: Slot[] = [];
 
-  items.filter(item => itemAmount(item) > 0).forEach(item => {
+  items.forEach(item => {
+    if (equippedAmount(item) > 0) {
+      if (toSlot(item) === $slot`acc1`) {
+        result.push(findEquippedAccSlot(item));
+      }
+      else {
+        result.push(toSlot(item));
+      }
+    }
+  });
+
+  items.filter(item => itemAmount(item) > 0 && equippedAmount(item) < 1).forEach(item => {
     const slot = tryEquipItem(item, reservedSlots);
     if (slot !== null) {
       result.push(slot);

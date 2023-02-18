@@ -6,6 +6,7 @@ export enum Modifier {
   FoodDrop,
   BoozeDrop,
   Initiative,
+  DamageAbsorption,
   HotRes,
   ColdRes,
   StenchRes,
@@ -40,6 +41,8 @@ export function toMafiaModifier(modifier: Modifier): string {
       return "booze drop";
     case Modifier.Initiative:
       return "initiative";
+    case Modifier.DamageAbsorption:
+      return "damage absorption";
     case Modifier.HotRes:
       return "hot resistance";
     case Modifier.ColdRes:
