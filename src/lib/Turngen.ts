@@ -226,7 +226,7 @@ function tryCreateMoxieDrinks(drinks: Item[], inebriety: number): number {
     if (fancyIngredient === undefined)
       throw new Error("Unknown fancy ingredient: " + drink.name);
 
-    while (haveIngredients(baseDrink) && itemAmount(fancyIngredient) > 0 && inebrietyCreated < inebriety && create(1, drink)) {
+    while (itemAmount(alcohol) > 0 && itemAmount(mixer) > 0 && itemAmount(fancyIngredient) > 0 && inebrietyCreated < inebriety && create(1, drink)) {
       inebrietyCreated += drink.inebriety;
     }
   }
