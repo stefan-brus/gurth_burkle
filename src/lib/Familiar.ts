@@ -60,7 +60,7 @@ const FamiliarPriority: PriorityInfo[] = [
   {
     familiar: $familiar`Cookbookbat`,
     shouldUse: (_: AdventureInfo) => {
-      return availableCbbFoods() < (ascensionDaysLeft() * fullnessLimit());
+      return availableCbbFoods() < ((ascensionDaysLeft() * fullnessLimit()) - 9); // Assume we have 3 astral hot dogs
     },
   },
 
