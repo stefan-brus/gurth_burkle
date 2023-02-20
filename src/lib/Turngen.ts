@@ -137,6 +137,36 @@ const DrinkIngredients: Map<Item, Item[]> = new Map([
   [$item`yellow brick road`, [$item`bottle of Definit`, $item`tonic water`]],
 ]);
 
+const BaseDrinks: Map<Item, Item> = new Map([
+  [$item`Divine`, $item`whiskey bittersweet`],
+  [$item`gimlet`, $item`gin and tonic`],
+  [$item`Gordon Bennett`, $item`mimosette`],
+  [$item`Mae West`, $item`rabbit punch`],
+  [$item`mandarina colada`, $item`zmobie`],
+  [$item`Mon Tiki`, $item`caipifruta`],
+  [$item`Neuromancer`, $item`gibson`],
+  [$item`prussian cathouse`, $item`parisian cathouse`],
+  [$item`tangarita`, $item`tequila sunset`],
+  [$item`teqiwila slammer`, $item`teqiwila`],
+  [$item`vodka stratocaster`, $item`vodka gibson`],
+  [$item`yellow brick road`, $item`vodka and tonic`],
+]);
+
+const FancyIngredients: Map<Item, Item> = new Map([
+  [$item`Divine`, $item`little paper umbrella`],
+  [$item`gimlet`, $item`little paper umbrella`],
+  [$item`Gordon Bennett`, $item`little paper umbrella`],
+  [$item`Mae West`, $item`magical ice cubes`],
+  [$item`mandarina colada`, $item`magical ice cubes`],
+  [$item`Mon Tiki`, $item`coconut shell`],
+  [$item`Neuromancer`, $item`coconut shell`],
+  [$item`prussian cathouse`, $item`magical ice cubes`],
+  [$item`tangarita`, $item`magical ice cubes`],
+  [$item`teqiwila slammer`, $item`coconut shell`],
+  [$item`vodka stratocaster`, $item`coconut shell`],
+  [$item`yellow brick road`, $item`little paper umbrella`],
+]);
+
 const StillIngredients: Map<Item, Item> = new Map([
   // Alcohol
   [$item`bottle of Calcutta Emerald`, $item`bottle of gin`],
@@ -179,7 +209,7 @@ function tryCreateMoxieDrinks(drinks: Item[], inebriety: number): number {
 
     const ingredients = DrinkIngredients.get(drink);
     if (ingredients === undefined)
-      throw new Error("Unknow still drink: " + drink.name);
+      throw new Error("Unknown still drink: " + drink.name);
     const [alcohol, mixer] = ingredients;
     const [alcoholItem, mixerItem] = getStillItems(alcohol, mixer);
 
@@ -188,7 +218,15 @@ function tryCreateMoxieDrinks(drinks: Item[], inebriety: number): number {
       create(1, mixer);
     }
 
-    while (haveIngredients(drink) && inebrietyCreated < inebriety && create(1, drink)) {
+    const baseDrink = BaseDrinks.get(drink);
+    if (baseDrink === undefined)
+      throw new Error("Unknown base drink: " + drink.name);
+
+    const fancyIngredient = FancyIngredients.get(drink);
+    if (fancyIngredient === undefined)
+      throw new Error("Unknown fancy ingredient: " + drink.name);
+
+    while (haveIngredients(baseDrink) && itemAmount(fancyIngredient) > 0 && inebrietyCreated < inebriety && create(1, drink)) {
       inebrietyCreated += drink.inebriety;
     }
   }
