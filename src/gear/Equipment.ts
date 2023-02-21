@@ -31,7 +31,7 @@ const AdventureModifiers: Modifier[] = [
 
 const ModifierGear = {
   [Modifier.DamageAbsorption]: [
-    $item`reinforced beaded headband`,
+    $item`beer helmet`,
     $item`midriff scrubs`,
     $item`bullet-proof corduroys`,
   ],
