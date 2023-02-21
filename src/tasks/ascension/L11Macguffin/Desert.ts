@@ -32,10 +32,10 @@ export const L11DesertTask: Task = {
     {
       name: "Give item to Gnasir",
       available: () => parseInt(getProperty(Properties.Ascension.DesertAdventuresDone)) >= 10 &&
-                       (itemAmount($item`killing jar`) > 0 ||
-                        itemAmount($item`can of black paint`) > 0 ||
-                        itemAmount($item`stone rose`) > 0 ||
-                        itemAmount($item`worm-riding manual page`) >= 15),
+                       ((itemAmount($item`killing jar`) > 0 && gnasirWants($item`killing jar`)) ||
+                       itemAmount($item`can of black paint`) > 0 ||
+                       itemAmount($item`stone rose`) > 0 ||
+                       itemAmount($item`worm-riding manual page`) >= 15),
       progress: () => doGnasir(),
       completed: () => gnasirSatisfied(),
     },
