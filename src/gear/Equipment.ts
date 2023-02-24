@@ -134,6 +134,7 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
     case $location`An Overgrown Shrine (Northeast)`:
     case $location`An Overgrown Shrine (Southwest)`:
     case $location`An Overgrown Shrine (Southeast)`:
+    case $location`A Massive Ziggurat`:
       equip($slot`weapon`, $item`antique machete`);
       result.push($slot`weapon`);
       break;
