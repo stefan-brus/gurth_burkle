@@ -3,6 +3,7 @@ import { $class, $item, $location, $slot } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
 import { selectDiscoBanditGear } from "./GearDiscoBandit";
+import { selectPastamancerGear } from "./GearPastamancer";
 import { selectTurtleTamerGear } from "./GearTurtleTamer";
 import { findEquippedAccSlot } from "./Utils";
 
@@ -13,6 +14,9 @@ export function selectEquipment(info: AdventureInfo) {
   switch (myClass()) {
     case $class`Turtle Tamer`:
       selectTurtleTamerGear(reservedSlots);
+      break;
+    case $class`Pastamancer`:
+      selectPastamancerGear(reservedSlots);
       break;
     case $class`Disco Bandit`:
       selectDiscoBanditGear(reservedSlots);

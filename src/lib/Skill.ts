@@ -12,6 +12,9 @@ export function acquireTrainableSkills() {
     case $class`Turtle Tamer`:
       checkTrainSkills(TurtleTamerSkills);
       break;
+    case $class`Pastamancer`:
+      checkTrainSkills(PastamancerSkills);
+      break;
     case $class`Disco Bandit`:
       checkTrainSkills(DiscoBanditSkills);
       break;
@@ -62,6 +65,10 @@ const TurtleTamerSkills: SkillInfo[] = [
     skill: $skill`Tao of the Terrapin`,
     urlId: 21,
   },
+];
+
+const PastamancerSkills: SkillInfo[] = [
+
 ];
 
 const DiscoBanditSkills: SkillInfo[] = [
