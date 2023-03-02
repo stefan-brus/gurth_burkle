@@ -1,13 +1,8 @@
 import { attack, haveSkill, Item, Monster, monsterHp, Skill, throwItem, useSkill } from "kolmafia";
-import { combatOver, shouldThrowFlyers } from "./Utils";
+import { combatLoop, shouldThrowFlyers } from "./Utils";
 
 export function consultSauceror(initRound: number, foe: Monster, page: string) {
-  let lastResult = page;
-  let state = InitState;
-
-  while (!combatOver(lastResult)) {
-    [lastResult, state] = doRound(foe, state);
-  }
+  combatLoop(foe, page, doRound, InitState);
 }
 
 type CombatState = {

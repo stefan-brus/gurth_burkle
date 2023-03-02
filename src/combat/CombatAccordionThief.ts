@@ -1,13 +1,8 @@
 import { attack, equippedAmount, haveSkill, Item, itemAmount, Monster, Skill, steal, throwItem, useSkill } from "kolmafia";
-import { combatOver, shouldThrowFlyers } from "./Utils";
+import { combatLoop, shouldThrowFlyers } from "./Utils";
 
 export function consultAccordionThief(initRound: number, foe: Monster, page: string) {
-  let lastResult = page;
-  let state = InitState;
-
-  while (!combatOver(lastResult)) {
-    [lastResult, state] = doRound(foe, state);
-  }
+  combatLoop(foe, page, doRound, InitState);
 }
 
 type CombatState = {

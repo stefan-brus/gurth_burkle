@@ -1,11 +1,21 @@
 import { getProperty, Item, itemAmount, Monster, myClass, myLocation, Skill, throwItem, throwItems, useSkill } from "kolmafia";
 import { $class, $item, $location, $monster, $skill } from "libram";
 
-export function combatOver(page: string): boolean {
-  const combatOverRegex = /(WINWINWIN|LOSELOSELOSE)/;
-  const match = page.match(combatOverRegex);
+type RoundCallback<State> = (foe: Monster, state: State) => [string, State];
 
-  return match != null && match.length > 0;
+export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCallback<State>, initState: State) {
+  let lastResult = page;
+  let state = initState;
+
+  while (!combatOver(lastResult)) {
+    const specialResult = checkSpecialActions(foe, lastResult);
+    if (specialResult === undefined) {
+      [lastResult, state] = doRound(foe, state);
+    }
+    else {
+      lastResult = specialResult;
+    }
+  }
 }
 
 export function shouldThrowFlyers(): boolean {
@@ -13,7 +23,7 @@ export function shouldThrowFlyers(): boolean {
   return itemAmount(Item.get("rock band flyers")) > 0 && parseInt(getProperty(FlyeredMLProperty)) < 10000;
 }
 
-export function checkSpecialActions(foe: Monster, page: string): string | void {
+function checkSpecialActions(foe: Monster, page: string): string | void {
   let result = checkYossarianTools(foe, page);
   if (result !== undefined)
     return result;
@@ -29,6 +39,13 @@ export function checkSpecialActions(foe: Monster, page: string): string | void {
   result = checkMonsterSpecificActions(foe);
   if (result !== undefined)
     return result;
+}
+
+function combatOver(page: string): boolean {
+  const combatOverRegex = /(WINWINWIN|LOSELOSELOSE)/;
+  const match = page.match(combatOverRegex);
+
+  return match != null && match.length > 0;
 }
 
 function checkYossarianTools(foe: Monster, page: string): string | void {
