@@ -17,6 +17,8 @@ export function selectPastamancerGear(reservedSlots: Slot[]) {
 }
 
 const PastamancerHats: Item[] = [
+  $item`fuzzy earmuffs`,
+  $item`chef's hat`,
   $item`ravioli hat`,
 ];
 
@@ -29,14 +31,20 @@ const PastamancerShirts: Item[] = [
 ];
 
 const PastamancerWeapons: Item[] = [
+  $item`oversized pizza cutter`,
+  $item`huge spoon`,
+  $item`Knob Goblin tongs`,
   $item`pasta spoon`,
 ];
 
 const PastamancerOffhands: Item[] = [
   $item`autumn debris shield`,
+  $item`hot plate`,
 ];
 
 const PastamancerPants: Item[] = [
+  $item`snowboarder pants`,
+  $item`Knob Goblin elite pants`,
   $item`old sweatpants`,
 ];
 
@@ -47,6 +55,8 @@ const PastamancerAccessories: Item[] = [
   $item`badass belt`,
   $item`batskin belt`,
   $item`shiny ring`,
+  $item`imp unity ring`,
+  $item`ghost of a necklace`,
 ];
 
 const PastamancerFamiliar: Item[] = [

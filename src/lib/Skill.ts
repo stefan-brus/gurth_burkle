@@ -68,7 +68,54 @@ const TurtleTamerSkills: SkillInfo[] = [
 ];
 
 const PastamancerSkills: SkillInfo[] = [
-
+  {
+    skill: $skill`Entangling Noodles`,
+    urlId: 4,
+  },
+  {
+    skill: $skill`Bind Vampieroghi`,
+    urlId: 27,
+  },
+  {
+    skill: $skill`Cannelloni Cannon`,
+    urlId: 5,
+  },
+  {
+    skill: $skill`Springy Fusilli`,
+    urlId: 15,
+  },
+  {
+    skill: $skill`Bringing Up the Rear`,
+    urlId: 30,
+  },
+  {
+    skill: $skill`Spirit of Rigatoni`,
+    urlId: 11,
+  },
+  {
+    skill: $skill`Spirit of Ravioli`,
+    urlId: 14,
+  },
+  {
+    skill: $skill`Weapon of the Pastalord`,
+    urlId: 8,
+  },
+  {
+    skill: $skill`Thrall Unit Tactics`,
+    urlId: 34,
+  },
+  {
+    skill: $skill`Cannelloni Cocoon`,
+    urlId: 12,
+  },
+  {
+    skill: $skill`Subtle and Quick to Anger`,
+    urlId: 36,
+  },
+  {
+    skill: $skill`Tolerance of the Kitchen`,
+    urlId: 16,
+  },
 ];
 
 const DiscoBanditSkills: SkillInfo[] = [
