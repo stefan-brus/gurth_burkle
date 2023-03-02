@@ -1,4 +1,4 @@
-import { council, myAdventures, print, userConfirm } from "kolmafia";
+import { council, myAdventures, myClass, print, userConfirm } from "kolmafia";
 import { Constants } from "./Constants";
 import { mainAdventure } from "./lib/Adventure";
 import { selectEquipment } from "./gear/Equipment";
@@ -11,6 +11,8 @@ import { selectBuffs } from "./lib/Buffs";
 import { acquireTrainableSkills } from "./lib/Skill";
 import { generateAdventures } from "./lib/Turngen";
 import { selectPotions } from "./lib/Potion";
+import { $class } from "libram";
+import { selectThrall } from "./lib/Thrall";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -43,6 +45,9 @@ export function ascend() {
 
     const progress = currentSubtask.progress();
     if (progress !== undefined) { // Adventure time
+      if (myClass() === $class`Pastamancer`)
+        selectThrall(progress);
+        
       generateAdventures();
       acquireTrainableSkills();
       selectFamiliar(progress);
