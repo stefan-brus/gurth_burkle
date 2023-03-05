@@ -1,5 +1,5 @@
-import { create, equip, getProperty, Item, itemAmount, myAdventures, runChoice, runCombat, setProperty, use, visitUrl } from "kolmafia";
-import { $item, $location, $slot } from "libram";
+import { create, equip, getProperty, haveEffect, haveSkill, Item, itemAmount, myAdventures, runChoice, runCombat, setProperty, use, useSkill, visitUrl } from "kolmafia";
+import { $effect, $item, $location, $skill, $slot } from "libram";
 import { Constants } from "../../../Constants";
 import { AdventureInfo } from "../../../lib/AdventureInfo";
 import { Modifier } from "../../../lib/Modifier";
@@ -98,6 +98,10 @@ function arrangePhotos() {
   use(1, LoveVol1Item);
   visitUrl("place.php?whichplace=palindome&action=pal_droffice");
   visitUrl("choice.php?whichchoice=872&option=1&photo1=2259&photo2=7264&photo3=7263&photo4=7265&pwd");
+
+  if (haveEffect($effect`Beaten Up`) > 0 && haveSkill($skill`Tongue of the Walrus`)) {
+    useSkill(1, $skill`Tongue of the Walrus`);
+  }
 }
 
 function killDrAwkward() {
