@@ -81,11 +81,6 @@ export const UnlockGuildTask: Task = {
       available: () => !guildQuestDone(),
       progress: () => doGuildQuest(),
       completed: () => guildQuestDone(),
-      delay: {
-        location: guildQuestLocation(),
-        turns: 5,
-        property: Properties.Ascension.Delay.GuildQuest,
-      },
     },
   ],
 };

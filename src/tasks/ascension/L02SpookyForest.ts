@@ -13,11 +13,6 @@ export const L02Task: Task = {
       available: () => getProperty(L02QuestProperty) !== "unstarted",
       progress: () => doL02SpookyForest(),
       completed: () => getProperty(L02QuestProperty) === "finished",
-      delay: {
-        location: Location.get("The Spooky Forest"),
-        turns: 5,
-        property: Properties.Ascension.Delay.SpookyForest,
-      },
     },
   ],
 };

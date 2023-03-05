@@ -2,12 +2,6 @@
 export const Properties = {
   // These are reset at the start of each ascension
   Ascension: {
-    // All of these are ints
-    Delay: {
-      GuildQuest: "myGuildQuestDelay",
-      SpookyForest: "mySpookyForestDelay",
-    },
-
     WhiteysGroveVisited: "myWhiteysGroveVisited",
     MeatMaidInstalled: "myMeatMaidInstalled",
     LighthouseSidequestStarted: "myLighthouseSidequestStarted",

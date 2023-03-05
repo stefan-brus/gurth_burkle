@@ -12,11 +12,4 @@ export type Subtask = {
   completed: () => boolean,
   progress: () => AdventureInfo | void,
   mainstat?: number,
-  delay?: DelayInfo,
 };
-
-type DelayInfo = {
-  location: Location,
-  turns: number,
-  property: string,
-}
