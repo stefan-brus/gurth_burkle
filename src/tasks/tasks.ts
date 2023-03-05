@@ -1,5 +1,6 @@
 import { print } from "kolmafia";
 import { myMainstat } from "../lib/Utils";
+import { CMGFreeFightsTask } from "../shinies/CMG";
 import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
@@ -33,6 +34,7 @@ import { Task } from "./Task";
 export const AscensionTasks: Task[] = [
   AscensionStartTask,
   ConfigureTrainsetTask,
+  CMGFreeFightsTask,
   UnlockFallbotLocationsTask,
   UnlockGuildTask,
   BitchinMeatcarTask,
@@ -77,6 +79,7 @@ export const DailyTasks: Task[] = [
   PvpFightsTask,
   RockGardenTask,
   MrKlawTask,
+  CMGFreeFightsTask,
   DailyDungeonTask,
   ClassSpecificDailyTask,
   OliverFightsTask,

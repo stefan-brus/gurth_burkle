@@ -2,6 +2,7 @@ import { equip, equippedAmount, haveOutfit, Item, itemAmount, lockFamiliarEquipm
 import { $class, $item, $location, $slot } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
+import { cmgDone } from "../shinies/CMG";
 import { selectDiscoBanditGear } from "./GearDiscoBandit";
 import { selectPastamancerGear } from "./GearPastamancer";
 import { selectTurtleTamerGear } from "./GearTurtleTamer";
@@ -10,6 +11,7 @@ import { findEquippedAccSlot } from "./Utils";
 export function selectEquipment(info: AdventureInfo) {
   let reservedSlots = selectAdventureEquipment(info);
   reservedSlots = selectModifierEquipment(info, reservedSlots);
+  reservedSlots = selectShinyEquipment(reservedSlots);
 
   switch (myClass()) {
     case $class`Turtle Tamer`:
@@ -210,6 +212,19 @@ function selectEquipmentModifier(mod: Modifier, reservedSlots: Slot[]): Slot[] {
     default:
       return [];
   }
+}
+
+function selectShinyEquipment(reservedSlots: Slot[]): Slot[] {
+  // CMG
+  if (!cmgDone() && !reservedSlots.includes($slot`off-hand`)) {
+    if (equippedAmount($item`cursed magnifying glass`) < 1) {
+      equip($slot`off-hand`, $item`cursed magnifying glass`);
+    }
+    
+    reservedSlots.push($slot`off-hand`);
+  }
+
+  return reservedSlots;
 }
 
 function tryEquipGear(items: Item[], reservedSlots: Slot[]): Slot[] {

@@ -1,11 +1,22 @@
-import { getProperty, Item, itemAmount, Monster, myClass, myLocation, Skill, throwItem, throwItems, useSkill } from "kolmafia";
+import { getProperty, Item, itemAmount, Monster, myClass, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
 import { $class, $item, $location, $monster, $skill } from "libram";
+import { Properties } from "../Properties";
 
 type RoundCallback<State> = (foe: Monster, state: State) => [string, State];
 
 export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCallback<State>, initState: State) {
   let lastResult = page;
   let state = initState;
+
+  if (CMGMonsters.includes(foe)) {
+    const fightsDoneStr = getProperty(Properties.Daily.CMGFightsDone);
+    if (fightsDoneStr === "") {
+      setProperty(Properties.Daily.CMGFightsDone, "1");
+    }
+    else {
+      setProperty(Properties.Daily.CMGFightsDone, (parseInt(fightsDoneStr) + 1).toString());
+    }
+  }
 
   while (!combatOver(lastResult)) {
     const specialResult = checkSpecialActions(foe, lastResult);
@@ -22,6 +33,12 @@ export function shouldThrowFlyers(): boolean {
   const FlyeredMLProperty = "flyeredML";
   return itemAmount(Item.get("rock band flyers")) > 0 && parseInt(getProperty(FlyeredMLProperty)) < 10000;
 }
+
+const CMGMonsters: Monster[] = [
+  $monster`void guy`,
+  $monster`void slab`,
+  $monster`void spider`,
+];
 
 function checkSpecialActions(foe: Monster, page: string): string | void {
   let result = checkYossarianTools(foe, page);

@@ -39,5 +39,8 @@ export const Properties = {
   Daily: {
     // Bitmask: 1 is plot 1, 2 is plot 2, 4 is plot 3
     RockGardenHarvested: "_myRockGardenHarvested",
+
+    // Number between 0 and 5
+    CMGFightsDone: "_myCMGFreeFightsDone",
   },
 };
