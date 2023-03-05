@@ -1,5 +1,6 @@
 import { getProperty, print, setProperty, userConfirm } from "kolmafia";
 import { ascend } from "./Ascend";
+import { resetDelayProperties } from "./lib/Delay";
 import { Properties } from "./Properties";
 import { AscensionTasks, DailyTasks, printTaskList } from "./tasks/Tasks";
 
@@ -18,6 +19,7 @@ export function main() {
 
   if (isAscensionStart()) {
     resetMyProperties();
+    resetDelayProperties();
   }
 
   try {

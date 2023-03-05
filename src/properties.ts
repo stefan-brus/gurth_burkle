@@ -11,6 +11,28 @@ export const Properties = {
     PyramidWheelsGathered: "myPyramidWheelsGathered",
     ConfettiUsed: "myConfettiUsed",
     NSRegistrationDeskVisited: "myNSRegistrationDeskVisited",
+
+    // Delayed and forced adventures that can be "burned" with free fights
+    Delay: {
+      // Delayed adventures
+      SpookyForest: "myDelaySpookyForest", // Arboreal Respite - 5
+      HauntedGallery: "myDelayHauntedGallery", // Louvre It or Leave It - 5
+      HauntedBathroom: "myDelayHauntedBathroom", // Never Gonna Make You Up - 5
+      HauntedBallroom: "myDelayHauntedBallroom", // We'll All be Flat - 5
+      HauntedBedroom: "myDelayHauntedBedroom", // elegant animated nightstand - 6
+      Oasis: "myDelayOasis", // All Across the Sands - 6
+      Airship: "myDelayAirship", // Immateria & S.O.C.K - 25
+
+      // Forced adventures
+      HiddenOffice: "myDelayHiddenOffice", // Working Holiday - 5
+      DarkNeck: "myDelayDarkNeck", // Friar's Dark Neck - 15
+      DarkHeart: "myDelayDarkHeart", // Friar's Dark Heart - 15
+      DarkElbow: "myDelayDarkElbow", // Friar's Dark Elbow - 15
+      HiddenPark: "myDelayHiddenPark", // Dakota Fanning - 7
+      HiddenApartment: "myDelayHiddenApartment", // Action Elevator - 9
+      CobbsKnob: "myDelayCobbsKnob", // Code Red - 10
+      CastleGround: "myDelayCastleGround", // Top of the Castle, Ma - 10
+    },
   },
 
   // These are reset at the start of each day
