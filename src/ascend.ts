@@ -13,6 +13,7 @@ import { generateAdventures } from "./lib/Turngen";
 import { selectPotions } from "./lib/Potion";
 import { $class } from "libram";
 import { selectThrall } from "./lib/Thrall";
+import { checkBurnDelay } from "./lib/Delay";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -55,6 +56,7 @@ export function ascend() {
       selectBuffs(progress);
       selectPotions(progress);
       fallbotRoutine();
+      checkBurnDelay(progress);
       mainAdventure(progress);
     }
 
