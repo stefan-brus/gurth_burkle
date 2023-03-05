@@ -16,74 +16,48 @@ export function selectBuffs(info: AdventureInfo) {
       // Not all classes have specific buffs, do nothing
   }
 
-  AdventureModifiers.forEach(mod => {
-    if (info.modifiers.includes(mod)) {
-      selectBuffsModifier(mod);
+  info.modifiers.forEach(mod => {
+    if (ModifierSkills.has(mod)) {
+      tryApplyBuffs(ModifierSkills.get(mod)!);
     }
   });
 }
 
-export function selectBuffsModifier(mod: Modifier) {
-  switch (mod) {
-    case Modifier.NonCombat:
-    case Modifier.DamageAbsorption:
-    case Modifier.HotRes:
-    case Modifier.ColdRes:
-    case Modifier.StenchRes:
-    case Modifier.SpookyRes:
-    case Modifier.SleazeRes:
-      tryApplyBuffs(ModifierSkills[mod]);
-      break;
-    default:
-      break;
-  }
-}
-
-const AdventureModifiers: Modifier[] = [
-  Modifier.NonCombat,
-  Modifier.DamageAbsorption,
-  Modifier.HotRes,
-  Modifier.ColdRes,
-  Modifier.StenchRes,
-  Modifier.SpookyRes,
-  Modifier.SleazeRes,
-];
+export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
+  [Modifier.NonCombat, [
+    $skill`Smooth Movement`,
+    $skill`The Sonata of Sneakiness`,
+  ]],
+  [Modifier.DamageAbsorption, [
+    $skill`Astral Shell`,
+    $skill`Ghostly Shell`,
+  ]],
+  [Modifier.HotRes, [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ]],
+  [Modifier.ColdRes, [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ]],
+  [Modifier.StenchRes, [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ]],
+  [Modifier.SpookyRes, [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ]],
+  [Modifier.SleazeRes, [
+    $skill`Elemental Saucesphere`,
+    $skill`Astral Shell`,
+  ]],
+]);
 
 const BaseSkills: Skill[] = [
   $skill`Leash of Linguini`,
   $skill`Fat Leon's Phat Loot Lyric`,
 ];
-
-const ModifierSkills = {
-  [Modifier.NonCombat]: [
-    $skill`Smooth Movement`,
-    $skill`The Sonata of Sneakiness`,
-  ],
-  [Modifier.DamageAbsorption]: [
-    $skill`Astral Shell`,
-    $skill`Ghostly Shell`,
-  ],
-  [Modifier.HotRes]: [
-    $skill`Elemental Saucesphere`,
-    $skill`Astral Shell`,
-  ],
-  [Modifier.ColdRes]: [
-    $skill`Elemental Saucesphere`,
-    $skill`Astral Shell`,
-  ],
-  [Modifier.StenchRes]: [
-    $skill`Elemental Saucesphere`,
-    $skill`Astral Shell`,
-  ],
-  [Modifier.SpookyRes]: [
-    $skill`Elemental Saucesphere`,
-    $skill`Astral Shell`,
-  ],
-  [Modifier.SleazeRes]: [
-    $skill`Elemental Saucesphere`,
-    $skill`Astral Shell`,
-  ],
-};
 
 const TurtleTamerSkills: Skill[] = [
   $skill`Empathy of the Newt`,

@@ -1,3 +1,6 @@
+import { Effect, getPower, haveSkill, Item, numericModifier, Skill, toEffect, toSlot } from "kolmafia";
+import { $skill, $slot } from "libram";
+
 export enum Modifier {
   Combat,
   NonCombat,
@@ -29,9 +32,9 @@ export function toMafiaModifier(modifier: Modifier): string {
   switch (modifier)
   {
     case Modifier.Combat:
-      return "combat";
+      return "combat rate";
     case Modifier.NonCombat:
-      return "non-combat";
+      return "combat rate";
     case Modifier.MonsterLevel:
       return "monster level";
     case Modifier.ItemDrop:
@@ -79,4 +82,32 @@ export function toMafiaModifier(modifier: Modifier): string {
     default:
       throw new Error("Unhandled modifier: " + modifier);
   }
+}
+
+export function myNumericModifier(mod: Modifier): number {
+  return numericModifier(toMafiaModifier(mod));
+}
+
+export function myNumericModifierItem(item: Item, mod: Modifier): number {
+  let modifier = numericModifier(item, toMafiaModifier(mod));
+
+  if ([$slot`hat`, $slot`shirt`, $slot`pants`].includes(toSlot(item))) {
+    let power = getPower(item);
+
+    if (haveSkill($skill`Tao of the Terrapin`) && [$slot`hat`, $slot`pants`].includes(toSlot(item))) {
+      power *= 2;
+    }
+
+    modifier += power;
+  }
+
+  return modifier;
+}
+
+export function myNumericModifierBuff(buff: Skill, mod: Modifier): number {
+  return numericModifier(toEffect(buff), toMafiaModifier(mod));
+}
+
+export function myNumericModifierEffect(effect: Effect, mod: Modifier): number {
+  return numericModifier(effect, toMafiaModifier(mod));
 }

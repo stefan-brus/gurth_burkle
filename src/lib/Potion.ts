@@ -4,50 +4,31 @@ import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
 
 export function selectPotions(info: AdventureInfo) {
-  AdventureModifiers.forEach(mod => {
-    if (info.modifiers.includes(mod)) {
-      selectPotionsModifier(mod);
+  info.modifiers.forEach(mod => {
+    if (ModifierPotions.has(mod)) {
+      tryUsePotions(ModifierPotions.get(mod)!);
     }
   });
 }
 
-const AdventureModifiers: Modifier[] = [
-  Modifier.MeatDrop,
-  Modifier.Initiative,
-  Modifier.StenchRes,
-];
-
-const ModifierPotions = {
-  [Modifier.MeatDrop]: [
+export const ModifierPotions: Map<Modifier, Item[]> = new Map([
+  [Modifier.MeatDrop, [
     $item`flapper fly`,
     $item`autumn dollar`,
-  ],
-  [Modifier.Initiative]: [
+  ]],
+  [Modifier.Initiative, [
     $item`giraffe-necked turtle`,
-  ],
-  [Modifier.StenchRes]: [
+  ]],
+  [Modifier.StenchRes, [
     $item`Polysniff Perfume`,
-  ],
-};
+  ]],
+]);
 
-const PotionEffects = new Map<Item, Effect>([
+export const PotionEffects = new Map<Item, Effect>([
   [$item`giraffe-necked turtle`, $effect`Adorable Lookout`],
   [$item`flapper fly`, $effect`Flapper Dancin'`],
   [$item`autumn dollar`, $effect`Bet Your Autumn Dollar`],
 ]);
-
-
-function selectPotionsModifier(mod: Modifier) {
-  switch (mod) {
-    case Modifier.MeatDrop:
-    case Modifier.Initiative:
-    case Modifier.StenchRes:
-      tryUsePotions(ModifierPotions[mod]);
-      break;
-    default:
-      break;
-  }
-}
 
 function tryUsePotions(items: Item[]) {
   items.filter(item => itemAmount(item) > 0).forEach(item => tryUsePotion(item));

@@ -30,25 +30,21 @@ export function selectEquipment(info: AdventureInfo) {
   selectFamiliarEquipment();
 }
 
-const AdventureModifiers: Modifier[] = [
-  Modifier.DamageAbsorption,
-  Modifier.StenchRes,
-]
-
-const ModifierGear = {
-  [Modifier.DamageAbsorption]: [
+export const ModifierGear: Map<Modifier, Item[]> = new Map([
+  [Modifier.DamageAbsorption, [
     $item`beer helmet`,
     $item`midriff scrubs`,
+    $item`punk rock jacket`,
     $item`bullet-proof corduroys`,
-  ],
-  [Modifier.StenchRes]: [
+  ]],
+  [Modifier.StenchRes, [
     $item`Whoompa Fur Pants`,
     $item`Pants of the Slug Lord`,
     $item`ass hat`,
     $item`bum cheek`,
     $item`Pine-Fresh air freshener`,
-  ],
-};
+  ]],
+]);
 
 function selectFamiliarEquipment() {
   if (itemAmount($item`astral pet sweater`) > 0) {
@@ -195,23 +191,13 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
 }
 
 function selectModifierEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[] {
-  AdventureModifiers.forEach(mod => {
-    if (info.modifiers.includes(mod)) {
-      reservedSlots = reservedSlots.concat(selectEquipmentModifier(mod, reservedSlots));
+  info.modifiers.forEach(mod => {
+    if (ModifierGear.has(mod)) {
+      reservedSlots = reservedSlots.concat(tryEquipGear(ModifierGear.get(mod)!, reservedSlots));
     }
   });
 
   return reservedSlots;
-}
-
-function selectEquipmentModifier(mod: Modifier, reservedSlots: Slot[]): Slot[] {
-  switch (mod) {
-    case Modifier.DamageAbsorption:
-    case Modifier.StenchRes:
-      return tryEquipGear(ModifierGear[mod], reservedSlots);
-    default:
-      return [];
-  }
 }
 
 function selectShinyEquipment(reservedSlots: Slot[]): Slot[] {
