@@ -1,4 +1,4 @@
-import { adv1, buy, getProperty, itemAmount, myAdventures, myMeat, setProperty } from "kolmafia";
+import { adv1, buy, cliExecute, equippedAmount, getProperty, itemAmount, myAdventures, myMeat, setProperty } from "kolmafia";
 import { $item, $location } from "libram";
 import { Constants } from "../../../Constants";
 import { AdventureInfo } from "../../../lib/AdventureInfo";
@@ -47,6 +47,12 @@ export const L11RedZeppelinTask: Task = {
       available: () => getProperty(L11RedZeppelinProperty) === "step3" || getProperty(L11RedZeppelinProperty) === "step4",
       progress: () => { return { location: $location`The Red Zeppelin`, modifiers: [], }; },
       completed: () => getProperty(L11RedZeppelinProperty) === "finished",
+    },
+    {
+      name: "Create Talisman o' Namsilat",
+      available: () => getProperty(L11RedZeppelinProperty) === "finished" && itemAmount($item`Talisman o' Namsilat`) < 0 && equippedAmount($item`Talisman o' Namsilat`) < 0,
+      progress: () => { cliExecute("create Talisman o' Namsilat"); },
+      completed: () => itemAmount($item`Talisman o' Namsilat`) > 0 || equippedAmount($item`Talisman o' Namsilat`) > 0,
     },
   ],
 };
