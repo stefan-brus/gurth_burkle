@@ -12,7 +12,7 @@ export const CMGFreeFightsTask: Task = {
       name: "CMG Free Fight",
       available: () => equippedAmount($item`cursed magnifying glass`) > 0 && cmgReady(),
       progress: () => doCMGFreeFight(),
-      completed: () => cmgDone(),
+      completed: () => cmgDone() || nextDelayLocation() === $location`none`,
     },
   ],
 };
