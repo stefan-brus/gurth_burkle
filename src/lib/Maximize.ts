@@ -5,6 +5,7 @@ import { ModifierSkills } from "./Buffs";
 import { Modifier, myNumericModifier, myNumericModifierBuff, myNumericModifierEffect, myNumericModifierItem, toMafiaModifier } from "./Modifier";
 import { ModifierPotions, PotionEffects } from "./Potion";
 import { ModifierSpecial, tryGetEffects } from "./SpecialEffects";
+import { ModifierSpleen, SpleenEffects } from "./Spleen";
 
 export function myMaximize(mod: Modifier, simulate: boolean = false, verbose: boolean = false): number {
   let result = myNumericModifier(mod);
@@ -26,6 +27,12 @@ export function myMaximize(mod: Modifier, simulate: boolean = false, verbose: bo
     print(`Potions would add ${potionsResult} ${toMafiaModifier(mod)}`);
   }
   result += potionsResult;
+
+  const spleenResult = maximizeSpleen(mod, simulate, verbose);
+  if (verbose) {
+    print(`Spleen would add ${spleenResult} ${toMafiaModifier(mod)}`);
+  }
+  result += spleenResult;
 
   const specialResult = simulate ? maximizeSpecialSimulate(mod, verbose) : maximizeSpecial(mod, verbose);
   if (verbose) {
@@ -148,6 +155,41 @@ function maximizePotions(mod: Modifier, simulate: boolean, verbose: boolean): nu
 
         if (!simulate) {
           use(1, pot);
+        }
+      }
+    }
+  }
+
+  return result;
+}
+
+function maximizeSpleen(mod: Modifier, simulate: boolean, verbose: boolean): number {
+  let result = 0;
+
+  if (ModifierSpleen.has(mod)) {
+    const spleens = ModifierSpleen.get(mod)!;
+
+    for (const spleen of spleens) {
+      const effect = SpleenEffects.get(spleen)!;
+      const modAdded = myNumericModifierEffect(effect, mod);
+
+      if (haveEffect(effect) > 0) {
+        if (verbose) {
+          print(`Spleen ${spleen.name} already applied, giving ${modAdded} ${toMafiaModifier(mod)}`);
+        }
+
+        continue;
+      }
+
+      if (itemAmount(spleen) > 0) {
+        result += modAdded;
+
+        if (verbose) {
+          print(`Spleen ${spleen.name} would give ${modAdded} ${toMafiaModifier(mod)}`);
+        }
+
+        if (!simulate) {
+          use(1, spleen);
         }
       }
     }

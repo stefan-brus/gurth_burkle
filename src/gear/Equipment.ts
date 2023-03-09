@@ -31,6 +31,21 @@ export function selectEquipment(info: AdventureInfo) {
 }
 
 export const ModifierGear: Map<Modifier, Item[]> = new Map([
+  [Modifier.Muscle, [
+    // hats
+    $item`mesh cap`,
+    
+    // weapons
+    $item`antique machete`,
+
+    // pants
+    $item`Orcish cargo shorts`,
+
+    // accessories
+    $item`headhunter necktie`,
+    $item`Nickel Gamma of Frugality`,
+    $item`badass belt`,
+  ]],
   [Modifier.ItemDrop, [
     // accessories
     $item`Nickel Gamma of Frugality`,
@@ -70,6 +85,10 @@ export const ModifierGear: Map<Modifier, Item[]> = new Map([
 
     // accessories
     $item`Pine-Fresh air freshener`,
+  ]],
+  [Modifier.StenchDmg, [
+    // weapons
+    $item`combat fan`,
   ]],
 ]);
 

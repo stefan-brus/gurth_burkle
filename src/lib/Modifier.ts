@@ -2,6 +2,9 @@ import { Effect, getPower, haveSkill, Item, numericModifier, Skill, toEffect, to
 import { $skill, $slot } from "libram";
 
 export enum Modifier {
+  Muscle,
+  Mysticality,
+  Moxie,
   Combat,
   NonCombat,
   MonsterLevel,
@@ -31,6 +34,12 @@ export enum Modifier {
 export function toMafiaModifier(modifier: Modifier): string {
   switch (modifier)
   {
+    case Modifier.Muscle:
+      return "muscle";
+    case Modifier.Mysticality:
+      return "mysticality";
+    case Modifier.Moxie:
+      return "moxie";
     case Modifier.Combat:
       return "combat rate";
     case Modifier.NonCombat:
