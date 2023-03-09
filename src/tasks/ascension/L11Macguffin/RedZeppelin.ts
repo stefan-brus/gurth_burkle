@@ -90,7 +90,7 @@ function doProtestersSleaze(): AdventureInfo {
 
   return {
     location: $location`A Mob of Zeppelin Protesters`,
-    modifiers: [Modifier.SleazeDmg, Modifier.SleazeSpellDmg],
+    modifiers: [Modifier.NonCombat, Modifier.SleazeDmg, Modifier.SleazeSpellDmg],
     expectedNoncombat: "Not So Much With The Humanity",
   };
 }
