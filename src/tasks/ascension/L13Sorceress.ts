@@ -1,6 +1,7 @@
-import { adv1, buy, chew, create, getProperty, handlingChoice, haveEffect, itemAmount, maximize, runChoice, setProperty, visitUrl } from "kolmafia";
+import { adv1, buy, chew, create, getProperty, handlingChoice, haveEffect, itemAmount, runChoice, setProperty, visitUrl } from "kolmafia";
 import { $coinmaster, $effect, $item, $location, ensureEffect } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
+import { myMaximize } from "../../lib/Maximize";
 import { Modifier } from "../../lib/Modifier";
 import { checkUseClover, haveIngredients } from "../../lib/Utils";
 import { Properties } from "../../Properties";
@@ -129,10 +130,7 @@ function visitDesk() {
 }
 
 function registerInitContest() {
-  if (!maximize("initiative -tie", false)) {
-    throw new Error("Unable to maximize init contest");
-  }
-
+  myMaximize(Modifier.Initiative)
   visitUrl("place.php?whichplace=nstower&action=ns_01_contestbooth");
   runChoice(1);
   runChoice(6);
@@ -140,10 +138,20 @@ function registerInitContest() {
 
 function registerStatContest() {
   const ContestStatProperty = "nsChallenge1";
-  const expression = getProperty(ContestStatProperty) + " -tie";
+  const statToMax = getProperty(ContestStatProperty);
 
-  if (!maximize(expression, false)) {
-    throw new Error("Unable to maximize stat contest");
+  switch (statToMax) {
+    case "Muscle":
+      myMaximize(Modifier.Muscle);
+      break;
+    case "Mysticality":
+      myMaximize(Modifier.Mysticality);
+      break;
+    case "Moxie":
+      myMaximize(Modifier.Moxie);
+      break;
+    default:
+      throw new Error("Unknown stat modifier for contest");
   }
 
   visitUrl("place.php?whichplace=nstower&action=ns_01_contestbooth");
@@ -154,10 +162,30 @@ function registerStatContest() {
 function registerElementContest() {
   const ContestElementProperty = "nsChallenge2";
   const element = getProperty(ContestElementProperty);
-  const expression = `${element} damage -tie, ${element} spell damage -tie`;
 
-  if (!maximize(expression, false)) {
-    throw new Error("Unable to maximize element contest");
+  switch (element) {
+    case "hot":
+      myMaximize(Modifier.HotDmg);
+      myMaximize(Modifier.HotSpellDmg);
+      break;
+    case "cold":
+      myMaximize(Modifier.ColdDmg);
+      myMaximize(Modifier.ColdSpellDmg);
+      break;
+    case "stench":
+      myMaximize(Modifier.StenchDmg);
+      myMaximize(Modifier.StenchSpellDmg);
+      break;
+    case "spooky":
+      myMaximize(Modifier.SpookyDmg);
+      myMaximize(Modifier.SpookySpellDmg);
+      break;
+    case "sleaze":
+      myMaximize(Modifier.SleazeDmg);
+      myMaximize(Modifier.SleazeSpellDmg);
+      break;
+    default:
+      throw new Error("Unknown element modifier for contest");
   }
 
   visitUrl("place.php?whichplace=nstower&action=ns_01_contestbooth");
