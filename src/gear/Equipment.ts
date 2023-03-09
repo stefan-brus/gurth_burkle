@@ -255,9 +255,11 @@ function tryEquipGear(items: Item[], reservedSlots: Slot[]): Slot[] {
   });
 
   items.filter(item => itemAmount(item) > 0 && equippedAmount(item) < 1).forEach(item => {
-    const slot = tryEquipItem(item, reservedSlots);
-    if (slot !== null) {
-      result.push(slot);
+    if (!result.includes(toSlot(item))) {
+      const slot = tryEquipItem(item, reservedSlots);
+      if (slot !== null) {
+        result.push(slot);
+      }
     }
   });
 
