@@ -230,6 +230,11 @@ const FallbotTasks: FallbotTaskInfo[] = [
                 ),
   },
   {
+    name: "Farm shadow bricks",
+    location: $location`Shadow Rift (The Misspelled Cemetary)`,
+    todo: () => true,
+  },
+  {
     name: "Farm booze",
     location: $location`An Unusually Quiet Barroom Brawl`,
     todo: () => true,
