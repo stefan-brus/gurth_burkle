@@ -107,12 +107,12 @@ function potentialLocationScore(loc: Location): number {
       break;
     case $location`Hero's Field`:
       const potentialItem = myMaximize(Modifier.ItemDrop, true);
-      result += Math.max(0, Math.min(400, potentialItem) - 300) / 2;
+      result += Math.max(0, Math.min(400, potentialItem) - 100) / 2;
       if (bonusLoc === $location`Hero's Field`) result *= 2;
       break;
     case $location`The Fungus Plains`:
       const potentialMeat = myMaximize(Modifier.MeatDrop, true);
-      result += Math.max(0, Math.min(450, potentialMeat) - 300) / 2;
+      result += Math.max(0, Math.min(450, potentialMeat) - 150) / 2;
       if (bonusLoc === $location`The Fungus Plains`) result *= 2;
       break;
     default:
