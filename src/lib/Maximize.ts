@@ -27,7 +27,7 @@ export function myMaximize(mod: Modifier, simulate: boolean = false, verbose: bo
   }
   result += potionsResult;
 
-  const specialResult = simulate ? maximizeSpecial(mod, verbose) : maximizeSpecialSimulate(mod, verbose);
+  const specialResult = simulate ? maximizeSpecialSimulate(mod, verbose) : maximizeSpecial(mod, verbose);
   if (verbose) {
     print(`Special effects would add ${specialResult} ${toMafiaModifier(mod)}`);
   }
