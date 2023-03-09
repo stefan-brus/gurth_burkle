@@ -3,6 +3,7 @@ import { myMainstat } from "../lib/Utils";
 import { CMGFreeFightsTask } from "../shinies/CMG";
 import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
+import { RufusQuestTask } from "../shinies/PayPhone";
 import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
 import { AzazelTask } from "./ascension/Azazel";
 import { DigitalKeyTask } from "./ascension/DigitalKey";
@@ -83,6 +84,7 @@ export const DailyTasks: Task[] = [
   DailyDungeonTask,
   ClassSpecificDailyTask,
   OliverFightsTask,
+  RufusQuestTask,
 ];
 
 export const IdleTask: Task = {

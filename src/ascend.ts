@@ -14,6 +14,7 @@ import { selectPotions } from "./lib/Potion";
 import { $class } from "libram";
 import { selectThrall } from "./lib/Thrall";
 import { checkBurnDelay } from "./lib/Delay";
+import { selectSpecialEffects } from "./lib/SpecialEffects";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -55,6 +56,7 @@ export function ascend() {
       selectEquipment(progress);
       selectBuffs(progress);
       selectPotions(progress);
+      selectSpecialEffects(progress);
       fallbotRoutine();
       checkBurnDelay(progress);
       mainAdventure(progress);
