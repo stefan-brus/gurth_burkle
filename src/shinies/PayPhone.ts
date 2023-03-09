@@ -1,6 +1,7 @@
 import { canAdventure, getProperty, haveEffect, runChoice, use } from "kolmafia";
 import { $effect, $item, $location } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
+import { Properties } from "../Properties";
 import { Task } from "../tasks/Task";
 
 export const RufusQuestTask: Task = {
@@ -8,7 +9,9 @@ export const RufusQuestTask: Task = {
   subtasks: [
     {
       name: "Call Rufus",
-      available: () => getProperty(RufusQuestProperty) === "unstarted" && canAdventure($location`Shadow Rift (The Misspelled Cemetary)`),
+      available: () => getProperty(RufusQuestProperty) === "unstarted" && 
+                       canAdventure($location`Shadow Rift (The Misspelled Cemetary)`) && 
+                       getProperty(Properties.Daily.RufusQuestDone) !== "true",
       progress: () => callRufus(),
       completed: () => getProperty(RufusQuestProperty) !== "unstarted",
       mainstat: 100,
