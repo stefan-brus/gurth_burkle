@@ -1,5 +1,6 @@
 import { canAdventure, getProperty, itemAmount, Location, userConfirm } from "kolmafia";
 import { $item, $location, AutumnAton } from "libram";
+import { Constants } from "../Constants";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { estimateAdventuresRemaining } from "../lib/Organs";
 import { myMainstat } from "../lib/Utils";
@@ -23,7 +24,7 @@ export function fallbotRoutine() {
     return;
   }
 
-  if (AutumnAton.turnsForQuest() > estimateAdventuresRemaining()) {
+  if (AutumnAton.turnsForQuest() > estimateAdventuresRemaining() - Constants.ReservedAdventures) {
     return;
   }
 
