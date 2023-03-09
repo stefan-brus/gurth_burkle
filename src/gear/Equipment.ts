@@ -31,17 +31,44 @@ export function selectEquipment(info: AdventureInfo) {
 }
 
 export const ModifierGear: Map<Modifier, Item[]> = new Map([
+  [Modifier.ItemDrop, [
+    // accessories
+    $item`Nickel Gamma of Frugality`,
+    $item`autumn leaf pendant`,
+    $item`observational glasses`,
+  ]],
+  [Modifier.Initiative, [
+    // shirts
+    $item`unrequired jacket`,
+
+    // accessories
+    $item`Lord Spookyraven's ear trumpet`,
+    $item`sk8board`,
+    $item`infernal insoles`,
+  ]],
   [Modifier.DamageAbsorption, [
+    // hats
     $item`beer helmet`,
+
+    // shirts
     $item`midriff scrubs`,
+    $item`unrequired jacket`,
+    $item`surgical apron`,
     $item`punk rock jacket`,
+
+    // pants
     $item`bullet-proof corduroys`,
   ]],
   [Modifier.StenchRes, [
-    $item`Whoompa Fur Pants`,
-    $item`Pants of the Slug Lord`,
+    // hats
     $item`ass hat`,
     $item`bum cheek`,
+
+    // pants
+    $item`Whoompa Fur Pants`,
+    $item`Pants of the Slug Lord`,
+
+    // accessories
     $item`Pine-Fresh air freshener`,
   ]],
 ]);

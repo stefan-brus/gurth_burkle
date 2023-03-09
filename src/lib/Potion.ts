@@ -12,12 +12,20 @@ export function selectPotions(info: AdventureInfo) {
 }
 
 export const ModifierPotions: Map<Modifier, Item[]> = new Map([
+  [Modifier.ItemDrop, [
+    $item`autumn leaf`,
+    $item`eagle feather`,
+  ]],
   [Modifier.MeatDrop, [
     $item`flapper fly`,
     $item`autumn dollar`,
   ]],
   [Modifier.Initiative, [
     $item`giraffe-necked turtle`,
+    $item`ant agonist`,
+    $item`Angry Farmer candy`,
+    $item`that gum you like`,
+    $item`vial of The Glistening`,
   ]],
   [Modifier.StenchRes, [
     $item`Polysniff Perfume`,
@@ -25,9 +33,24 @@ export const ModifierPotions: Map<Modifier, Item[]> = new Map([
 ]);
 
 export const PotionEffects = new Map<Item, Effect>([
-  [$item`giraffe-necked turtle`, $effect`Adorable Lookout`],
+  // item
+  [$item`autumn leaf`, $effect`Crunching Leaves`],
+  [$item`eagle feather`, $effect`Eagle Eyes`],
+
+  // meat
   [$item`flapper fly`, $effect`Flapper Dancin'`],
   [$item`autumn dollar`, $effect`Bet Your Autumn Dollar`],
+
+  // init
+  [$item`giraffe-necked turtle`, $effect`Adorable Lookout`],
+  [$item`ant agonist`, $effect`All Fired Up`],
+  [$item`Angry Farmer candy`, $effect`Sugar Rush`],
+  [$item`that gum you like`, $effect`Sugar Rush`],
+  [$item`vial of The Glistening`, $effect`The Glistening`],
+  [$item`old bronzer`, $effect`Sepia Tan`],
+
+  // stench res
+  [$item`Polysniff Perfume`, $effect`Neutered Nostrils`],
 ]);
 
 function tryUsePotions(items: Item[]) {

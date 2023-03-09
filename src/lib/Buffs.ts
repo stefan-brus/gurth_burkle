@@ -28,6 +28,12 @@ export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
     $skill`Smooth Movement`,
     $skill`The Sonata of Sneakiness`,
   ]],
+  [Modifier.ItemDrop, [
+    $skill`Fat Leon's Phat Loot Lyric`,
+  ]],
+  [Modifier.Initiative, [
+    $skill`Springy Fusilli`,
+  ]],
   [Modifier.DamageAbsorption, [
     $skill`Astral Shell`,
     $skill`Ghostly Shell`,
