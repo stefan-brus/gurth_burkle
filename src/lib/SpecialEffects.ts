@@ -1,4 +1,4 @@
-import { adv1, Effect, getProperty, haveEffect, itemAmount, runChoice } from "kolmafia";
+import { adv1, Effect, getProperty, haveEffect, itemAmount, runChoice, userConfirm } from "kolmafia";
 import { $effect, $item, $location, ensureEffect } from "libram";
 import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
@@ -47,27 +47,31 @@ function getConcertEffect(mod: Modifier): Effect {
   }
 
   if (mod === Modifier.Initiative) {
-    ensureEffect($effect`White-boy Angst`);
-    return $effect`White-boy Angst`;
+    if (haveEffect($effect`White-boy Angst`) < 1 && userConfirm("Get initiative from concert?")) {
+      ensureEffect($effect`White-boy Angst`);
+      return $effect`White-boy Angst`;
+    }
   }
   else if (mod === Modifier.MeatDrop) {
-    ensureEffect($effect`Winklered`);
-    return $effect`Winklered`;
+    if (haveEffect($effect`Winklered`) < 1 && userConfirm("Get meat drop from concert?")) {
+      ensureEffect($effect`Winklered`);
+      return $effect`Winklered`;
+    }
   }
 
   return $effect`none`;
 }
 
 function getShadowWaters(mod: Modifier): Effect {
-  if (haveEffect($effect`Shadow Waters`) > 0) {
-    return $effect`Shadow Waters`;
-  }
-
-  if (itemAmount($item`Rufus's shadow lodestone`) < 1) {
+  if (haveEffect($effect`Shadow Waters`) > 0 || itemAmount($item`Rufus's shadow lodestone`) < 1) {
     return $effect`none`;
   }
 
-  adv1($location`Shadow Rift(The Misspelled Cemetary)`);
-  runChoice(2);
-  return $effect`Shadow Waters`;
+  if (userConfirm("Get Shadow Waters?")) {
+    adv1($location`Shadow Rift(The Misspelled Cemetary)`);
+    runChoice(2);
+    return $effect`Shadow Waters`;
+  }
+
+  return $effect`none`;
 }
