@@ -1,5 +1,5 @@
-import { getProperty, Item, itemAmount, Monster, myClass, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
-import { $class, $item, $location, $monster, $skill } from "libram";
+import { getProperty, haveEffect, Item, itemAmount, Monster, myClass, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
+import { $class, $effect, $item, $location, $monster, $skill } from "libram";
 import { Properties } from "../Properties";
 
 type RoundCallback<State> = (foe: Monster, state: State) => [string, State];
@@ -8,14 +8,11 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
   let lastResult = page;
   let state = initState;
 
-  if (CMGMonsters.includes(foe)) {
-    const fightsDoneStr = getProperty(Properties.Daily.CMGFightsDone);
-    if (fightsDoneStr === "") {
-      setProperty(Properties.Daily.CMGFightsDone, "1");
-    }
-    else {
-      setProperty(Properties.Daily.CMGFightsDone, (parseInt(fightsDoneStr) + 1).toString());
-    }
+  updateCMGState(foe);
+
+  const freeKillResult = checkDoFreeKill(foe);
+  if (freeKillResult !== undefined) {
+    lastResult = freeKillResult;
   }
 
   while (!combatOver(lastResult)) {
@@ -34,11 +31,81 @@ export function shouldThrowFlyers(): boolean {
   return itemAmount(Item.get("rock band flyers")) > 0 && parseInt(getProperty(FlyeredMLProperty)) < 10000;
 }
 
+export const ImportantFoes: Monster[] = [
+  // killing jar and desk
+  $monster`banshee librarian`,
+  $monster`writing desk`,
+
+  // nightstands
+  $monster`elegant animated nightstand`,
+  $monster`animated ornate nightstand`,
+  
+  // evil eye
+  $monster`spiny skelelton`,
+  $monster`toothy sklelton`,
+
+  // dirty old lihc
+  $monster`dirty old lihc`,
+
+  // rusty hedge trimmer
+  $monster`bearpig topiary animal`,
+  $monster`elephant (meatcar?) topiary animal`,
+  $monster`spider (duck?) topiary animal`,
+
+  // stone wool
+  $monster`baa-relief sheep`,
+  $monster`Baa'baa'bu'ran`,
+
+  // doctor gear
+  $monster`pygmy witch surgeon`,
+
+  // bowling ball
+  $monster`pygmy bowler`,
+
+  // bottle of Chateau de Vinegar
+  $monster`possessed wine rack`,
+
+  // blasting soda
+  $monster`cabinet of Dr. Limpieza`,
+
+  // wine bomb
+  $monster`monstrous boiler`,
+
+  // stunt nuts & dudes
+  $monster`Racecar Bob`,
+  $monster`Bob Racecar`,
+  $monster`Drab Bard`,
+
+  // cigarette lighters and lynyrd stuff
+  $monster`Blue Oyster cultist`,
+  $monster`lynyrd skinner`,
+
+  // Ron Copperhead
+  $monster`man with the red buttons`,
+  $monster`red butler`,
+  $monster`red skeleton`,
+
+  // tomb ratchet
+  $monster`tomb rat`,
+];
+
 const CMGMonsters: Monster[] = [
   $monster`void guy`,
   $monster`void slab`,
   $monster`void spider`,
 ];
+
+function updateCMGState(foe: Monster) {
+  if (CMGMonsters.includes(foe)) {
+    const fightsDoneStr = getProperty(Properties.Daily.CMGFightsDone);
+    if (fightsDoneStr === "") {
+      setProperty(Properties.Daily.CMGFightsDone, "1");
+    }
+    else {
+      setProperty(Properties.Daily.CMGFightsDone, (parseInt(fightsDoneStr) + 1).toString());
+    }
+  }
+}
 
 function checkSpecialActions(foe: Monster, page: string): string | void {
   let result = checkYossarianTools(foe, page);
@@ -56,6 +123,43 @@ function checkSpecialActions(foe: Monster, page: string): string | void {
   result = checkMonsterSpecificActions(foe);
   if (result !== undefined)
     return result;
+}
+
+function checkDoFreeKill(foe: Monster): string | void {
+  if (foe.boss || ImportantFoes.includes(foe) || isFreeCombat(foe)) {
+    return;
+  }
+
+  const ShadowBricksProperty = "_shadowBricksUsed";
+  const bricksUsed = parseInt(getProperty(ShadowBricksProperty));
+  if (bricksUsed < 13 && itemAmount($item`shadow brick`) > 0) {
+    return throwItem($item`shadow brick`);
+  }
+
+  if (itemAmount($item`groveling gravel`) > 0) {
+    return throwItem($item`groveling gravel`);
+  }
+}
+
+function isFreeCombat(foe: Monster): boolean {
+  const loc = myLocation();
+
+  // Doing Oliver's free fights
+  if (loc === $location`An Unusually Quiet Barroom Brawl`) {
+    return true;
+  }
+
+  // Fighting a CMG monster
+  if (CMGMonsters.includes(foe)) {
+    return true;
+  }
+
+  // Doing Rufus' shadow rift quest
+  if (loc === $location`Shadow Rift (The Misspelled Cemetary)` && haveEffect($effect`Shadow Affinity`) > 0) {
+    return true;
+  }
+
+  return false;
 }
 
 function combatOver(page: string): boolean {
