@@ -19,7 +19,7 @@ function recoverHP(amount: number) {
   let cocoonFailed = false;
   let tongueFailed = false;
 
-  while (myHp() < myMaxhp() && restored < amount) {
+  while (myHp() < myMaxhp() && myHp() < amount) {
     const toRestore = amount - restored;
 
     if (toRestore > 35 && haveSkill($skill`Cannelloni Cocoon`) && myMaxmp() > 20 && !cocoonFailed) {
@@ -51,7 +51,7 @@ function recoverMP(amount: number) {
   let restored = 0;
   let prevMP = myMp();
 
-  while (myMp() < myMaxmp() && restored < amount) {
+  while (myMp() < myMaxmp() && myMp() < amount) {
     if (myPrimestat() === $stat`Mysticality` && guildStoreAvailable()) {
       const mmj = $item`magical mystery juice`;
       if (!getAndUse(mmj)) {
