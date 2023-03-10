@@ -8,7 +8,13 @@ const args = process.argv.slice(2);
 const watch = args.some((a) => a === "--watch" || a === "-w");
 
 build({
-  entryPoints: { "gurth-burkle": "src/main.ts", "consult": "src/consult.ts", "recovery": "src/recovery.ts", "sandbox": "src/sandbox.ts" },
+  entryPoints: { 
+    "gurth-burkle": "src/main.ts", 
+    "consult": "src/consult.ts", 
+    "recovery": "src/recovery.ts", 
+    "sandbox": "src/sandbox.ts",
+    "betweenbattle": "src/betweenbattle.ts",
+  },
   bundle: true,
   minifySyntax: true,
   platform: "node",
