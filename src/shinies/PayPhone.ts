@@ -1,4 +1,4 @@
-import { canAdventure, getProperty, haveEffect, runChoice, use } from "kolmafia";
+import { canAdventure, getProperty, haveEffect, runChoice, setProperty, use } from "kolmafia";
 import { $effect, $item, $location } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Properties } from "../Properties";
@@ -48,4 +48,5 @@ function getRufusArtifact(): AdventureInfo {
 function callRufusBack() {
   use($item`closed-circuit pay phone`);
   runChoice(1);
+  setProperty(Properties.Daily.RufusQuestDone, "true");
 }
