@@ -72,6 +72,7 @@ function undefileNook(): AdventureInfo {
   return {
     location: $location`The Defiled Nook`,
     modifiers: [Modifier.ItemDrop],
+    getSpecialEffects: true,
   };
 }
 
@@ -83,6 +84,7 @@ function undefileAlcove(): AdventureInfo {
   return {
     location: $location`The Defiled Alcove`,
     modifiers: [Modifier.Initiative],
+    getSpecialEffects: true,
   };
 }
 
@@ -94,6 +96,7 @@ function undefileCranny(): AdventureInfo {
   return {
     location: $location`The Defiled Cranny`,
     modifiers: [Modifier.NonCombat, Modifier.MonsterLevel],
+    getSpecialEffects: true,
   }
 }
 
