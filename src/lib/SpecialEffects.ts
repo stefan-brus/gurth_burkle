@@ -1,4 +1,4 @@
-import { adv1, Effect, getProperty, haveEffect, itemAmount, runChoice, userConfirm } from "kolmafia";
+import { adv1, Effect, getProperty, haveEffect, itemAmount, runChoice, setProperty, userConfirm } from "kolmafia";
 import { $effect, $item, $location, ensureEffect } from "libram";
 import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
@@ -63,13 +63,14 @@ function getConcertEffect(mod: Modifier): Effect {
 }
 
 function getShadowWaters(mod: Modifier): Effect {
+  const LodedStoneChoice = "choiceAdventure1500";
   if (haveEffect($effect`Shadow Waters`) > 0 || itemAmount($item`Rufus's shadow lodestone`) < 1) {
     return $effect`none`;
   }
 
   if (userConfirm("Get Shadow Waters?")) {
+    setProperty(LodedStoneChoice, "2");
     adv1($location`Shadow Rift(The Misspelled Cemetary)`);
-    runChoice(2);
     return $effect`Shadow Waters`;
   }
 
