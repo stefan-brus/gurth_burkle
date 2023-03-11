@@ -1,7 +1,10 @@
-import { canAdventure, getProperty, Location, setProperty } from "kolmafia";
-import { $location } from "libram";
+import { canAdventure, equippedAmount, getProperty, itemAmount, Location, setProperty } from "kolmafia";
+import { $item, $location } from "libram";
 import { Properties } from "../Properties";
+import { templeUnlocked } from "../tasks/ascension/HiddenTemple";
+import { shouldCompleteAirship } from "../tasks/ascension/L10GiantTrash";
 import { AdventureInfo } from "./AdventureInfo";
+import { gnasirWants } from "./Gnasir";
 
 export function resetDelayProperties() {
   const DelayInitVals: Map<string, number> = new Map([
@@ -60,7 +63,7 @@ export function nextDelayLocation(): Location {
   ];
 
   for (const loc of DelayPriority) {
-    if (canAdventure(loc)) {
+    if (canAdventure(loc) && BurnAvailable.get(loc)!()) {
       const remaining = parseInt(getProperty(DelayLocationProps.get(loc)!));
       if (remaining > 0) {
         return loc;
@@ -90,4 +93,54 @@ const DelayLocationProps: Map<Location, string> = new Map([
   [$location`The Hidden Apartment Building`, Properties.Ascension.Delay.HiddenApartment],
   [$location`The Outskirts of Cobb's Knob`, Properties.Ascension.Delay.CobbsKnob],
   [$location`The Castle in the Clouds in the Sky (Ground Floor)`, Properties.Ascension.Delay.CastleGround],
+]);
+
+type ShouldBurnDelay = () => boolean;
+
+const BurnAvailable: Map<Location, ShouldBurnDelay> = new Map([
+  [$location`The Spooky Forest`, () => {
+    return !templeUnlocked() && getProperty("questL02Larva") !== "finished";
+  }],
+  [$location`The Haunted Gallery`, () => {
+    return getProperty("questM20Necklace") !== "finished";
+  }],
+  [$location`The Haunted Bathroom`, () => {
+    return getProperty("questM20Necklace") !== "finished";
+  }],
+  [$location`The Haunted Ballroom`, () => {
+    return getProperty("questL11Manor") === "unstarted" || getProperty("questL11Manor") === "started";
+  }],
+  [$location`The Haunted Bedroom`, () => {
+    return getProperty("questM20Necklace") !== "finished";
+  }],
+  [$location`The Oasis`, () => {
+    return gnasirWants($item`stone rose`);
+  }],
+  [$location`The Penultimate Fantasy Airship`, () => {
+    return shouldCompleteAirship();
+  }],
+  [$location`The Hidden Office Building`, () => {
+    return getProperty("hiddenOfficeProgress") !== "8";
+  }],
+  [$location`The Dark Neck of the Woods`, () => {
+    return getProperty("questL06Friar") === "started" || getProperty("questL06Friar") === "step1";
+  }],
+  [$location`The Dark Heart of the Woods`, () => {
+    return getProperty("questL06Friar") === "started" || getProperty("questL06Friar") === "step1";
+  }],
+  [$location`The Dark Elbow of the Woods`, () => {
+    return getProperty("questL06Friar") === "started" || getProperty("questL06Friar") === "step1";
+  }],
+  [$location`The Hidden Park`, () => {
+    return itemAmount($item`antique machete`) < 1 && equippedAmount($item`antique machete`) < 1;
+  }],
+  [$location`The Hidden Apartment Building`, () => {
+    return getProperty("hiddenApartmentProgress") !== "8";
+  }],
+  [$location`The Outskirts of Cobb's Knob`, () => {
+    return getProperty("questL05Goblin") === "unstarted" || getProperty("questL05Goblin") === "started";
+  }],
+  [$location`The Castle in the Clouds in the Sky (Ground Floor)`, () => {
+    return getProperty("questL10Garbage") === "step8";
+  }],
 ]);

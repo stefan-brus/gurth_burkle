@@ -42,7 +42,7 @@ export const HiddenTempleTask: Task = {
 
 const TempleUnlockProperty = "lastTempleUnlock";
 
-function templeUnlocked(): boolean {
+export function templeUnlocked(): boolean {
   return parseInt(getProperty(TempleUnlockProperty)) === myAscensions();
 }
 

@@ -54,7 +54,7 @@ export const L10Task: Task = {
 
 const L10QuestProperty = "questL10Garbage";
 
-function shouldCompleteAirship(): boolean {
+export function shouldCompleteAirship(): boolean {
   // False until we have all immateria, S.O.C.K, and model airship
   return (itemAmount($item`model airship`) < 1 && getProperty(L10QuestProperty) !== "step10" && getProperty(L10QuestProperty) !== "finished") ||
          ["step1", "step2", "step3", "step4", "step5", "step6"].some(val => getProperty(L10QuestProperty) === val);
