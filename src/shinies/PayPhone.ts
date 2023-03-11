@@ -32,7 +32,6 @@ export const RufusQuestTask: Task = {
 };
 
 const RufusQuestProperty = "questRufus";
-const RufusWantsProperty = "rufusQuestTarget";
 const ShadowAffinityProperty = "_shadowAffinityToday";
 
 function callRufus() {
@@ -44,20 +43,6 @@ function callRufus() {
 function getRufusArtifact(): AdventureInfo | void {
   const ShadowLabyrinthChoice = "choiceAdventure1499";
   setProperty(ShadowLabyrinthChoice, "0");
-
-  while (handlingChoice() && lastChoice() === 1499) {
-    const artifact = getProperty(RufusWantsProperty);
-    const options = availableChoiceOptions(true);
-    
-    for (const choice of [2, 3, 4]) {
-      if (options[choice].toLowerCase().includes(artifact.toLowerCase())) {
-        runChoice(choice);
-        return;
-      }
-    }
-
-    runChoice(1);
-  }
 
   return {
     location: $location`Shadow Rift (The Misspelled Cemetary)`,
