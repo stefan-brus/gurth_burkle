@@ -1,4 +1,4 @@
-import { canAdventure, getProperty, haveEffect, runChoice, setProperty, use } from "kolmafia";
+import { availableChoiceOptions, canAdventure, getProperty, handlingChoice, haveEffect, lastChoice, runChoice, setProperty, use, userConfirm } from "kolmafia";
 import { $effect, $item, $location } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Properties } from "../Properties";
@@ -11,7 +11,7 @@ export const RufusQuestTask: Task = {
       name: "Call Rufus",
       available: () => getProperty(RufusQuestProperty) === "unstarted" && 
                        canAdventure($location`Shadow Rift (The Misspelled Cemetary)`) && 
-                       getProperty(Properties.Daily.RufusQuestDone) !== "true",
+                       getProperty(ShadowAffinityProperty) !== "true",
       progress: () => callRufus(),
       completed: () => getProperty(RufusQuestProperty) !== "unstarted",
       mainstat: 100,
@@ -32,13 +32,33 @@ export const RufusQuestTask: Task = {
 };
 
 const RufusQuestProperty = "questRufus";
+const RufusWantsProperty = "rufusQuestTarget";
+const ShadowAffinityProperty = "_shadowAffinityToday";
 
 function callRufus() {
+  const CallingRufusChoice = "choiceAdventure1497";
+  setProperty(CallingRufusChoice, "2");
   use($item`closed-circuit pay phone`);
-  runChoice(2);
 }
 
-function getRufusArtifact(): AdventureInfo {
+function getRufusArtifact(): AdventureInfo | void {
+  const ShadowLabyrinthChoice = "choiceAdventure1499";
+  setProperty(ShadowLabyrinthChoice, "0");
+
+  while (handlingChoice() && lastChoice() === 1499) {
+    const artifact = getProperty(RufusWantsProperty);
+    const options = availableChoiceOptions(true);
+    
+    for (const choice of [2, 3, 4]) {
+      if (options[choice].toLowerCase().includes(artifact.toLowerCase())) {
+        runChoice(choice);
+        return;
+      }
+    }
+
+    runChoice(1);
+  }
+
   return {
     location: $location`Shadow Rift (The Misspelled Cemetary)`,
     modifiers: [],
@@ -46,7 +66,7 @@ function getRufusArtifact(): AdventureInfo {
 }
 
 function callRufusBack() {
+  const CallingBackChoice = "choiceAdventure1498";
+  setProperty(CallingBackChoice, "1");
   use($item`closed-circuit pay phone`);
-  runChoice(1);
-  setProperty(Properties.Daily.RufusQuestDone, "true");
 }

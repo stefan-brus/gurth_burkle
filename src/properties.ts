@@ -42,8 +42,5 @@ export const Properties = {
 
     // Number between 0 and 5
     CMGFightsDone: "_myCMGFreeFightsDone",
-
-    // Boolean
-    RufusQuestDone: "_myRufusQuestDone",
   },
 };
