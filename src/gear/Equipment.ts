@@ -6,6 +6,7 @@ import { cmgDone } from "../shinies/CMG";
 import { selectParkaMode } from "../shinies/Parka";
 import { selectDiscoBanditGear } from "./GearDiscoBandit";
 import { selectPastamancerGear } from "./GearPastamancer";
+import { selectSaucerorGear } from "./GearSauceror";
 import { selectTurtleTamerGear } from "./GearTurtleTamer";
 import { findEquippedAccSlot } from "./Utils";
 
@@ -20,6 +21,9 @@ export function selectEquipment(info: AdventureInfo) {
       break;
     case $class`Pastamancer`:
       selectPastamancerGear(reservedSlots);
+      break;
+    case $class`Sauceror`:
+      selectSaucerorGear(reservedSlots);
       break;
     case $class`Disco Bandit`:
       selectDiscoBanditGear(reservedSlots);

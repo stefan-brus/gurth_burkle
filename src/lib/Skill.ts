@@ -15,6 +15,9 @@ export function acquireTrainableSkills() {
     case $class`Pastamancer`:
       checkTrainSkills(PastamancerSkills);
       break;
+    case $class`Sauceror`:
+      checkTrainSkills(SaucerorSkills);
+      break;
     case $class`Disco Bandit`:
       checkTrainSkills(DiscoBanditSkills);
       break;
@@ -116,6 +119,10 @@ const PastamancerSkills: SkillInfo[] = [
     skill: $skill`Tolerance of the Kitchen`,
     urlId: 16,
   },
+];
+
+const SaucerorSkills: SkillInfo[] = [
+
 ];
 
 const DiscoBanditSkills: SkillInfo[] = [
