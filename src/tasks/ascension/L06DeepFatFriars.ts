@@ -11,14 +11,12 @@ export const L06Task: Task = {
       available: () => getProperty(L06QuestProperty) === "started",
       progress: () => { visitUrl("friars.php?action=friars&pwd"); },
       completed: () => getProperty(L06QuestProperty) !== "started",
-      mainstat: $location`The Dark Neck of the Woods`.recommendedStat,
     },
     {
       name: "Get dodecagram",
       available: () => getProperty(L06QuestProperty) === "step1" && itemAmount($item`dodecagram`) < 1,
       progress: () => { return { location: $location`The Dark Neck of the Woods`, modifiers: [Modifier.NonCombat] }; },
       completed: () => itemAmount($item`dodecagram`) > 0,
-      mainstat: $location`The Dark Neck of the Woods`.recommendedStat,
       spikesTask: true,
     },
     {
@@ -26,7 +24,6 @@ export const L06Task: Task = {
       available: () => getProperty(L06QuestProperty) === "step1" && itemAmount($item`box of birthday candles`) < 1,
       progress: () => { return { location: $location`The Dark Heart of the Woods`, modifiers: [Modifier.NonCombat] }; },
       completed: () => itemAmount($item`box of birthday candles`) > 0,
-      mainstat: $location`The Dark Heart of the Woods`.recommendedStat,
       spikesTask: true,
     },
     {
@@ -34,7 +31,6 @@ export const L06Task: Task = {
       available: () => getProperty(L06QuestProperty) === "step1" && itemAmount($item`eldritch butterknife`) < 1,
       progress: () => { return { location: $location`The Dark Elbow of the Woods`, modifiers: [Modifier.NonCombat] }; },
       completed: () => itemAmount($item`eldritch butterknife`) > 0,
-      mainstat: $location`The Dark Elbow of the Woods`.recommendedStat,
       spikesTask: true,
     },
     {
