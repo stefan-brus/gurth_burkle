@@ -129,7 +129,11 @@ const SaucerorSkills: SkillInfo[] = [
   {
     skill: $skill`Saucestorm`,
     urlId: 5,
-  }
+  },
+  {
+    skill: $skill`Wave of Sauce`,
+    urlId: 9,
+  },
 ];
 
 const DiscoBanditSkills: SkillInfo[] = [
