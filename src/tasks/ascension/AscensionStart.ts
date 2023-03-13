@@ -1,4 +1,4 @@
-import { adv1, autosell, buy, Class, cliExecute, eat, getProperty, haveSkill, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, setProperty, use, visitUrl } from "kolmafia";
+import { adv1, autosell, buy, Class, cliExecute, eat, equippedAmount, getProperty, haveSkill, Item, itemAmount, Location, myClass, myMeat, myPrimestat, runChoice, setProperty, use, visitUrl } from "kolmafia";
 import { $item, $location, $skill, $stat } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Properties } from "../../Properties";
@@ -36,7 +36,7 @@ export const AscensionStartTask: Task = {
     },
     {
       name: "Acquire saucepan",
-      available: () => itemAmount($item`saucepan`) < 1 && myMeat() >= 1000,
+      available: () => itemAmount($item`saucepan`) < 1 && equippedAmount($item`saucepan`) < 1 && myMeat() >= 1000,
       progress: () => getChewinggumItem($item`saucepan`),
       completed: () => itemAmount($item`saucepan`) > 0,
     },
