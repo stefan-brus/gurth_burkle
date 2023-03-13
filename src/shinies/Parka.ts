@@ -5,7 +5,7 @@ import { Modifier } from "../lib/Modifier";
 import { Properties } from "../Properties";
 
 export function selectParkaMode(info: AdventureInfo) {
-  if (getProperty(Properties.SpikolodonTask) === "true") {
+  if (getProperty(Properties.SpikolodonTask) === "true" && spikesAvailable()) {
     adjustParka(ParkaMode.Spikolodon);
     return;
   }
