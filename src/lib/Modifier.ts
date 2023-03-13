@@ -2,6 +2,8 @@ import { Effect, getPower, haveSkill, Item, numericModifier, Skill, toEffect, to
 import { $skill, $slot } from "libram";
 
 export enum Modifier {
+  HP,
+  MP,
   Muscle,
   Mysticality,
   Moxie,
@@ -13,6 +15,7 @@ export enum Modifier {
   BoozeDrop,
   MeatDrop,
   Initiative,
+  DamageReduction,
   DamageAbsorption,
   HotRes,
   ColdRes,
@@ -34,6 +37,10 @@ export enum Modifier {
 export function toMafiaModifier(modifier: Modifier): string {
   switch (modifier)
   {
+    case Modifier.HP:
+      return "maximum hp";
+    case Modifier.MP:
+      return "maximum mp";
     case Modifier.Muscle:
       return "muscle";
     case Modifier.Mysticality:
@@ -58,6 +65,8 @@ export function toMafiaModifier(modifier: Modifier): string {
       return "initiative";
     case Modifier.DamageAbsorption:
       return "damage absorption";
+    case Modifier.DamageReduction:
+      return "damage reduction";
     case Modifier.HotRes:
       return "hot resistance";
     case Modifier.ColdRes:

@@ -1,8 +1,9 @@
-import { equip, equippedAmount, haveOutfit, Item, itemAmount, lockFamiliarEquipment, myClass, outfit, Slot, toSlot } from "kolmafia";
-import { $class, $item, $location, $slot } from "libram";
+import { equip, equippedAmount, haveOutfit, haveSkill, Item, itemAmount, lockFamiliarEquipment, myClass, outfit, Slot, toSlot } from "kolmafia";
+import { $class, $item, $location, $skill, $slot } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
 import { cmgDone } from "../shinies/CMG";
+import { selectParkaMode } from "../shinies/Parka";
 import { selectDiscoBanditGear } from "./GearDiscoBandit";
 import { selectPastamancerGear } from "./GearPastamancer";
 import { selectTurtleTamerGear } from "./GearTurtleTamer";
@@ -11,7 +12,7 @@ import { findEquippedAccSlot } from "./Utils";
 export function selectEquipment(info: AdventureInfo) {
   let reservedSlots = selectAdventureEquipment(info);
   reservedSlots = selectModifierEquipment(info, reservedSlots);
-  reservedSlots = selectShinyEquipment(reservedSlots);
+  reservedSlots = selectShinyEquipment(info, reservedSlots);
 
   switch (myClass()) {
     case $class`Turtle Tamer`:
@@ -246,7 +247,7 @@ function selectModifierEquipment(info: AdventureInfo, reservedSlots: Slot[]): Sl
   return reservedSlots;
 }
 
-function selectShinyEquipment(reservedSlots: Slot[]): Slot[] {
+function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[] {
   // CMG
   if (!cmgDone() && !reservedSlots.includes($slot`off-hand`)) {
     if (equippedAmount($item`cursed magnifying glass`) < 1) {
@@ -254,6 +255,17 @@ function selectShinyEquipment(reservedSlots: Slot[]): Slot[] {
     }
     
     reservedSlots.push($slot`off-hand`);
+  }
+
+  // Parka
+  if (!reservedSlots.includes($slot`shirt`) && haveSkill($skill`Torso Awareness`)) {
+    if (equippedAmount($item`Jurassic Parka`) < 1) {
+      equip($slot`shirt`, $item`Jurassic Parka`);
+    }
+
+    selectParkaMode(info);
+
+    reservedSlots.push($slot`shirt`);
   }
 
   return reservedSlots;

@@ -1,6 +1,7 @@
 import { getProperty, haveEffect, Item, itemAmount, Monster, myClass, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
 import { $class, $effect, $item, $location, $monster, $skill } from "libram";
 import { Properties } from "../Properties";
+import { currentParkaMode, ParkaMode, spikesAvailable } from "../shinies/Parka";
 
 type RoundCallback<State> = (foe: Monster, state: State) => [string, State];
 
@@ -9,6 +10,11 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
   let state = initState;
 
   updateCMGState(foe);
+
+  const spikolodonResult = checkDoSpikes(foe);
+  if (spikolodonResult !== undefined) {
+    lastResult = spikolodonResult;
+  }
 
   const freeKillResult = checkDoFreeKill(foe);
   if (freeKillResult !== undefined) {
@@ -125,9 +131,27 @@ function checkSpecialActions(foe: Monster, page: string): string | void {
     return result;
 }
 
+function checkDoSpikes(foe: Monster): string | void {
+  // Can use spikes
+  if (currentParkaMode() !== ParkaMode.Spikolodon || !spikesAvailable()) {
+    return;
+  }
+
+  // Should use spikes
+  if (getProperty(Properties.SpikolodonTask) !== "true" || foe.boss || ImportantFoes.includes(foe) || isFreeCombat(foe)) {
+    return;
+  }
+
+  return useSkill($skill`Launch spikolodon spikes`);
+}
+
 function checkDoFreeKill(foe: Monster): string | void {
   if (foe.boss || ImportantFoes.includes(foe) || isFreeCombat(foe)) {
     return;
+  }
+
+  if (currentParkaMode() === ParkaMode.Dilophosaur && haveEffect($effect`Everything Looks Yellow`) < 1) {
+    return useSkill($skill`Spit jurassic acid`);
   }
 
   const ShadowBricksProperty = "_shadowBricksUsed";

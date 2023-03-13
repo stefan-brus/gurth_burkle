@@ -3,6 +3,9 @@ export const Properties = {
   // If true, don't change the current subtask until it is completed
   FocusTask: "myFocusTask",
 
+  // If true, use spikolodon spikes for the current tasks
+  SpikolodonTask: "mySpikolodonTask",
+
   // These are reset at the start of each ascension
   Ascension: {
     WhiteysGroveVisited: "myWhiteysGroveVisited",
