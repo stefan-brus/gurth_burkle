@@ -33,6 +33,7 @@ export const SpookyravenFloor1Task: Task = {
       available: () => (getProperty(Floor1QuestProperty) === "step1" || getProperty(Floor1QuestProperty) === "step2") && myInebriety() >= 8 && myInebriety() <= 12,
       progress: () => getLibraryKey(),
       completed: () => getProperty(Floor1QuestProperty) !== "step1" && getProperty(Floor1QuestProperty) !== "step2",
+      spikesTask: true,
     },
     {
       name: "Get Lady Spookyraven's necklace",
@@ -89,12 +90,14 @@ export const SpookyravenFloor2Task: Task = {
       available: () => getProperty(Floor2QuestProperty) === "step1",
       progress: () => getDancingShoes(),
       completed: () => itemAmount($item`Lady Spookyraven's dancing shoes`) > 0,
+      spikesTask: true,
     },
     {
       name: "Get Lady Spookyraven's powder puff",
       available: () => getProperty(Floor2QuestProperty) === "step1",
       progress: () => getPowderPuff(),
       completed: () => itemAmount($item`Lady Spookyraven's powder puff`) > 0,
+      spikesTask: true,
     },
     {
       name: "Return items to Lady Spookyraven",

@@ -153,6 +153,7 @@ export const UnlockHoleInTheSkyTask: Task = {
       available: () => canAdventure($location`The Castle in the Clouds in the Sky (Top Floor)`),
       progress: () => unlockHole(),
       completed: () => canAdventure($location`The Hole in the Sky`),
+      spikesTask: true,
     },
   ],
 };

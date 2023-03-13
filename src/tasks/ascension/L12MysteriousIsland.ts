@@ -38,6 +38,7 @@ export const L12Part1Task: Task = {
       available: () => getProperty(L12QuestProperty) === "started" && haveOutfit("Frat Warrior Fatigues"),
       progress: () => startTheWar(),
       completed: () => getProperty(L12QuestProperty) !== "started",
+      spikesTask: true,
     },
     {
       name: "Start Arena Sidequest",

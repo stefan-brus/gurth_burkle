@@ -13,6 +13,7 @@ export const L02Task: Task = {
       available: () => getProperty(L02QuestProperty) !== "unstarted",
       progress: () => doL02SpookyForest(),
       completed: () => getProperty(L02QuestProperty) === "finished",
+      spikesTask: true,
     },
   ],
 };

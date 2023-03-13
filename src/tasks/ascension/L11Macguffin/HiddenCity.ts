@@ -90,18 +90,21 @@ export const L11HiddenCityTask: Task = {
       available: () => canAdventure($location`The Hidden Office Building`),
       progress: () => doOfficeBuilding(),
       completed: () => parseInt(getProperty(OfficeBuildingProperty)) === 8,
+      spikesTask: true,
     },
     {
       name: "Do The Hidden Hospital",
       available: () => canAdventure($location`The Hidden Hospital`),
       progress: () => doHospital(),
       completed: () => parseInt(getProperty(HospitalProperty)) === 8,
+      spikesTask: true,
     },
     {
       name: "Do The Hidden Bowling Alley",
       available: () => canAdventure($location`The Hidden Bowling Alley`),
       progress: () => doBowlingAlley(),
       completed: () => parseInt(getProperty(BowlingAlleyProperty)) === 8,
+      spikesTask: true,
     },
     {
       name: "Get ancient amulet",

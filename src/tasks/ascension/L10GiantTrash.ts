@@ -24,24 +24,28 @@ export const L10Task: Task = {
       available: () => shouldCompleteAirship(),
       progress: () => completeAirship(),
       completed: () => !shouldCompleteAirship(),
+      spikesTask: true,
     },
     {
       name: "Unlock castle ground floor",
       available: () => getProperty(L10QuestProperty) === "step7",
       progress: () => unlockGroundFloor(),
       completed: () => getProperty(L10QuestProperty) !== "step7",
+      spikesTask: true,
     },
     {
       name: "Unlock castle top floor",
       available: () => getProperty(L10QuestProperty) === "step8",
       progress: () => unlockTopFloor(),
       completed: () => getProperty(L10QuestProperty) !== "step8",
+      spikesTask: true,
     },
     {
       name: "Turn the wheel",
       available: () => getProperty(L10QuestProperty) === "step9",
       progress: () => turnWheel(),
       completed: () => getProperty(L10QuestProperty) !== "step9",
+      spikesTask: true,
     },
     {
       name: "Return to council",

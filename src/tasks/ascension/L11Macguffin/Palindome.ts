@@ -16,6 +16,7 @@ export const L11PalindomeTask: Task = {
                        itemAmount($item`photograph of a red nugget`) > 0 &&
                        itemAmount($item`photograph of a dog`) > 0 &&
                        itemAmount($item`photograph of an ostrich egg`) > 0,
+      spikesTask: true,
     },
     {
       name: "Get I Love Me, Vol. I",

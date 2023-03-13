@@ -24,6 +24,7 @@ export const L11ShenCopperheadTask: Task = {
       available: () => ["step2", "step4", "step6"].includes(getProperty(L11ShenProperty)),
       progress: () => visitCopperheadClub(),
       completed: () => getProperty(L11ShenProperty) === "finished",
+      spikesTask: true,
     },
   ],
 };

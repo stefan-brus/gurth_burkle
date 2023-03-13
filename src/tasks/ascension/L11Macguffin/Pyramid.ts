@@ -38,6 +38,7 @@ export const L11PyramidTask: Task = {
       available: () => getProperty(L11PyramidProperty) === "step3",
       progress: () => getWoodenWheels(),
       completed: () => getProperty(Properties.Ascension.PyramidWheelsGathered) === "true",
+      spikesTask: true,
     },
     {
       name: "Unlock Ed's tomb",

@@ -52,6 +52,13 @@ export function ascend() {
           setProperty(Properties.FocusTask, "false");
         }
 
+        if (newSubtask.spikesTask) {
+          setProperty(Properties.SpikolodonTask, "true");
+        }
+        else {
+          setProperty(Properties.SpikolodonTask, "false");
+        }
+
         print("Completing subtask "+ currentSubtask.name);
       }
     }

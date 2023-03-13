@@ -31,12 +31,14 @@ export const L08Task: Task = {
       available: () => getProperty(L08QuestProperty) === "step2",
       progress: () => acquireColdWeatherGear(),
       completed: () => haveOutfit("eXtreme Cold-Weather Gear"),
+      spikesTask: true,
     },
     {
       name: "Unlock Mist-Shrouded Peak",
       available: () => getProperty(L08QuestProperty) === "step2" && haveOutfit("eXtreme Cold-Weather Gear"),
       progress: () => unlockPeak(),
       completed: () => getProperty(L08QuestProperty) !== "step2",
+      spikesTask: true,
     },
     {
       name: "Kill Groar",

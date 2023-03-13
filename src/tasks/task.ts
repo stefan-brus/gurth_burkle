@@ -13,4 +13,5 @@ export type Subtask = {
   progress: () => AdventureInfo | void,
   mainstat?: number,
   focusTask?: boolean,
+  spikesTask?: boolean,
 };
