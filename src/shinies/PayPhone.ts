@@ -1,4 +1,4 @@
-import { availableChoiceOptions, canAdventure, getProperty, handlingChoice, haveEffect, lastChoice, runChoice, setProperty, use, userConfirm } from "kolmafia";
+import { availableChoiceOptions, canAdventure, getProperty, handlingChoice, haveEffect, itemAmount, lastChoice, runChoice, setProperty, use, userConfirm } from "kolmafia";
 import { $effect, $item, $location } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Properties } from "../Properties";
@@ -11,7 +11,8 @@ export const RufusQuestTask: Task = {
       name: "Call Rufus",
       available: () => getProperty(RufusQuestProperty) === "unstarted" && 
                        canAdventure($location`Shadow Rift (The Misspelled Cemetary)`) && 
-                       getProperty(ShadowAffinityProperty) !== "true",
+                       getProperty(ShadowAffinityProperty) !== "true" &&
+                       itemAmount($item`Rufus's shadow lodestone `) < 1,
       progress: () => callRufus(),
       completed: () => getProperty(RufusQuestProperty) !== "unstarted",
       mainstat: 100,
