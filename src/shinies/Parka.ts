@@ -44,11 +44,12 @@ export function currentParkaMode(): ParkaMode {
     case "pterodactyl":
       return ParkaMode.Pterodactyl;
     default:
-      throw new Error("Unknown parka mode: " + curModeStr);
+      return ParkaMode.Nothing;
   }
 }
 
 export enum ParkaMode {
+  Nothing,
   Kachungasaur,
   Dilophosaur,
   Spikolodon,
