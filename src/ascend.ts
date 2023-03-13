@@ -1,4 +1,4 @@
-import { council, myAdventures, myClass, print, userConfirm } from "kolmafia";
+import { council, getProperty, myAdventures, myClass, print, setProperty, userConfirm } from "kolmafia";
 import { Constants } from "./Constants";
 import { mainAdventure } from "./lib/Adventure";
 import { selectEquipment } from "./gear/Equipment";
@@ -16,6 +16,7 @@ import { selectThrall } from "./lib/Thrall";
 import { checkBurnDelay } from "./lib/Delay";
 import { selectSpecialEffects } from "./lib/SpecialEffects";
 import { selectSpleen } from "./lib/Spleen";
+import { Properties } from "./Properties";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -35,15 +36,24 @@ export function ascend() {
       print("Completing task " + currentTask.name);
     }
 
-    const newSubtask = chooseSubtask(currentTask);
-    if (newSubtask !== currentSubtask) {
-      currentSubtask = newSubtask;
+    if (getProperty(Properties.FocusTask) !== "true" || currentSubtask.completed()) {
+      const newSubtask = chooseSubtask(currentTask);
+      if (newSubtask !== currentSubtask) {
+        currentSubtask = newSubtask;
 
-      if (!userConfirm("Start subtask " + currentSubtask.name + "?")) {
-        throw new Error("User aborted on subtask " + currentSubtask.name);
+        if (!userConfirm("Start subtask " + currentSubtask.name + "?")) {
+          throw new Error("User aborted on subtask " + currentSubtask.name);
+        }
+
+        if (newSubtask.focusTask) {
+          setProperty(Properties.FocusTask, "true");
+        }
+        else {
+          setProperty(Properties.FocusTask, "false");
+        }
+
+        print("Completing subtask "+ currentSubtask.name);
       }
-
-      print("Completing subtask "+ currentSubtask.name);
     }
 
     const progress = currentSubtask.progress();

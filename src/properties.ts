@@ -1,5 +1,8 @@
 // All properties are assumed to be reset to the empty string
 export const Properties = {
+  // If true, don't change the current subtask until it is completed
+  FocusTask: "myFocusTask",
+
   // These are reset at the start of each ascension
   Ascension: {
     WhiteysGroveVisited: "myWhiteysGroveVisited",

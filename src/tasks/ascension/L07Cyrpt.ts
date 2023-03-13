@@ -18,18 +18,21 @@ export const L07Task: Task = {
       available: () => getProperty(L07QuestProperty) === "started",
       progress: () => undefileNook(),
       completed: () => parseInt(getProperty("cyrptNookEvilness")) === 0,
+      focusTask: true,
     },
     {
       name: "Undefile the Alcove",
       available: () => getProperty(L07QuestProperty) === "started",
       progress: () => undefileAlcove(),
       completed: () => parseInt(getProperty("cyrptAlcoveEvilness")) === 0,
+      focusTask: true,
     },
     {
       name: "Undefile the Cranny",
       available: () => getProperty(L07QuestProperty) === "started",
       progress: () => undefileCranny(),
       completed: () => parseInt(getProperty("cyrptCrannyEvilness")) === 0,
+      focusTask: true,
     },
     {
       name: "Kill the bonerdagon",

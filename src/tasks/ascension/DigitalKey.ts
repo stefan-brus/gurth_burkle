@@ -19,6 +19,7 @@ export const DigitalKeyTask: Task = {
       available: () => (itemAmount($item`continuum transfunctioner`) > 0 || equippedAmount($item`continuum transfunctioner`) > 0) && parseInt(getProperty(RealmScoreProperty)) < 10000,
       progress: () => buildScore(),
       completed: () => parseInt(getProperty(RealmScoreProperty)) >= 10000,
+      focusTask: true,
     },
     {
       name: "Get digital key",
