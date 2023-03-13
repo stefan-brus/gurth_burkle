@@ -122,7 +122,14 @@ const PastamancerSkills: SkillInfo[] = [
 ];
 
 const SaucerorSkills: SkillInfo[] = [
-
+  {
+    skill: $skill`Expert Panhandling`,
+    urlId: 4,
+  },
+  {
+    skill: $skill`Saucestorm`,
+    urlId: 5,
+  }
 ];
 
 const DiscoBanditSkills: SkillInfo[] = [
