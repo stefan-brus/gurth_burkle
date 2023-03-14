@@ -1,6 +1,7 @@
 import { create, getProperty, itemAmount, use } from "kolmafia";
 import { $item, $location } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
+import { Modifier } from "../../lib/Modifier";
 import { checkUseClover, haveOrEquipped } from "../../lib/Utils";
 import { Task } from "../Task";
 
@@ -49,7 +50,7 @@ function doDecryptMap(): AdventureInfo | void {
   else {
     return {
       location: $location`The Outskirts of Cobb's Knob`,
-      modifiers: [],
+      modifiers: [Modifier.NonCombat],
     };
   }
 }
