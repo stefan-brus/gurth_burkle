@@ -187,7 +187,7 @@ function getDancingShoes(): AdventureInfo {
 function getPowderPuff(): AdventureInfo {
   return {
     location: $location`The Haunted Bathroom`,
-    modifiers: [Modifier.NonCombat],
+    modifiers: [],
   };
 }
 
