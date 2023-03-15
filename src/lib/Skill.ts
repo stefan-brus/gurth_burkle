@@ -131,8 +131,44 @@ const SaucerorSkills: SkillInfo[] = [
     urlId: 5,
   },
   {
+    skill: $skill`Soul Saucery`,
+    urlId: 27,
+  },
+  {
     skill: $skill`Wave of Sauce`,
     urlId: 9,
+  },
+  {
+    skill: $skill`Itchy Curse Finger`,
+    urlId: 30,
+  },
+  {
+    skill: $skill`Intrinsic Spiciness`,
+    urlId: 10,
+  },
+  {
+    skill: $skill`Saucecicle`,
+    urlId: 32,
+  },
+  {
+    skill: $skill`Master Saucier`,
+    urlId: 11,
+  },
+  {
+    skill: $skill`Saucegeyser`,
+    urlId: 12,
+  },
+  {
+    skill: $skill`Curse of Weaksauce`,
+    urlId: 34,
+  },
+  {
+    skill: $skill`Diminished Gag Reflex`,
+    urlId: 16,
+  },
+  {
+    skill: $skill`Irrepressible Spunk`,
+    urlId: 17,
   },
 ];
 
