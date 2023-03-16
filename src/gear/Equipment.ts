@@ -7,6 +7,7 @@ import { selectParkaMode } from "../shinies/Parka";
 import { selectDiscoBanditGear } from "./GearDiscoBandit";
 import { selectPastamancerGear } from "./GearPastamancer";
 import { selectSaucerorGear } from "./GearSauceror";
+import { selectSealClubberGear } from "./GearSealClubber";
 import { selectTurtleTamerGear } from "./GearTurtleTamer";
 import { findEquippedAccSlot } from "./Utils";
 
@@ -16,6 +17,9 @@ export function selectEquipment(info: AdventureInfo) {
   reservedSlots = selectShinyEquipment(info, reservedSlots);
 
   switch (myClass()) {
+    case $class`Seal Clubber`:
+      selectSealClubberGear(reservedSlots);
+      break;
     case $class`Turtle Tamer`:
       selectTurtleTamerGear(reservedSlots);
       break;
