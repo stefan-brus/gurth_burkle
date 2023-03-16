@@ -9,7 +9,7 @@ export const Constants = {
    * The amount of days one ascension usually takes.
    */
 
-  PredictedAscensionDays: 5,
+  PredictedAscensionDays: 4,
 
   /**
    * The (conservatively) estimated amount of adventures per fullness.
