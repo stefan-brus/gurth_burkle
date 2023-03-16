@@ -18,6 +18,7 @@ export function selectTurtleTamerGear(reservedSlots: Slot[]) {
 
 const TurtleTamerHats: Item[] = [
   $item`fuzzy busby`,
+  $item`extra-wide head candle`,
   $item`Crown of the Goblin King`,
   $item`Knob Goblin elite helm`,
   $item`chef's hat`,
@@ -36,6 +37,7 @@ const TurtleTamerShirts: Item[] = [
 ];
 
 const TurtleTamerWeapons: Item[] = [
+  $item`extra-large utility candle`,
   $item`Orcish frat-paddle`,
   $item`skeleton bone`,
   $item`Knob Goblin scimitar`,

@@ -18,6 +18,7 @@ export function selectSaucerorGear(reservedSlots: Slot[]) {
 
 const SaucerorHats: Item[] = [
   $item`fuzzy earmuffs`,
+  $item`extra-wide head candle`,
   $item`chef's hat`,
   $item`Hollandaise helmet`,
 ];
@@ -31,10 +32,12 @@ const SaucerorShirts: Item[] = [
 ];
 
 const SaucerorWeapons: Item[] = [
+  $item`runed taper candle`,
   $item`saucepan`,
 ];
 
 const SaucerorOffhands: Item[] = [
+  $item`Abracandalabra`,
   $item`autumn debris shield`,
   $item`hot plate`,
 ];

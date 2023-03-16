@@ -13,6 +13,7 @@ export function selectPotions(info: AdventureInfo) {
 
 export const ModifierPotions: Map<Modifier, Item[]> = new Map([
   [Modifier.Muscle, [
+    $item`votive of confidence`,
     $item`Mick's IcyVapoHotness Rub`,
     $item`pygmy pygment`,
     $item`industrial strength starch`,
@@ -22,23 +23,45 @@ export const ModifierPotions: Map<Modifier, Item[]> = new Map([
     $item`old eyebrow pencil`,
     $item`super-spiky hair gel`,
   ]],
+  [Modifier.Mysticality, [
+    $item`votive of confidence`,
+  ]],
+  [Modifier.Moxie, [
+    $item`votive of confidence`,
+  ]],
   [Modifier.ItemDrop, [
+    $item`Salsa Caliente&trade; candle`,
     $item`autumn leaf`,
     $item`eagle feather`,
   ]],
   [Modifier.MeatDrop, [
     $item`flapper fly`,
+    $item`Smoldering Clover&trade; candle`,
     $item`autumn dollar`,
   ]],
   [Modifier.Initiative, [
+    $item`banana candle`,
     $item`giraffe-necked turtle`,
     $item`ant agonist`,
     $item`Angry Farmer candy`,
     $item`that gum you like`,
     $item`vial of The Glistening`,
   ]],
+  [Modifier.HotRes, [
+    $item`rainbow glitter candle`,
+  ]],
+  [Modifier.ColdRes, [
+    $item`rainbow glitter candle`,
+  ]],
   [Modifier.StenchRes, [
+    $item`rainbow glitter candle`,
     $item`Polysniff Perfume`,
+  ]],
+  [Modifier.SpookyRes, [
+    $item`rainbow glitter candle`,
+  ]],
+  [Modifier.SleazeRes, [
+    $item`rainbow glitter candle`,
   ]],
   [Modifier.StenchDmg, [
     $item`lynyrd musk`,
@@ -54,22 +77,29 @@ export const PotionEffects = new Map<Item, Effect>([
   [$item`thin black candle`, $effect`Rainy Soul Miasma`],
   [$item`old eyebrow pencil`, $effect`Browbeaten`],
   [$item`super spiky hair gel`, $effect`Spiky Hair`],
+  [$item`votive of confidence`, $effect`Confidence of the Votive`],
 
   // item
+  [$item`Salsa Caliente™ candle`, $effect`El Aroma de Salsa`],
   [$item`autumn leaf`, $effect`Crunching Leaves`],
   [$item`eagle feather`, $effect`Eagle Eyes`],
 
   // meat
   [$item`flapper fly`, $effect`Flapper Dancin'`],
+  [$item`Smoldering Clover&trade; candle`, $effect`Good Things Are Coming, You Can Smell It`],
   [$item`autumn dollar`, $effect`Bet Your Autumn Dollar`],
 
   // init
+  [$item`banana candle`, $effect`Everything Is Bananas`],
   [$item`giraffe-necked turtle`, $effect`Adorable Lookout`],
   [$item`ant agonist`, $effect`All Fired Up`],
   [$item`Angry Farmer candy`, $effect`Sugar Rush`],
   [$item`that gum you like`, $effect`Sugar Rush`],
   [$item`vial of The Glistening`, $effect`The Glistening`],
   [$item`old bronzer`, $effect`Sepia Tan`],
+
+  // hot res
+  [$item`rainbow glitter candle`, $effect`Covered in the Rainbow`],
 
   // stench res
   [$item`Polysniff Perfume`, $effect`Neutered Nostrils`],
