@@ -33,6 +33,7 @@ export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
   ]],
   [Modifier.Initiative, [
     $skill`Springy Fusilli`,
+    $skill`Soul Rotation`,
   ]],
   [Modifier.DamageAbsorption, [
     $skill`Astral Shell`,
