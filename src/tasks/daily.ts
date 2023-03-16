@@ -1,5 +1,6 @@
-import { cliExecute, getProperty, haveSkill, hippyStoneBroken, myAdventures, myClass, myMaxmp, myMeat, pvpAttacksLeft, Skill, useSkill, visitUrl } from "kolmafia";
-import { $class, $skill } from "libram";
+import { cliExecute, getProperty, haveSkill, hippyStoneBroken, itemAmount, myAdventures, myClass, myMaxmp, myMeat, pvpAttacksLeft, Skill, use, useSkill, visitUrl } from "kolmafia";
+import { $class, $item, $skill } from "libram";
+import { available } from "libram/dist/resources/2015/Dinseylandfill";
 import { Constants } from "../Constants";
 import { haveDailyDungeonItems, runDailyDungeon } from "../lib/DailyDungeon";
 import { buyClovers, cloversLeft } from "../lib/Hermit";
@@ -122,6 +123,18 @@ export const ClassSpecificDailyTask: Task = {
       available: () => myClass() === $class`Disco Bandit` && haveSkill($skill`That's Not a Knife`),
       progress: () => { useSkill(1, $skill`That's Not a Knife`); },
       completed: () => getProperty(KnifeSummonedProperty) === "true",
+    },
+  ],
+};
+
+export const MayDayPackageTask: Task = {
+  name: "Open MayDay supply package",
+  subtasks: [
+    {
+      name: "Open package",
+      available: () => itemAmount($item`MayDay&trade; supply package`) > 0,
+      progress: () => { use(1, $item`MayDay&trade; supply package`); },
+      completed: () => itemAmount($item`MayDay&trade; supply package`) < 1,
     },
   ],
 };
