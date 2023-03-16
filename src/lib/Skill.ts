@@ -9,6 +9,9 @@ export function myUseSkill(qty: number, skill: Skill) {
 
 export function acquireTrainableSkills() {
   switch (myClass()) {
+    case $class`Seal Clubber`:
+      checkTrainSkills(SealClubberSkills);
+      break;
     case $class`Turtle Tamer`:
       checkTrainSkills(TurtleTamerSkills);
       break;
@@ -30,6 +33,57 @@ type SkillInfo = {
   skill: Skill,
   urlId: number,
 };
+
+const SealClubberSkills: SkillInfo[] = [
+  {
+    skill: $skill`Audacity of the Otter`,
+    urlId: 9,
+  },
+  {
+    skill: $skill`Cold Shoulder`,
+    urlId: 28,
+  },
+  {
+    skill: $skill`Thrust-Smack`,
+    urlId: 3,
+  },
+  {
+    skill: $skill`Wrath of the Wolverine`,
+    urlId: 29,
+  },
+  {
+    skill: $skill`Super-Advanced Meatsmithing`,
+    urlId: 6,
+  },
+  {
+    skill: $skill`Buoyancy of the Beluga`,
+    urlId: 30,
+  },
+  {
+    skill: $skill`Thirst of the Weasel`,
+    urlId: 36,
+  },
+  {
+    skill: $skill`Hide of the Walrus`,
+    urlId: 11,
+  },
+  {
+    skill: $skill`Claws of the Walrus`,
+    urlId: 12,
+  },
+  {
+    skill: $skill`Seething of the Snow Leopard`,
+    urlId: 34,
+  },
+  {
+    skill: $skill`Lunging Thrust-Smack`,
+    urlId: 5,
+  },
+  {
+    skill: $skill`Ire of the Orca`,
+    urlId: 35,
+  },
+];
 
 const TurtleTamerSkills: SkillInfo[] = [
   {
