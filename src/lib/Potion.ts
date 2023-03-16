@@ -27,10 +27,12 @@ export const ModifierPotions: Map<Modifier, Item[]> = new Map([
     $item`votive of confidence`,
   ]],
   [Modifier.Moxie, [
+    $item`gaffer's tape`,
     $item`votive of confidence`,
   ]],
   [Modifier.ItemDrop, [
     $item`Salsa Caliente&trade; candle`,
+    $item`emergency glowstick`,
     $item`autumn leaf`,
     $item`eagle feather`,
   ]],
@@ -54,6 +56,7 @@ export const ModifierPotions: Map<Modifier, Item[]> = new Map([
     $item`rainbow glitter candle`,
   ]],
   [Modifier.StenchRes, [
+    $item`single-use dust mask`,
     $item`rainbow glitter candle`,
     $item`Polysniff Perfume`,
   ]],
@@ -79,8 +82,12 @@ export const PotionEffects = new Map<Item, Effect>([
   [$item`super spiky hair gel`, $effect`Spiky Hair`],
   [$item`votive of confidence`, $effect`Confidence of the Votive`],
 
+  // moxie
+  [$item`gaffer's tape`, $effect`Gaffe Free`],
+
   // item
   [$item`Salsa Caliente™ candle`, $effect`El Aroma de Salsa`],
+  [$item`emergency glowstick`, $effect`Glowing Hands`],
   [$item`autumn leaf`, $effect`Crunching Leaves`],
   [$item`eagle feather`, $effect`Eagle Eyes`],
 
@@ -102,6 +109,7 @@ export const PotionEffects = new Map<Item, Effect>([
   [$item`rainbow glitter candle`, $effect`Covered in the Rainbow`],
 
   // stench res
+  [$item`single-use dust mask`, $effect`Temporarily Filtered`],
   [$item`Polysniff Perfume`, $effect`Neutered Nostrils`],
 
   // stench dmg

@@ -51,7 +51,22 @@ export const ModifierGear: Map<Modifier, Item[]> = new Map([
     $item`Nickel Gamma of Frugality`,
     $item`badass belt`,
   ]],
+  [Modifier.Combat, [
+    // cloaks
+    $item`thermal blanket`,
+  ]],
+  [Modifier.NonCombat, [
+    // accessories
+    $item`atlas of local maps`,
+  ]],
+  [Modifier.MonsterLevel, [
+    // accessories
+    $item`crank-powered radio on a lanyard`,
+  ]],
   [Modifier.ItemDrop, [
+    // hats
+    $item`headlamp`,
+
     // accessories
     $item`Nickel Gamma of Frugality`,
     $item`autumn leaf pendant`,
@@ -226,6 +241,10 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
       result.push($slot`acc3`);
       break;
     case $location`The Arid, Extra-Dry Desert`:
+      if (itemAmount($item`survival knife`) > 0 || equippedAmount($item`survival knife`) > 0) {
+        equip($slot`weapon`, $item`survival knife`);
+        result.push($slot`weapon`);
+      }
       equip($slot`off-hand`, $item`UV-resistant compass`);
       result.push($slot`off-hand`);
       break;
