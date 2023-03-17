@@ -83,6 +83,10 @@ const SealClubberSkills: SkillInfo[] = [
     skill: $skill`Ire of the Orca`,
     urlId: 35,
   },
+  {
+    skill: $skill`Batter Up!`,
+    urlId: 14,
+  },
 ];
 
 const TurtleTamerSkills: SkillInfo[] = [

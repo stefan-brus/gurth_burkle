@@ -1,5 +1,6 @@
-import { attack, haveSkill, Monster, monsterHp, myFury, throwItem, useSkill, willUsuallyMiss } from "kolmafia";
-import { $item, $skill } from "libram";
+import { attack, getProperty, haveSkill, Monster, monsterHp, myFury, myLocation, setProperty, throwItem, toString, useSkill, willUsuallyMiss } from "kolmafia";
+import { $item, $location, $skill } from "libram";
+import { Properties } from "../Properties";
 import { combatLoop, ImportantFoes, shouldThrowFlyers } from "./Utils";
 
 export function consultSealClubber(initRound: number, foe: Monster, page: string) {
@@ -23,6 +24,7 @@ function doRound(foe: Monster, state: CombatState): [string, CombatState] {
     resultPage = throwItem($item`rock band flyers`);
   }
   else if (shouldBatterUp(foe)) {
+    setProperty(Properties.Daily.LastBatterUpLocation, myLocation().toString());
     resultPage = useSkill($skill`Batter Up!`);
   }
   else if (willUsuallyMiss()) {
@@ -48,6 +50,15 @@ function shouldBatterUp(foe: Monster): boolean {
 
   if (foe.boss) {
     return false;
+  }
+
+  const lastBatterLocStr = getProperty(Properties.Daily.LastBatterUpLocation);
+  if (lastBatterLocStr.length > 0) {
+    const lastBatterLoc = $location`${lastBatterLocStr}`;
+
+    if (lastBatterLoc === myLocation()) {
+      return false;
+    }
   }
 
   if (ImportantFoes.includes(foe)) {

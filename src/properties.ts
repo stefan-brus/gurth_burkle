@@ -48,5 +48,8 @@ export const Properties = {
 
     // Number between 0 and 5
     CMGFightsDone: "_myCMGFreeFightsDone",
+
+    // String (location name)
+    LastBatterUpLocation: "_myLastBatterUpLocation",
   },
 };
