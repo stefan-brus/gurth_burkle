@@ -24,9 +24,18 @@ export function selectBuffs(info: AdventureInfo) {
 }
 
 export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
+  [Modifier.Muscle, [
+    $skill`Rage of the Reindeer`,
+  ]],
+  [Modifier.Combat, [
+    $skill`Musk of the Moose`,
+  ]],
   [Modifier.NonCombat, [
     $skill`Smooth Movement`,
     $skill`The Sonata of Sneakiness`,
+  ]],
+  [Modifier.MonsterLevel, [
+    $skill`Pride of the Puffin`,
   ]],
   [Modifier.ItemDrop, [
     $skill`Fat Leon's Phat Loot Lyric`,

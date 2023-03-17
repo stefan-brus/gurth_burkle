@@ -87,6 +87,30 @@ const SealClubberSkills: SkillInfo[] = [
     skill: $skill`Batter Up!`,
     urlId: 14,
   },
+  {
+    skill: $skill`Rage of the Reindeer`,
+    urlId: 15,
+  },
+  {
+    skill: $skill`Northern Exposure`,
+    urlId: 18,
+  },
+  {
+    skill: $skill`Musk of the Moose`,
+    urlId: 19,
+  },
+  {
+    skill: $skill`Precision of the Penguin`,
+    urlId: 39,
+  },
+  {
+    skill: $skill`Pulverize`,
+    urlId: 16,
+  },
+  {
+    skill: $skill`Pride of the Puffin`,
+    urlId: 40,
+  },
 ];
 
 const TurtleTamerSkills: SkillInfo[] = [
