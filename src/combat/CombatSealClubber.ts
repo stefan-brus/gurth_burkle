@@ -1,4 +1,4 @@
-import { attack, getProperty, haveSkill, Monster, monsterHp, myFury, myLocation, setProperty, throwItem, toString, useSkill, willUsuallyMiss } from "kolmafia";
+import { attack, getProperty, haveSkill, Location, Monster, monsterHp, myFury, myLocation, setProperty, throwItem, toString, useSkill, willUsuallyMiss } from "kolmafia";
 import { $item, $location, $skill } from "libram";
 import { Properties } from "../Properties";
 import { combatLoop, ImportantFoes, shouldThrowFlyers } from "./Utils";
@@ -43,12 +43,34 @@ function doRound(foe: Monster, state: CombatState): [string, CombatState] {
   return [resultPage, newState];
 }
 
+const BatterUpLocations: Location[] = [
+  $location`The Haunted Library`,
+  $location`The Haunted Bedroom`,
+  $location`The Defiled Niche`,
+  $location`The Defiled Nook`,
+  $location`Twin Peak`,
+  $location`The Hidden Temple`,
+  $location`The Hidden Hospital`,
+  $location`The Hidden Bowling Alley`,
+  $location`The Haunted Wine Cellar`,
+  $location`The Haunted Laundry Room`,
+  $location`The Haunted Boiler Room`,
+  $location`Inside the Palindome`,
+  $location`A Mob of Zeppelin Protesters`,
+  $location`The Red Zeppelin`,
+  $location`The Middle Chamber`,
+];
+
 function shouldBatterUp(foe: Monster): boolean {
   if (!haveSkill($skill`Batter Up!`) || myFury() < 5) {
     return false;
   }
 
   if (foe.boss) {
+    return false;
+  }
+
+  if (!BatterUpLocations.includes(myLocation())) {
     return false;
   }
 
