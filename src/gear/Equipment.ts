@@ -305,6 +305,15 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
     reservedSlots.push($slot`pants`);
   }
 
+  // Stillsuit
+  if (!reservedSlots.includes($slot`familiar`)) {
+    if (equippedAmount($item`tiny stillsuit`) < 1) {
+      equip($slot`familiar`, $item`tiny stillsuit`);
+    }
+
+    reservedSlots.push($slot`familiar`);
+  }
+
   return reservedSlots;
 }
 

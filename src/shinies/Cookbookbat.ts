@@ -1,4 +1,4 @@
-import { buy, create, itemAmount, knollAvailable, myPrimestat } from "kolmafia";
+import { buy, create, eat, itemAmount, knollAvailable, myPrimestat, Stat } from "kolmafia";
 import { $item, $stat } from "libram";
 import { haveIngredients } from "../lib/Utils";
 
@@ -12,88 +12,108 @@ export function availableCbbFoods(): number {
   return jarlsbergFoods + borisFoods + peteFoods;
 }
 
-export function cookCbbFoods(amount: number) {
-  let totalCooked = 0;
-  if (myPrimestat() === $stat`Muscle`) {
-    totalCooked += cookBorisFoods(amount - totalCooked);
-    totalCooked += cookPeteFoods(amount - totalCooked);
-    totalCooked += cookJarlsbergFoods(amount - totalCooked);
-  }
-  else if (myPrimestat() === $stat`Mysticality`) {
-    totalCooked += cookJarlsbergFoods(amount - totalCooked);
-    totalCooked += cookPeteFoods(amount - totalCooked);
-    totalCooked += cookBorisFoods(amount - totalCooked);
+export function tryEatCbbFood(): boolean {
+  let eaten = false;
+
+  const eatAttempts = CbbFoodStatPriority.get(myPrimestat())!;
+  eatAttempts.forEach(attempt => {
+    if (!eaten) {
+      eaten = attempt();
+    }
+  });
+
+  return eaten;
+}
+
+type TryEatCbbFood = () => boolean;
+
+const CbbFoodStatPriority: Map<Stat, TryEatCbbFood[]> = new Map([
+  [$stat`Muscle`, [
+    tryEatBoris,
+    tryEatPete,
+    tryEatJarlsberg,
+  ]],
+  [$stat`Mysticality`, [
+    tryEatJarlsberg,
+    tryEatPete,
+    tryEatBoris,
+  ]],
+  [$stat`Moxie`, [
+    tryEatPete,
+    tryEatBoris,
+    tryEatJarlsberg,
+  ]],
+]);
+
+function tryEatBoris(): boolean {
+  let result = false;
+
+  if (knollAvailable()) {
+    if (itemAmount($item`Yeast of Boris`) >=  1) {
+      if (itemAmount($item`flat dough`) >= 1 || buy(1, $item`flat dough`)) {
+        create(1, $item`honey bun of Boris`);
+      }
+    }
+
+    if (itemAmount($item`honey bun of Boris`) >= 1) {
+      eat(1, $item`honey bun of Boris`);
+      result = true;
+    }
   }
   else {
-    totalCooked += cookPeteFoods(amount - totalCooked);
-    totalCooked += cookBorisFoods(amount - totalCooked);
-    totalCooked += cookJarlsbergFoods(amount - totalCooked);
+    if (itemAmount($item`Yeast of Boris`) >= 2) {
+      create(1, $item`Boris's bread`);
+    }
+
+    if (itemAmount($item`Boris's bread`) >= 1) {
+      eat(1, $item`Boris's bread`);
+      result = true;
+    }
   }
+
+  return result;
 }
 
-function cookBorisFoods(amount: number): number {
-  const food = knollAvailable() ? $item`honey bun of Boris` : $item`Boris's bread`;
-  let cooked = 0;
+function tryEatPete(): boolean {
+  let result = false;
 
-  while (itemAmount(food) < amount) {
-    if (knollAvailable()) {
-      if (itemAmount($item`Yeast of Boris`) > 0 && (itemAmount($item`flat dough`) > 0 || buy(1, $item`flat dough`))) {
-        create(1, food);
-        cooked++;
-      }
-      else {
-        break;
+  if (knollAvailable()) {
+    if (itemAmount($item`St. Sneaky Pete's Whey`) >=  1) {
+      if (itemAmount($item`wad of dough`) >= 1 || buy(1, $item`wad of dough`)) {
+        create(1, $item`Pete's wiley whey bar`);
       }
     }
-    else if (itemAmount($item`Yeast of Boris`) >= 2) {
-      create(1, food);
-      cooked++;
+
+    if (itemAmount($item`Pete's wiley whey bar`) >= 1) {
+      eat(1, $item`Pete's wiley whey bar`);
+      result = true;
     }
-    else {
-      break;
+  }
+  else {
+    if (itemAmount($item`St. Sneaky Pete's Whey`) >= 2) {
+      create(1, $item`Pete's rich ricotta`);
+    }
+
+    if (itemAmount($item`Pete's rich ricotta`) >= 1) {
+      eat(1, $item`Pete's rich ricotta`);
+      result = true;
     }
   }
 
-  return cooked;
+  return result;
 }
 
-function cookPeteFoods(amount: number): number {
-  const food = knollAvailable() ? $item`Pete's wiley whey bar` : $item`Pete's rich ricotta`;
-  let cooked = 0;
+function tryEatJarlsberg(): boolean {
+  let result = false;
 
-  while (itemAmount(food) < amount) {
-    if (knollAvailable()) {
-      if (itemAmount($item`St. Sneaky Pete's Whey`) > 0 && (itemAmount($item`wad of dough`) > 0 || buy(1, $item`wad of dough`))) {
-        create(1, food);
-        cooked++;
-      }
-      else {
-        break;
-      }
-    }
-    else if (itemAmount($item`St. Sneaky Pete's Whey`) >= 2) {
-      create(1, food);
-      cooked++;
-    }
-    else {
-      break;
-    }
+  if (itemAmount($item`vegetable of Jarlsberg`) >= 2) {
+    create(1, $item`roasted vegetable of Jarlsberg`);
   }
 
-  return cooked;
-}
-
-function cookJarlsbergFoods(amount: number): number {
-  const food = $item`roasted vegetable of Jarlsberg`;
-  let cooked = 0;
-
-  while (itemAmount(food) < amount && haveIngredients(food)) {
-    if (!create(1, food)) {
-      break;
-    }
-
-    cooked++;
+  if (itemAmount($item`roasted vegetable of Jarlsberg`) >= 1) {
+    eat(1, $item`roasted vegetable of Jarlsberg`);
+    result = true;
   }
 
-  return cooked;
+  return result;
 }
