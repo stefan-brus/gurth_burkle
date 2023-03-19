@@ -1,4 +1,4 @@
-import { attack, getProperty, haveSkill, Location, Monster, monsterHp, myFury, myLocation, setProperty, throwItem, toString, useSkill, willUsuallyMiss } from "kolmafia";
+import { attack, getProperty, haveSkill, Location, Monster, monsterHp, mpCost, myFury, myLocation, myMp, setProperty, throwItem, toString, useSkill, willUsuallyMiss } from "kolmafia";
 import { $item, $location, $skill } from "libram";
 import { Properties } from "../Properties";
 import { combatLoop, ImportantFoes, shouldThrowFlyers } from "./Utils";
@@ -27,13 +27,13 @@ function doRound(foe: Monster, state: CombatState): [string, CombatState] {
     setProperty(Properties.Daily.LastBatterUpLocation, myLocation().toString());
     resultPage = useSkill($skill`Batter Up!`);
   }
-  else if (willUsuallyMiss()) {
+  else if (willUsuallyMiss() && myMp() > mpCost($skill`Cannelloni Cannon`)) {
     resultPage = useSkill($skill`Cannelloni Cannon`);
   }
-  else if (haveSkill($skill`Lunging Thrust-Smack`) && monsterHp() > 250) {
+  else if (haveSkill($skill`Lunging Thrust-Smack`) && monsterHp() > 250 && myMp() > mpCost($skill`Lunging Thrust-Smack`)) {
     resultPage = useSkill($skill`Lunging Thrust-Smack`);
   }
-  else if (haveSkill($skill`Thrust-Smack`) && monsterHp() > 100) {
+  else if (haveSkill($skill`Thrust-Smack`) && monsterHp() > 100 && myMp() > mpCost($skill`Thrust-Smack`)) {
     resultPage = useSkill($skill`Thrust-Smack`);
   }
   else {
