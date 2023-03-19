@@ -1,11 +1,12 @@
 import { Effect, haveEffect, Item, itemAmount, use, userConfirm } from "kolmafia";
 import { $effect, $item } from "libram";
+import { maxModifierReached } from "./Adventure";
 import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
 
 export function selectPotions(info: AdventureInfo) {
   info.modifiers.forEach(mod => {
-    if (ModifierPotions.has(mod)) {
+    if (ModifierPotions.has(mod) && !maxModifierReached(info, mod)) {
       tryUsePotions(ModifierPotions.get(mod)!);
     }
   });

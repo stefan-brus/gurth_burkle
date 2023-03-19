@@ -2,6 +2,7 @@ import { haveEffect, haveSkill, mpCost, myClass, myMaxmp, Skill, toEffect, userC
 import { $class, $skill } from "libram";
 import { Config } from "../Config";
 import { Constants } from "../Constants";
+import { maxModifierReached } from "./Adventure";
 import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
 
@@ -17,7 +18,7 @@ export function selectBuffs(info: AdventureInfo) {
   }
 
   info.modifiers.forEach(mod => {
-    if (ModifierSkills.has(mod)) {
+    if (ModifierSkills.has(mod) && !maxModifierReached(info, mod)) {
       tryApplyBuffs(ModifierSkills.get(mod)!);
     }
   });

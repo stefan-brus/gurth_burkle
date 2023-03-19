@@ -102,8 +102,16 @@ export function toMafiaModifier(modifier: Modifier): string {
   }
 }
 
-export function myNumericModifier(mod: Modifier): number {
-  return numericModifier(toMafiaModifier(mod));
+// Totals: If true, return the sum of the given modifier + other modifiers that affect it
+// E.G. myNumericModifier(Modifier.FoodDrop, true) will return ItemDrop + FoodDrop
+export function myNumericModifier(mod: Modifier, totals: boolean = false): number {
+  let myModifier = numericModifier(toMafiaModifier(mod));
+
+  if (totals && (mod === Modifier.FoodDrop || mod === Modifier.BoozeDrop)) {
+    myModifier += numericModifier(toMafiaModifier(Modifier.ItemDrop));
+  }
+
+  return myModifier
 }
 
 export function myNumericModifierItem(item: Item, mod: Modifier): number {

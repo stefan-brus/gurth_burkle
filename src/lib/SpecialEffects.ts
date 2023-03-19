@@ -1,12 +1,13 @@
 import { adv1, Effect, getProperty, haveEffect, itemAmount, runChoice, setProperty, userConfirm } from "kolmafia";
 import { $effect, $item, $location, ensureEffect } from "libram";
+import { maxModifierReached } from "./Adventure";
 import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
 
 export function selectSpecialEffects(info: AdventureInfo) {
   if (info.getSpecialEffects) {
     info.modifiers.forEach(mod => {
-      tryGetEffects(mod);
+      tryGetEffects(info, mod);
     });
   }
 }
@@ -30,8 +31,8 @@ export const ModifierSpecial: Map<Modifier, GetSpecialEffect[]> = new Map([
   ]],
 ]);
 
-export function tryGetEffects(mod: Modifier): Effect[] {
-  if (ModifierSpecial.has(mod)) {
+export function tryGetEffects(info: AdventureInfo, mod: Modifier): Effect[] {
+  if (ModifierSpecial.has(mod) && !maxModifierReached(info, mod)) {
     const getEffects = ModifierSpecial.get(mod)!;
     return getEffects.map(getEffect => getEffect(mod));
   }

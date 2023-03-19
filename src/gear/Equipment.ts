@@ -1,5 +1,6 @@
 import { equip, equippedAmount, haveOutfit, haveSkill, Item, itemAmount, lockFamiliarEquipment, myClass, outfit, Slot, toSlot } from "kolmafia";
 import { $class, $item, $location, $skill, $slot } from "libram";
+import { maxModifierReached } from "../lib/Adventure";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
 import { cmgDone } from "../shinies/CMG";
@@ -266,7 +267,7 @@ function selectAdventureEquipment(info: AdventureInfo): Slot[] {
 
 function selectModifierEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[] {
   info.modifiers.forEach(mod => {
-    if (ModifierGear.has(mod)) {
+    if (ModifierGear.has(mod) && !maxModifierReached(info, mod)) {
       reservedSlots = reservedSlots.concat(tryEquipGear(ModifierGear.get(mod)!, reservedSlots));
     }
   });

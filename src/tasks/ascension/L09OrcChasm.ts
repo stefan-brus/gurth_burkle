@@ -126,6 +126,7 @@ function doTwinPeak(): AdventureInfo {
       location: $location`Twin Peak`,
       modifiers: [Modifier.NonCombat, Modifier.StenchRes],
       minModifier: [Modifier.StenchRes, 4],
+      maxModifier: [Modifier.StenchRes, 4],
     };
   }
   else if (PantryRequired) {
@@ -136,6 +137,7 @@ function doTwinPeak(): AdventureInfo {
       location: $location`Twin Peak`,
       modifiers: [Modifier.NonCombat, Modifier.FoodDrop],
       minModifier: [Modifier.FoodDrop, 50],
+      maxModifier: [Modifier.FoodDrop, 50],
     };
   }
   else if (PaintingRequired) {
@@ -163,6 +165,7 @@ function doTwinPeak(): AdventureInfo {
       location: $location`Twin Peak`,
       modifiers: [Modifier.NonCombat, Modifier.Initiative],
       minModifier: [Modifier.Initiative, 40],
+      maxModifier: [Modifier.Initiative, 40],
     };
   }
 
