@@ -16,7 +16,7 @@ export function selectEquipment(info: AdventureInfo) {
   let reservedSlots = selectAdventureEquipment(info);
   reservedSlots = selectModifierEquipment(info, reservedSlots);
   reservedSlots = selectShinyEquipment(info, reservedSlots);
-
+  
   switch (myClass()) {
     case $class`Seal Clubber`:
       selectSealClubberGear(reservedSlots);
@@ -36,8 +36,6 @@ export function selectEquipment(info: AdventureInfo) {
     default:
       throw new Error("No gear selection logic for " + myClass().toString());
   }
-
-  selectFamiliarEquipment();
 }
 
 export const ModifierGear: Map<Modifier, Item[]> = new Map([
@@ -116,13 +114,6 @@ export const ModifierGear: Map<Modifier, Item[]> = new Map([
     $item`combat fan`,
   ]],
 ]);
-
-function selectFamiliarEquipment() {
-  if (itemAmount($item`astral pet sweater`) > 0) {
-    equip($item`astral pet sweater`);
-    lockFamiliarEquipment(true);
-  }
-}
 
 function selectAdventureEquipment(info: AdventureInfo): Slot[] {
   let result: Slot[] = [];
