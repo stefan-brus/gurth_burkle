@@ -3,6 +3,7 @@ import { $item, $location } from "libram";
 import { Constants } from "../../../Constants";
 import { AdventureInfo } from "../../../lib/AdventureInfo";
 import { Modifier } from "../../../lib/Modifier";
+import { generateAdventures } from "../../../lib/Turngen";
 import { Properties } from "../../../Properties";
 import { Task } from "../../Task";
 
@@ -142,6 +143,21 @@ function rotateWheel(amount: number) {
 }
 
 function killEd() {
+  while (myAdventures() < (Constants.ReservedAdventures + 7)) {
+    generateAdventures();
+  }
+  visitUrl("place.php?whichplace=pyramid&action=pyramid_state1a");
+  runCombat();
+  visitUrl("place.php?whichplace=pyramid&action=pyramid_state1a");
+  runCombat();
+  visitUrl("place.php?whichplace=pyramid&action=pyramid_state1a");
+  runCombat();
+  visitUrl("place.php?whichplace=pyramid&action=pyramid_state1a");
+  runCombat();
+  visitUrl("place.php?whichplace=pyramid&action=pyramid_state1a");
+  runCombat();
+  visitUrl("place.php?whichplace=pyramid&action=pyramid_state1a");
+  runCombat();
   visitUrl("place.php?whichplace=pyramid&action=pyramid_state1a");
   runCombat();
 }
