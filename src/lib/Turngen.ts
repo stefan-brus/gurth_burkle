@@ -1,4 +1,4 @@
-import { create, drink, getProperty, haveEffect, haveSkill, Item, itemAmount, myAdventures, myMaxmp, use, userConfirm, useSkill } from "kolmafia";
+import { create, drink, eat, getProperty, haveEffect, haveSkill, Item, itemAmount, myAdventures, myLevel, myMaxmp, use, userConfirm, useSkill } from "kolmafia";
 import { $effect, $item, $skill } from "libram";
 import { Constants } from "../Constants";
 import { tryEatCbbFood } from "../shinies/Cookbookbat";
@@ -27,6 +27,7 @@ export function generateAdventures() {
 const MilkUsedProperty = "_milkOfMagnesiumUsed";
 
 function generateStomach(): boolean {
+  let eaten = false;
   if (itemAmount($item`whet stone`) > 0) {
     use(1, $item`whet stone`);
   }
@@ -39,7 +40,16 @@ function generateStomach(): boolean {
     use(1, $item`milk of magnesium`);
   }
 
-  return tryEatCbbFood();
+  if (myLevel() >= 11 && itemAmount($item`astral hot dog`) > 0 && stomachRemaining() >= $item`astral hot dog`.fullness) {
+    eat(1, $item`astral hot dog`);
+    eaten = true;
+  }
+
+  if (!eaten) {
+    eaten = tryEatCbbFood();
+  }
+
+  return eaten;
 }
 
 const BoozePriority: Item[] = [
