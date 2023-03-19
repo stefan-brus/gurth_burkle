@@ -56,6 +56,7 @@ const SealClubberPants: Item[] = [
 ];
 
 const SealClubberAccessories: Item[] = [
+  $item`astral mask`,
   $item`World's Best Adventurer sash`,
   $item`Nickel Gamma of Frugality`,
   $item`blackberry galoshes`,
