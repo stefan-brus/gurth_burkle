@@ -12,16 +12,16 @@ export const Constants = {
   PredictedAscensionDays: 4,
 
   /**
-   * The (conservatively) estimated amount of adventures per fullness.
+   * The estimated amount of adventures per fullness.
    */
 
-  AdventuresPerFullness: 5,
+  AdventuresPerFullness: 6,
 
   /**
-   * The (conservatively) estimated amount of adventures per inebriety.
+   * The estimated amount of adventures per inebriety.
    */
 
-  AdventuresPerInebriety: 3,
+  AdventuresPerInebriety: 5,
 
   /**
    * A buff will be applied if we have at least this much + buff cost MP
