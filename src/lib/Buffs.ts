@@ -42,6 +42,7 @@ export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
     $skill`Fat Leon's Phat Loot Lyric`,
   ]],
   [Modifier.Initiative, [
+    $skill`Drench Yourself in Sweat`,
     $skill`Springy Fusilli`,
     $skill`Soul Rotation`,
   ]],

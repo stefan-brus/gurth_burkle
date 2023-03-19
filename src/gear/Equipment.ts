@@ -296,6 +296,15 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
     reservedSlots.push($slot`shirt`);
   }
 
+  // Designer Sweatpants
+  if (!reservedSlots.includes($slot`pants`)) {
+    if (equippedAmount($item`designer sweatpants`) < 1) {
+      equip($slot`pants`, $item`designer sweatpants`);
+    }
+
+    reservedSlots.push($slot`pants`);
+  }
+
   return reservedSlots;
 }
 
