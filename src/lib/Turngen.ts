@@ -71,7 +71,7 @@ function generateLiver() {
   });
 
   // Utilize stillsuit
-  if (stillsuitAdventures() > 0) {
+  if (!drunk && stillsuitAdventures() > 0) {
     if (!userConfirm(`Drink familiar sweat for ${stillsuitAdventures()} adventures?`))
       throw new Error("User aborted on stillsuit");
 
