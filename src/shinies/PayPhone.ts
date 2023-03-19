@@ -1,4 +1,4 @@
-import { availableChoiceOptions, canAdventure, getProperty, handlingChoice, haveEffect, itemAmount, lastChoice, runChoice, setProperty, use, userConfirm } from "kolmafia";
+import { adv1, availableChoiceOptions, canAdventure, getProperty, handlingChoice, haveEffect, itemAmount, lastChoice, runChoice, setProperty, use, userConfirm } from "kolmafia";
 import { $effect, $item, $location } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Properties } from "../Properties";
@@ -7,6 +7,15 @@ import { Task } from "../tasks/Task";
 export const RufusQuestTask: Task = {
   name: "Rufus' Quest",
   subtasks: [
+    {
+      name: "Loot forest",
+      available: () => getProperty(RufusQuestProperty) === "unstarted" &&
+                       getProperty(ShadowAffinityProperty) !== "true" &&
+                       getProperty(ForestLootedProperty) !== "true" &&
+                       itemAmount($item`Rufus's shadow lodestone`) > 0,
+      progress: () => lootForest(),
+      completed: () => getProperty(ForestLootedProperty) === "true",
+    },
     {
       name: "Call Rufus",
       available: () => getProperty(RufusQuestProperty) === "unstarted" && 
@@ -34,6 +43,7 @@ export const RufusQuestTask: Task = {
 
 const RufusQuestProperty = "questRufus";
 const ShadowAffinityProperty = "_shadowAffinityToday";
+const ForestLootedProperty = "_shadowForestLooted";
 
 function callRufus() {
   const CallingRufusChoice = "choiceAdventure1497";
@@ -55,4 +65,10 @@ function callRufusBack() {
   const CallingBackChoice = "choiceAdventure1498";
   setProperty(CallingBackChoice, "1");
   use($item`closed-circuit pay phone`);
+}
+
+function lootForest() {
+  const LodedStoneChoice = "choiceAdventure1500";
+  setProperty(LodedStoneChoice, "3");
+  adv1($location`Shadow Rift(The Misspelled Cemetary)`);
 }
