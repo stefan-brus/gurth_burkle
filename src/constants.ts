@@ -33,5 +33,5 @@ export const Constants = {
    * Try to generate turns when we have this many adventures remaining.
    */
 
-  TurngenThreshold: 10,
+  TurngenThreshold: 20,
 };
