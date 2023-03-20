@@ -1,4 +1,4 @@
-import { equippedAmount, Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, print, useFamiliar, userConfirm } from "kolmafia";
+import { equippedAmount, Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, myFullness, print, useFamiliar, userConfirm } from "kolmafia";
 import { $familiar, $item, $location } from "libram";
 import { availableCbbFoods } from "../shinies/Cookbookbat";
 import { AdventureInfo } from "./AdventureInfo";
@@ -60,7 +60,7 @@ const FamiliarPriority: PriorityInfo[] = [
   {
     familiar: $familiar`Cookbookbat`,
     shouldUse: (_: AdventureInfo) => {
-      return availableCbbFoods() < ((ascensionDaysLeft() * fullnessLimit()) - 9); // Assume we have 3 astral hot dogs
+      return availableCbbFoods() < ((ascensionDaysLeft() * fullnessLimit()) - myFullness() - 9); // Assume we have 3 astral hot dogs
     },
   },
 
