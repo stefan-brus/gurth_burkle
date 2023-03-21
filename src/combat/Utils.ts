@@ -138,7 +138,7 @@ function checkDoSpikes(foe: Monster): string | void {
   }
 
   // Should use spikes
-  if (getProperty(Properties.SpikolodonTask) !== "true" || foe.boss || ImportantFoes.includes(foe) || isFreeCombat(foe)) {
+  if (getProperty(Properties.Daily.SpikolodonTask) !== "true" || foe.boss || ImportantFoes.includes(foe) || isFreeCombat(foe)) {
     return;
   }
 

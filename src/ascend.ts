@@ -36,7 +36,7 @@ export function ascend() {
       print("Completing task " + currentTask.name);
     }
 
-    if (getProperty(Properties.FocusTask) !== "true" || currentSubtask.completed()) {
+    if (getProperty(Properties.Daily.FocusTask) !== "true" || currentSubtask.completed()) {
       const newSubtask = chooseSubtask(currentTask);
       if (newSubtask !== currentSubtask) {
         currentSubtask = newSubtask;
@@ -46,17 +46,17 @@ export function ascend() {
         }
 
         if (newSubtask.focusTask) {
-          setProperty(Properties.FocusTask, "true");
+          setProperty(Properties.Daily.FocusTask, "true");
         }
         else {
-          setProperty(Properties.FocusTask, "false");
+          setProperty(Properties.Daily.FocusTask, "false");
         }
 
         if (newSubtask.spikesTask) {
-          setProperty(Properties.SpikolodonTask, "true");
+          setProperty(Properties.Daily.SpikolodonTask, "true");
         }
         else {
-          setProperty(Properties.SpikolodonTask, "false");
+          setProperty(Properties.Daily.SpikolodonTask, "false");
         }
 
         print("Completing subtask "+ currentSubtask.name);
