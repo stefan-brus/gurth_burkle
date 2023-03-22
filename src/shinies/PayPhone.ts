@@ -24,7 +24,7 @@ export const RufusQuestTask: Task = {
                        itemAmount($item`Rufus's shadow lodestone `) < 1,
       progress: () => callRufus(),
       completed: () => getProperty(RufusQuestProperty) !== "unstarted",
-      mainstat: 100,
+      mainstat: 150,
     },
     {
       name: "Get Rufus' artifact",
