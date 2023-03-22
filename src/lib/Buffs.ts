@@ -33,13 +33,9 @@ export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
   ]],
   [Modifier.NonCombat, [
     $skill`Smooth Movement`,
-    $skill`The Sonata of Sneakiness`,
   ]],
   [Modifier.MonsterLevel, [
     $skill`Pride of the Puffin`,
-  ]],
-  [Modifier.ItemDrop, [
-    $skill`Fat Leon's Phat Loot Lyric`,
   ]],
   [Modifier.Initiative, [
     $skill`Drench Yourself in Sweat`,
@@ -74,7 +70,6 @@ export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
 
 const BaseSkills: Skill[] = [
   $skill`Leash of Linguini`,
-  $skill`Fat Leon's Phat Loot Lyric`,
 ];
 
 const TurtleTamerSkills: Skill[] = [
