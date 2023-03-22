@@ -7,6 +7,8 @@ export enum Modifier {
   Muscle,
   Mysticality,
   Moxie,
+  WeaponDamage,
+  SpellDamage,
   Combat,
   NonCombat,
   MonsterLevel,
@@ -47,6 +49,10 @@ export function toMafiaModifier(modifier: Modifier): string {
       return "mysticality";
     case Modifier.Moxie:
       return "moxie";
+    case Modifier.WeaponDamage:
+      return "weapon damage";
+    case Modifier.SpellDamage:
+      return "spell damage";
     case Modifier.Combat:
       return "combat rate";
     case Modifier.NonCombat:

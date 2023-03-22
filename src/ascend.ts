@@ -17,6 +17,7 @@ import { checkBurnDelay } from "./lib/Delay";
 import { selectSpecialEffects } from "./lib/SpecialEffects";
 import { selectSpleen } from "./lib/Spleen";
 import { Properties } from "./Properties";
+import { selectSongs } from "./lib/Songs";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -73,6 +74,7 @@ export function ascend() {
       selectFamiliar(progress);
       selectEquipment(progress);
       selectBuffs(progress);
+      selectSongs(progress);
       selectPotions(progress);
       selectSpleen(progress);
       selectSpecialEffects(progress);

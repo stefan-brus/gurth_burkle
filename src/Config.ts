@@ -6,6 +6,12 @@ export const Config = {
   PromptBuffs: false,
 
   /**
+   * Pause and prompt the user for songs.
+   */
+
+  PromptSongs: true,
+
+  /**
    * Pause and prompt the user for equipment.
    */
 
