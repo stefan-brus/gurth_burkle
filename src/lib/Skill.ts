@@ -24,6 +24,9 @@ export function acquireTrainableSkills() {
     case $class`Disco Bandit`:
       checkTrainSkills(DiscoBanditSkills);
       break;
+    case $class`Accordion Thief`:
+      checkTrainSkills(AccordionThiefSkills);
+      break;
     default:
       throw new Error("No trainable skill list for class " + myClass().toString());
   }
@@ -319,6 +322,10 @@ const DiscoBanditSkills: SkillInfo[] = [
     skill: $skill`Sensitive Fingers`,
     urlId: 38,
   },
+];
+
+const AccordionThiefSkills: SkillInfo[] = [
+
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {

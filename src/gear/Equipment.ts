@@ -5,6 +5,7 @@ import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
 import { cmgDone } from "../shinies/CMG";
 import { selectParkaMode } from "../shinies/Parka";
+import { selectAccordionThiefGear } from "./GearAccordionThief";
 import { selectDiscoBanditGear } from "./GearDiscoBandit";
 import { selectPastamancerGear } from "./GearPastamancer";
 import { selectSaucerorGear } from "./GearSauceror";
@@ -32,6 +33,9 @@ export function selectEquipment(info: AdventureInfo) {
       break;
     case $class`Disco Bandit`:
       selectDiscoBanditGear(reservedSlots);
+      break;
+    case $class`Accordion Thief`:
+      selectAccordionThiefGear(reservedSlots);
       break;
     default:
       throw new Error("No gear selection logic for " + myClass().toString());

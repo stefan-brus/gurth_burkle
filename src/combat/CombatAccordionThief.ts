@@ -1,4 +1,5 @@
-import { attack, equippedAmount, haveSkill, Item, itemAmount, Monster, Skill, steal, throwItem, useSkill } from "kolmafia";
+import { attack, equippedAmount, haveSkill, Item, itemAmount, Monster, mpCost, myMp, Skill, steal, throwItem, useSkill, willUsuallyMiss } from "kolmafia";
+import { $skill } from "libram";
 import { combatLoop, shouldThrowFlyers } from "./Utils";
 
 export function consultAccordionThief(initRound: number, foe: Monster, page: string) {
@@ -25,19 +26,22 @@ function doRound(foe: Monster, state: CombatState): [string, CombatState] {
 
   if (hasStealableAccordion(foe) && !state.accordionStolen) {
     newState.accordionStolen = true;
-    resultPage = useSkill(Skill.get("Steal Accordion"));
+    resultPage = useSkill($skill`Steal Accordion`);
   }
   else if (!state.pickpocketed) {
     newState.pickpocketed = true;
     resultPage = steal();
   }
-  else if (haveSkill(Skill.get("Accordion Bash")) && !state.bashed) {
+  else if (haveSkill($skill`Accordion Bash`) && !state.bashed) {
     newState.bashed = true;
-    resultPage = useSkill(Skill.get("Accordion Bash"));
+    resultPage = useSkill($skill`Accordion Bash`);
   }
   else if (shouldThrowFlyers() && !state.flyered) {
     newState.flyered = true;
     resultPage = throwItem(Item.get("rock band flyers"));
+  }
+  else if (willUsuallyMiss() && myMp() > mpCost($skill`Cannelloni Cannon`)) {
+    resultPage = useSkill($skill`Cannelloni Cannon`);
   }
   else {
     resultPage = attack();
