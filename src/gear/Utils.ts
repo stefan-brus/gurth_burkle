@@ -1,5 +1,6 @@
 import { canEquip, equip, equippedItem, Item, itemAmount, Slot, userConfirm, weaponHands } from "kolmafia";
 import { $slot } from "libram";
+import { Config } from "../Config";
 
 export function selectGear(
   reservedSlots: Slot[], 
@@ -63,7 +64,7 @@ function selectForSlot(slot: Slot, items: Item[]) {
   const newItem = chooseItemFromPriorityList(items, curItem);
 
   if (newItem !== curItem && canEquip(newItem)) {
-    if (userConfirm(`Equip ${newItem} to slot ${slot.toString()}?`)) {
+    if (!Config.PromptGear || userConfirm(`Equip ${newItem} to slot ${slot.toString()}?`)) {
       equip(slot, newItem);
     }
     else {
