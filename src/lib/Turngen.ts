@@ -1,9 +1,10 @@
-import { create, drink, eat, getProperty, haveEffect, haveSkill, Item, itemAmount, myAdventures, myLevel, myMaxmp, use, userConfirm, useSkill } from "kolmafia";
+import { cliExecute, create, drink, eat, getProperty, haveEffect, haveSkill, Item, itemAmount, myAdventures, myLevel, myMaxmp, use, userConfirm, useSkill } from "kolmafia";
 import { $effect, $item, $skill } from "libram";
 import { Constants } from "../Constants";
 import { tryEatCbbFood } from "../shinies/Cookbookbat";
 import { distillSweat, stillsuitAdventures } from "../shinies/Stillsuit";
 import { liverRemaining, stomachRemaining } from "./Organs";
+import { getCurrentSongs, songCapacity } from "./Songs";
 import { haveIngredients } from "./Utils";
 
 export function generateAdventures() {
@@ -72,6 +73,11 @@ function generateLiver() {
   BoozePriority.forEach(booze => {
     if (!drunk && itemAmount(booze) > 0 && liverRemaining() >= booze.inebriety) {
       if (haveEffect($effect`Ode to Booze`) < booze.inebriety && haveSkill($skill`The Ode to Booze`) && myMaxmp() > 50) {
+        const currentSongs = getCurrentSongs();
+        if (currentSongs.length === songCapacity()) {
+          cliExecute(`uneffect ${currentSongs[0].name}`);
+        }
+        
         useSkill(1, $skill`The Ode to Booze`);
       }
 

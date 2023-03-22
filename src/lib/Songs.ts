@@ -18,6 +18,14 @@ export function selectSongs(info: AdventureInfo) {
   tryApplySongs(songs);
 }
 
+export function getCurrentSongs(): Effect[] {
+  return Object.keys(myEffects()).map(name => Effect.get(name)).filter(effect => effect.song);
+}
+
+export function songCapacity(): number {
+  return haveSkill($skill`Mariachi Memory`) ? 4 : 3;
+}
+
 export const ModifierSongs: Map<Modifier, Skill> = new Map([
   [Modifier.HP, $skill`The Power Ballad of the Arrowsmith`],
   [Modifier.MP, $skill`The Magical Mojomuscular Melody`],
@@ -42,14 +50,10 @@ const BaseSongs: Skill[] = [
   $skill`Stevedave's Shanty of Superiority`,
 ];
 
-function songCapacity(): number {
-  return haveSkill($skill`Mariachi Memory`) ? 4 : 3;
-}
-
 function tryApplySongs(songs: Skill[]) {
   const desiredSongs = songs.filter(song => haveSkill(song)).map(song => toEffect(song));
-  const currentSongs = Object.keys(myEffects()).map(name => Effect.get(name)).filter(effect => effect.song);
-  const undesiredSongs = currentSongs.filter(song => desiredSongs.includes(song));
+  const currentSongs = getCurrentSongs();
+  const undesiredSongs = currentSongs.filter(song => !desiredSongs.includes(song));
 
   let songsToRemove = desiredSongs.length + undesiredSongs.length - songCapacity();
   
@@ -63,7 +67,7 @@ function tryApplySongs(songs: Skill[]) {
 
   desiredSongs.forEach(song => {
     const songSkill = toSkill(song);
-    if (haveEffect(song) < 1 && mpCost(songSkill) + Constants.BuffCastMPBuffer > myMaxmp()) {
+    if (haveEffect(song) < 2 && mpCost(songSkill) + Constants.BuffCastMPBuffer < myMaxmp()) {
       if (!Config.PromptSongs || userConfirm("Cast song " + songSkill.name + "?")) {
         useSkill(1, songSkill);
       }

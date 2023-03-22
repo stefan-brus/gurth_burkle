@@ -325,7 +325,54 @@ const DiscoBanditSkills: SkillInfo[] = [
 ];
 
 const AccordionThiefSkills: SkillInfo[] = [
-
+  {
+    skill: $skill`The Moxious Madrigal`,
+    urlId: 4,
+  },
+  {
+    skill: $skill`The Magical Mojomuscular Melody`,
+    urlId: 7,
+  },
+  {
+    skill: $skill`Cletus's Canticle of Celerity`,
+    urlId: 5,
+  },
+  {
+    skill: $skill`Crab Claw Technique`,
+    urlId: 31,
+  },
+  {
+    skill: $skill`The Power Ballad of the Arrowsmith`,
+    urlId: 8,
+  },
+  {
+    skill: $skill`Accordion Bash`,
+    urlId: 32,
+  },
+  {
+    skill: $skill`The Polka of Plenty`,
+    urlId: 6,
+  },
+  {
+    skill: $skill`Accordion Appreciation`,
+    urlId: 33,
+  },
+  {
+    skill: $skill`Jackasses' Symphony of Destruction`,
+    urlId: 12,
+  },
+  {
+    skill: $skill`Five Finger Discount`,
+    urlId: 35,
+  },
+  {
+    skill: $skill`Brawnee's Anthem of Absorption`,
+    urlId: 9,
+  },
+  {
+    skill: $skill`The Psalm of Pointiness`,
+    urlId: 11,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {
