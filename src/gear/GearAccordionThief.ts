@@ -36,6 +36,7 @@ const DiscoBanditWeapons: Item[] = [
   $item`novelty sparkling candle`,
   $item`pygmy concertinette`,
   $item`accord ion`,
+  $item`disco ball`,
   $item`stolen accordion`,
 ];
 
