@@ -4,6 +4,7 @@ import { CMGFreeFightsTask } from "../shinies/CMG";
 import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { RufusQuestTask } from "../shinies/PayPhone";
+import { DistillSweatTask } from "../shinies/Stillsuit";
 import { SweatBoozeTask } from "../shinies/Sweatpants";
 import { AscensionStartTask, UnlockGuildTask } from "./ascension/AscensionStart";
 import { AzazelTask } from "./ascension/Azazel";
@@ -77,6 +78,7 @@ export const AscensionTasks: Task[] = [
 
 export const DailyTasks: Task[] = [
   SweatBoozeTask,
+  DistillSweatTask,
   MayDayPackageTask,
   CloversTask,
   IngredientsTask,
