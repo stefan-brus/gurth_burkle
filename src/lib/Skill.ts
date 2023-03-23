@@ -373,6 +373,26 @@ const AccordionThiefSkills: SkillInfo[] = [
     skill: $skill`The Psalm of Pointiness`,
     urlId: 11,
   },
+  {
+    skill: $skill`Stevedave's Shanty of Superiority`,
+    urlId: 13,
+  },
+  {
+    skill: $skill`Aloysius' Antiphon of Aptitude`,
+    urlId: 3,
+  },
+  {
+    skill: $skill`Sticky Fingers`,
+    urlId: 39,
+  },
+  {
+    skill: $skill`Master Accordion Master Thief`,
+    urlId: 41,
+  },
+  {
+    skill: $skill`Carlweather's Cantata of Confrontation`,
+    urlId: 16,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {

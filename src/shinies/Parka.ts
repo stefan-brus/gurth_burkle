@@ -1,5 +1,6 @@
 import { cliExecute, getProperty, haveEffect, userConfirm } from "kolmafia";
 import { $effect } from "libram";
+import { Config } from "../Config";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
 import { Properties } from "../Properties";
@@ -71,7 +72,7 @@ const SpikesUsedProperty = "_spikolodonSpikeUses";
 function adjustParka(mode: ParkaMode) {
   const cliArgStr = ParkaMode[mode].toLowerCase();
   if (getProperty(ParkaProperty) !== cliArgStr) {
-    if (!userConfirm(`Change parka mode to ${cliArgStr}?`))
+    if (Config.PromptParka && !userConfirm(`Change parka mode to ${cliArgStr}?`))
       throw new Error("User abort on parka mode change");
 
     cliExecute(`parka ${cliArgStr}`);

@@ -9,11 +9,17 @@ export const Config = {
    * Pause and prompt the user for songs.
    */
 
-  PromptSongs: true,
+  PromptSongs: false,
 
   /**
    * Pause and prompt the user for equipment.
    */
 
   PromptGear: false,
+
+  /**
+   * Pause and prompt the user for parka adjustments.
+   */
+
+  PromptParka: false,
 };
