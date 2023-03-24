@@ -393,6 +393,14 @@ const AccordionThiefSkills: SkillInfo[] = [
     skill: $skill`Carlweather's Cantata of Confrontation`,
     urlId: 16,
   },
+  {
+    skill: $skill`Ur-Kel's Aria of Annoyance`,
+    urlId: 17,
+  },
+  {
+    skill: $skill`Mariachi Memory`,
+    urlId: 43,
+  },
 ];
 
 function checkTrainSkills(skills: SkillInfo[]) {
