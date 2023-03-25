@@ -1,4 +1,5 @@
 import { Location } from "kolmafia";
+import { $location } from "libram";
 import { Modifier } from "./Modifier";
 
 export type AdventureInfo = {
@@ -8,4 +9,9 @@ export type AdventureInfo = {
   minModifier?: [Modifier, number],
   maxModifier?: [Modifier, number],
   getSpecialEffects?: boolean,
+};
+
+export const NoAdventure: AdventureInfo = {
+  location: $location`none`,
+  modifiers: [],
 };

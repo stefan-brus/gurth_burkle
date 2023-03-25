@@ -1,6 +1,7 @@
 import { equip, equippedAmount, haveEffect, haveSkill, itemAmount, print, Slot, toEffect, toSlot, use, useSkill } from "kolmafia";
 import { $skill, $slot } from "libram";
 import { ModifierGear } from "../gear/Equipment";
+import { NoAdventure } from "./AdventureInfo";
 import { ModifierSkills } from "./Buffs";
 import { Modifier, myNumericModifier, myNumericModifierBuff, myNumericModifierEffect, myNumericModifierItem, toMafiaModifier } from "./Modifier";
 import { ModifierPotions, PotionEffects } from "./Potion";
@@ -202,7 +203,7 @@ function maximizeSpecial(mod: Modifier, verbose: boolean): number {
   let result = 0;
 
   if (ModifierSpecial.has(mod)) {
-    const effects = tryGetEffects(mod);
+    const effects = tryGetEffects(NoAdventure, mod);
 
     for (const effect of effects) {
       const modAdded = myNumericModifierEffect(effect, mod);
