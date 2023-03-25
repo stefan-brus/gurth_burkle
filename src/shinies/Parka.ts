@@ -58,7 +58,17 @@ export enum ParkaMode {
   Pterodactyl,
 };
 
-const ParkaModeModifiers: Map<Modifier[], ParkaMode> = new Map([
+export function adjustParka(mode: ParkaMode) {
+  const cliArgStr = ParkaMode[mode].toLowerCase();
+  if (getProperty(ParkaProperty) !== cliArgStr) {
+    if (Config.PromptParka && !userConfirm(`Change parka mode to ${cliArgStr}?`))
+      throw new Error("User abort on parka mode change");
+
+    cliExecute(`parka ${cliArgStr}`);
+  }
+}
+
+export const ParkaModeModifiers: Map<Modifier[], ParkaMode> = new Map([
   [[Modifier.HP, Modifier.MeatDrop, Modifier.ColdRes], ParkaMode.Kachungasaur],
   [[Modifier.SleazeDmg, Modifier.SleazeSpellDmg, Modifier.StenchRes], ParkaMode.Dilophosaur],
   [[Modifier.MonsterLevel, Modifier.SleazeRes], ParkaMode.Spikolodon],
@@ -68,14 +78,3 @@ const ParkaModeModifiers: Map<Modifier[], ParkaMode> = new Map([
 
 const ParkaProperty = "parkaMode";
 const SpikesUsedProperty = "_spikolodonSpikeUses";
-
-function adjustParka(mode: ParkaMode) {
-  const cliArgStr = ParkaMode[mode].toLowerCase();
-  if (getProperty(ParkaProperty) !== cliArgStr) {
-    if (Config.PromptParka && !userConfirm(`Change parka mode to ${cliArgStr}?`))
-      throw new Error("User abort on parka mode change");
-
-    cliExecute(`parka ${cliArgStr}`);
-  }
-  
-}

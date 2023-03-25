@@ -1,6 +1,7 @@
-import { equip, equippedAmount, haveEffect, haveSkill, itemAmount, print, Slot, toEffect, toSlot, use, useSkill } from "kolmafia";
-import { $skill, $slot } from "libram";
+import { equip, equippedAmount, haveEffect, haveSkill, itemAmount, myLevel, myMaxhp, print, Slot, toEffect, toSlot, use, useSkill } from "kolmafia";
+import { $item, $skill, $slot } from "libram";
 import { ModifierGear } from "../gear/Equipment";
+import { adjustParka, ParkaMode, ParkaModeModifiers } from "../shinies/Parka";
 import { NoAdventure } from "./AdventureInfo";
 import { ModifierSkills } from "./Buffs";
 import { Modifier, myNumericModifier, myNumericModifierBuff, myNumericModifierEffect, myNumericModifierItem, toMafiaModifier } from "./Modifier";
@@ -40,6 +41,11 @@ export function myMaximize(mod: Modifier, simulate: boolean = false, verbose: bo
     print(`Special effects would add ${specialResult} ${toMafiaModifier(mod)}`);
   }
   result += specialResult;
+
+  const parkaResult = maximizeParka(mod, simulate, verbose);
+  if (verbose) {
+    print(`Parka would add ${parkaResult} ${toMafiaModifier(mod)}`);
+  }
 
   return result;
 }
@@ -259,7 +265,7 @@ function simulateConcert(mod: Modifier): number {
 function simulateShadow(mod: Modifier): number {
   switch (mod) {
     case Modifier.NonCombat:
-      return -10;
+      return 10;
     case Modifier.ItemDrop:
       return 100;
     case Modifier.MeatDrop:
@@ -269,4 +275,47 @@ function simulateShadow(mod: Modifier): number {
     default:
       return 0;
   }
+}
+
+function maximizeParka(mod: Modifier, simulate: boolean, verbose: boolean): number {
+  let result = 0;
+
+  if (equippedAmount($item`Jurassic Parka`) < 1) {
+    return result;
+  }
+
+  const ParkaModifierAmounts: Map<Modifier, number> = new Map([
+    [Modifier.HP, myMaxhp()],
+    [Modifier.MeatDrop, 50],
+    [Modifier.ColdRes, 2],
+    [Modifier.SleazeDmg, 20],
+    [Modifier.SleazeSpellDmg, 20],
+    [Modifier.StenchRes, 2],
+    [Modifier.MonsterLevel, Math.min(33, myLevel() * 33)],
+    [Modifier.SleazeRes, 2],
+    [Modifier.DamageReduction, 10],
+    [Modifier.MP, 50],
+    [Modifier.SpookyRes, 2],
+    [Modifier.NonCombat, 5],
+    [Modifier.Initiative, 50],
+    [Modifier.HotRes, 2],
+  ]);
+
+  for (const [parkaMods, mode] of ParkaModeModifiers.entries()) {
+    if (parkaMods.includes(mod)) {
+      result = ParkaModifierAmounts.get(mod)!;
+
+      if (verbose) {
+        print(`${mode.toString()} Mode would give ${result} ${toMafiaModifier(mod)}`);
+      }
+
+      if (!simulate) {
+        adjustParka(mode);
+      }
+
+      break;
+    }
+  }
+
+  return result;
 }
