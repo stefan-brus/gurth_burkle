@@ -160,7 +160,13 @@ export const UnlockHoleInTheSkyTask: Task = {
 
 function unlockHole(): AdventureInfo {
   const CopperChoice = "choiceAdventure677";
+  const MelonChoice = "choiceAdventure675";
+  const RaverChoice = "choiceAdventure676";
+  const PunkChoice = "choiceAdventure678";
   setProperty(CopperChoice, "2");
+  setProperty(MelonChoice, "4");
+  setProperty(RaverChoice, "4");
+  setProperty(PunkChoice, "3");
 
   return {
     location: $location`The Castle in the Clouds in the Sky (Top Floor)`,
