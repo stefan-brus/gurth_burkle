@@ -17,7 +17,7 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
     lastResult = spikolodonResult;
   }
 
-  const dronesResult = checkDoDrones();
+  const dronesResult = checkDoDrones(foe);
   if (dronesResult !== undefined) {
     lastResult = dronesResult;
   }
@@ -171,8 +171,9 @@ function checkDoFreeKill(foe: Monster): string | void {
   }
 }
 
-function checkDoDrones(): string | void {
+function checkDoDrones(foe: Monster): string | void {
   if (
+    !foe.boss &&
     GreyGooseLocations.includes(myLocation()) &&
     myFamiliar() === $familiar`Grey Goose` &&
     GreyGoose.currentDrones() < 1 && 
