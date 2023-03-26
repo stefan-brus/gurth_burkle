@@ -16,18 +16,9 @@ export const L11RedZeppelinTask: Task = {
       completed: () => getProperty(L11RedZeppelinProperty) !== "started",
     },
     {
-      name: "Clear protesters (with clovers)",
-      available: () => getProperty(L11RedZeppelinProperty) === "step1" && 
-                       itemAmount($item`11-leaf clover`) > 5 && 
-                       protestersRemaining() >= 40 && 
-                       myAdventures() > (4 + Constants.ReservedAdventures),
-      progress: () => doProtestersClovers(),
-      completed: () => protestersRemaining() < 40,
-    },
-    {
-      name: "Clear protesters (sleaze)",
+      name: "Clear protesters",
       available: () => getProperty(L11RedZeppelinProperty) === "step1",
-      progress: () => doProtestersSleaze(),
+      progress: () => doProtesters(),
       completed: () => getProperty(L11RedZeppelinProperty) !== "step1",
     },
     {
@@ -59,34 +50,20 @@ export const L11RedZeppelinTask: Task = {
 
 const L11RedZeppelinProperty = "questL11Ron";
 
-function protestersRemaining(): number {
-  const ProtestersRemaining = "zeppelinProtestors";
-  const ProtestersToKill = 80;
-
-  return ProtestersToKill - parseInt(getProperty(ProtestersRemaining));
-}
-
-function doProtestersClovers() {
+function doProtesters(): AdventureInfo {
   const MobLuckyChoice = "choiceAdventure866";
+  const MobAmbushChoice = "choiceAdventure856";
+  const MobBenchChoice = "choiceAdventure857";
   const MobFireChoice = "choiceAdventure858";
 
-  setProperty(MobLuckyChoice, "3");
+  setProperty(MobLuckyChoice, "2");
+  setProperty(MobAmbushChoice, "1");
+  setProperty(MobBenchChoice, "1");
   setProperty(MobFireChoice, "1");
 
-  checkUseClover("Get 3 Flamin' Whatshisnames");
-  adv1($location`The Copperhead Club`);
-
-  checkUseClover("Clear protesters with fire");
-  adv1($location`A Mob of Zeppelin Protesters`);
-  checkUseClover("Clear protesters with fire");
-  adv1($location`A Mob of Zeppelin Protesters`);
-  checkUseClover("Clear protesters with fire");
-  adv1($location`A Mob of Zeppelin Protesters`);
-}
-
-function doProtestersSleaze(): AdventureInfo {
-  const MobBenchChoice = "choiceAdventure857";
-  setProperty(MobBenchChoice, "1");
+  if (itemAmount($item`11-leaf clover`) >= 2) {
+    checkUseClover("Clear protesters with sleaze");
+  }
 
   return {
     location: $location`A Mob of Zeppelin Protesters`,
