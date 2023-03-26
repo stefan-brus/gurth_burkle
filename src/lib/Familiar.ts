@@ -71,7 +71,7 @@ const FamiliarPriority: PriorityInfo[] = [
   // Make sure goose can emit at least one drone
   {
     familiar: $familiar`Grey Goose`,
-    shouldUse: (_: AdventureInfo) => GreyGoose.expectedDrones() < Constants.MinGooseDrones,
+    shouldUse: (_: AdventureInfo) => GreyGoose.currentWeight() < 5 + Constants.MinGooseDrones,
   },
   {
     familiar: $familiar`Hobo in Sheep's Clothing`,

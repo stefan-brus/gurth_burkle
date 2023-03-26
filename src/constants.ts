@@ -39,5 +39,5 @@ export const Constants = {
    * Level up grey goose until at least this many dupe drones are available.
    */
 
-  MinGooseDrones: 3,
+  MinGooseDrones: 5,
 };
