@@ -9,14 +9,6 @@ import { Modifier } from "./Modifier";
 export function selectBuffs(info: AdventureInfo) {
   tryApplyBuffs(BaseSkills);
 
-  switch (myClass()) {
-    case $class`Turtle Tamer`:
-      tryApplyBuffs(TurtleTamerSkills);
-      break;
-    default:
-      // Not all classes have specific buffs, do nothing
-  }
-
   info.modifiers.forEach(mod => {
     if (ModifierSkills.has(mod) && !maxModifierReached(info, mod)) {
       tryApplyBuffs(ModifierSkills.get(mod)!);
@@ -70,9 +62,6 @@ export const ModifierSkills: Map<Modifier, Skill[]> = new Map([
 
 const BaseSkills: Skill[] = [
   $skill`Leash of Linguini`,
-];
-
-const TurtleTamerSkills: Skill[] = [
   $skill`Empathy of the Newt`,
 ];
 
