@@ -2,6 +2,7 @@ import { equippedAmount, Familiar, fullnessLimit, haveFamiliar, itemAmount, myFa
 import { $familiar, $item, $location } from "libram";
 import { availableCbbFoods } from "../shinies/Cookbookbat";
 import { AdventureInfo } from "./AdventureInfo";
+import { stomachRemaining } from "./Organs";
 import { ascensionDaysLeft } from "./Utils";
 
 export function selectFamiliar(info: AdventureInfo) {
@@ -60,7 +61,7 @@ const FamiliarPriority: PriorityInfo[] = [
   {
     familiar: $familiar`Cookbookbat`,
     shouldUse: (_: AdventureInfo) => {
-      return availableCbbFoods() < ((ascensionDaysLeft() * fullnessLimit()) - myFullness() - 9); // Assume we have 3 astral hot dogs
+      return availableCbbFoods() < stomachRemaining();
     },
   },
 
