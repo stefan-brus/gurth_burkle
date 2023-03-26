@@ -168,7 +168,7 @@ const FallbotTasks: FallbotTaskInfo[] = [
     name: "Bridge parts",
     location: $location`The Smut Orc Logging Camp`,
     todo: () => getProperty("questL09Topping") === "started" &&
-                buildOrcChasmBridge() < 30,
+                buildOrcChasmBridge() < 26,
   },
   {
     name: "Rusty hedge trimmers",
