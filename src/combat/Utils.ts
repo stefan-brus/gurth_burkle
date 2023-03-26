@@ -177,7 +177,7 @@ function checkDoDrones(foe: Monster): string | void {
     GreyGooseLocations.includes(myLocation()) &&
     myFamiliar() === $familiar`Grey Goose` &&
     GreyGoose.currentDrones() < 1 && 
-    GreyGoose.expectedDrones() > 0
+    GreyGoose.currentWeight() >= 6
   ) {
     return useSkill($skill`Emit Matter Duplicating Drones`);
   }
