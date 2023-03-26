@@ -44,6 +44,10 @@ const FamiliarPriority: PriorityInfo[] = [
       return info.location === $location`The Black Forest` && itemAmount($item`reassembled blackbird`) < 1;
     }
   },
+  {
+    familiar: $familiar`Grey Goose`,
+    shouldUse: (info: AdventureInfo) => info.location === $location`The Defiled Nook`,
+  },
 
   // Drop necessary items
   {
