@@ -1,4 +1,4 @@
-import { attack, Monster, throwItem, useSkill, willUsuallyMiss } from "kolmafia";
+import { attack, Monster, mpCost, myMp, throwItem, useSkill, willUsuallyMiss } from "kolmafia";
 import { $item, $skill } from "libram";
 import { combatLoop, shouldThrowFlyers } from "./Utils";
 
@@ -22,13 +22,14 @@ function doRound(foe: Monster, state: CombatState): [string, CombatState] {
     newState.flyered = true;
     resultPage = throwItem($item`rock band flyers`);
   }
+  else if (willUsuallyMiss() && myMp() > mpCost($skill`Cannelloni Cannon`)) {
+    resultPage = useSkill($skill`Cannelloni Cannon`);
+  }
+  else if (willUsuallyMiss()) {
+    resultPage = useSkill($skill`Toss`);
+  }
   else {
-    if (willUsuallyMiss()) {
-      resultPage = useSkill($skill`Toss`);
-    }
-    else {
-      resultPage = attack();
-    }
+    resultPage = attack();
   }
 
   return [resultPage, newState];
