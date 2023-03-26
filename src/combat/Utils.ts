@@ -175,7 +175,6 @@ function checkDoDrones(): string | void {
   if (
     GreyGooseLocations.includes(myLocation()) &&
     myFamiliar() === $familiar`Grey Goose` &&
-    haveSkill($skill`Emit Matter Duplicating Drones`) &&
     GreyGoose.currentDrones() < 1 && 
     GreyGoose.expectedDrones() > 0
   ) {
