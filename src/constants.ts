@@ -34,4 +34,10 @@ export const Constants = {
    */
 
   TurngenThreshold: 20,
+
+  /**
+   * Level up grey goose until at least this many dupe drones are available.
+   */
+
+  MinGooseDrones: 3,
 };

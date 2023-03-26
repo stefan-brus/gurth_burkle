@@ -1,5 +1,6 @@
 import { equippedAmount, Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, myFullness, print, useFamiliar, userConfirm } from "kolmafia";
 import { $familiar, $item, $location, GreyGoose } from "libram";
+import { Constants } from "../Constants";
 import { availableCbbFoods } from "../shinies/Cookbookbat";
 import { GreyGooseLocations } from "../shinies/GreyGoose";
 import { AdventureInfo } from "./AdventureInfo";
@@ -70,7 +71,7 @@ const FamiliarPriority: PriorityInfo[] = [
   // Make sure goose can emit at least one drone
   {
     familiar: $familiar`Grey Goose`,
-    shouldUse: (_: AdventureInfo) => GreyGoose.expectedDrones() < 1,
+    shouldUse: (_: AdventureInfo) => GreyGoose.expectedDrones() < Constants.MinGooseDrones,
   },
   {
     familiar: $familiar`Hobo in Sheep's Clothing`,
