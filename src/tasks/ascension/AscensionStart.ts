@@ -41,6 +41,12 @@ export const AscensionStartTask: Task = {
       completed: () => itemAmount($item`saucepan`) > 0,
     },
     {
+      name: "Acquire turtle totem",
+      available: () => itemAmount($item`turtle totem`) < 1 && equippedAmount($item`turtle totem`) < 1 && myMeat() >= 3000,
+      progress: () => getChewinggumItem($item`turtle totem`),
+      completed: () => itemAmount($item`turtle totem`) > 0,
+    },
+    {
       name: "Deploy tent",
       available: () => itemAmount($item`newbiesport&trade; tent`) > 0,
       progress: () => { use(1, $item`newbiesport&trade; tent`); },
