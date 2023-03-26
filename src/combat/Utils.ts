@@ -1,6 +1,7 @@
-import { getProperty, haveEffect, Item, itemAmount, Monster, myClass, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
-import { $class, $effect, $item, $location, $monster, $skill } from "libram";
+import { getProperty, haveEffect, haveSkill, Item, itemAmount, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
+import { $class, $effect, $familiar, $item, $location, $monster, $skill, GreyGoose } from "libram";
 import { Properties } from "../Properties";
+import { GreyGooseLocations } from "../shinies/GreyGoose";
 import { currentParkaMode, ParkaMode, spikesAvailable } from "../shinies/Parka";
 
 type RoundCallback<State> = (foe: Monster, state: State) => [string, State];
@@ -14,6 +15,11 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
   const spikolodonResult = checkDoSpikes(foe);
   if (spikolodonResult !== undefined) {
     lastResult = spikolodonResult;
+  }
+
+  const dronesResult = checkDoDrones();
+  if (dronesResult !== undefined) {
+    lastResult = dronesResult;
   }
 
   const freeKillResult = checkDoFreeKill(foe);
@@ -162,6 +168,18 @@ function checkDoFreeKill(foe: Monster): string | void {
 
   if (itemAmount($item`groveling gravel`) > 0) {
     return throwItem($item`groveling gravel`);
+  }
+}
+
+function checkDoDrones(): string | void {
+  if (
+    GreyGooseLocations.includes(myLocation()) &&
+    myFamiliar() === $familiar`Grey Goose` &&
+    haveSkill($skill`Emit Matter Duplicating Drones`) &&
+    GreyGoose.currentDrones() < 1 && 
+    GreyGoose.expectedDrones() > 0
+  ) {
+    return useSkill($skill`Emit Matter Duplicating Drones`);
   }
 }
 

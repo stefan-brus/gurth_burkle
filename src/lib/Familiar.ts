@@ -1,6 +1,7 @@
 import { equippedAmount, Familiar, fullnessLimit, haveFamiliar, itemAmount, myFamiliar, myFullness, print, useFamiliar, userConfirm } from "kolmafia";
-import { $familiar, $item, $location } from "libram";
+import { $familiar, $item, $location, GreyGoose } from "libram";
 import { availableCbbFoods } from "../shinies/Cookbookbat";
+import { GreyGooseLocations } from "../shinies/GreyGoose";
 import { AdventureInfo } from "./AdventureInfo";
 import { stomachRemaining } from "./Organs";
 import { ascensionDaysLeft } from "./Utils";
@@ -42,12 +43,6 @@ const FamiliarPriority: PriorityInfo[] = [
       return info.location === $location`The Black Forest` && itemAmount($item`reassembled blackbird`) < 1;
     }
   },
-  {
-    familiar: $familiar`Hobo in Sheep's Clothing`,
-    shouldUse: (info: AdventureInfo) => {
-      return info.location === $location`The Defiled Nook`;
-    },
-  },
 
   // Drop necessary items
   {
@@ -65,7 +60,18 @@ const FamiliarPriority: PriorityInfo[] = [
     },
   },
 
-  // Default familiar
+  // Duplicate necessary items
+  {
+    familiar: $familiar`Grey Goose`,
+    shouldUse: (info: AdventureInfo) => GreyGooseLocations.includes(info.location),
+  },
+
+  // Default familiars
+  // Make sure goose can emit at least one drone
+  {
+    familiar: $familiar`Grey Goose`,
+    shouldUse: (_: AdventureInfo) => GreyGoose.expectedDrones() < 1,
+  },
   {
     familiar: $familiar`Hobo in Sheep's Clothing`,
     shouldUse: (_: AdventureInfo) => true,
