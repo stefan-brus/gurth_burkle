@@ -30,13 +30,13 @@ export const AscensionStartTask: Task = {
     },
     {
       name: "Buy antique accordion",
-      available: () => myClass() != Class.get("Accordion Thief") && itemAmount($item`antique accordion`) < 1 && myMeat() >= 2500,
+      available: () => myClass() != Class.get("Accordion Thief") && itemAmount($item`antique accordion`) < 1 && myMeat() >= 5000,
       progress: () => { cliExecute("/buy antique accordion"); },
       completed: () => itemAmount($item`antique accordion`) > 0,
     },
     {
       name: "Acquire saucepan",
-      available: () => itemAmount($item`saucepan`) < 1 && equippedAmount($item`saucepan`) < 1 && myMeat() >= 1000,
+      available: () => itemAmount($item`saucepan`) < 1 && equippedAmount($item`saucepan`) < 1 && myMeat() >= 3000,
       progress: () => getChewinggumItem($item`saucepan`),
       completed: () => itemAmount($item`saucepan`) > 0,
     },
