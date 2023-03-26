@@ -2,6 +2,7 @@ import { print } from "kolmafia";
 import { myMainstat } from "../lib/Utils";
 import { CMGFreeFightsTask } from "../shinies/CMG";
 import { UnlockFallbotLocationsTask } from "../shinies/Fallbot";
+import { CraftGrubbyWoolTask } from "../shinies/HoboSheep";
 import { ConfigureTrainsetTask } from "../shinies/ModelTrainset";
 import { RufusQuestTask } from "../shinies/PayPhone";
 import { DistillSweatTask } from "../shinies/Stillsuit";
@@ -45,6 +46,7 @@ export const AscensionTasks: Task[] = [
   AcquireMcdTask,
   CreateBadassBeltTask,
   AcquireMeatMaidTask,
+  CraftGrubbyWoolTask,
   L06Task,
   AzazelTask,
   SpookyravenFloor1Task,

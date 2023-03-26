@@ -55,6 +55,7 @@ function generateStomach(): boolean {
 
 const BoozePriority: Item[] = [
   $item`Boris's Beer`,
+  $item`nice warm beer`,
   $item`shot of wasp venom`,
   $item`AutumnFest ale`,
   $item`void lager`,

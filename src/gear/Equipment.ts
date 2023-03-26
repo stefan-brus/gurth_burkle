@@ -83,10 +83,17 @@ export const ModifierGear: Map<Modifier, Item[]> = new Map([
     // shirts
     $item`unrequired jacket`,
 
+    // pants
+    $item`grubby wool trousers`,
+
     // accessories
     $item`Lord Spookyraven's ear trumpet`,
     $item`sk8board`,
     $item`infernal insoles`,
+  ]],
+  [Modifier.DamageReduction, [
+    // pants
+    $item`grubby wool trousers`,
   ]],
   [Modifier.DamageAbsorption, [
     // hats
@@ -101,6 +108,10 @@ export const ModifierGear: Map<Modifier, Item[]> = new Map([
     // pants
     $item`bullet-proof corduroys`,
   ]],
+  [Modifier.ColdRes, [
+    // accessories,
+    $item`grubby wool scarf`,
+  ]],
   [Modifier.StenchRes, [
     // hats
     $item`ass hat`,
@@ -111,11 +122,19 @@ export const ModifierGear: Map<Modifier, Item[]> = new Map([
     $item`Pants of the Slug Lord`,
 
     // accessories
+    $item`grubby wool scarf`,
     $item`Pine-Fresh air freshener`,
   ]],
   [Modifier.StenchDmg, [
+    // hats
+    $item`grubby wool hat`,
+
     // weapons
     $item`combat fan`,
+  ]],
+  [Modifier.SleazeDmg, [
+    // hats
+    $item`grubby wool hat`,
   ]],
 ]);
 
