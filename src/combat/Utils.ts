@@ -1,7 +1,7 @@
 import { getProperty, haveEffect, haveSkill, Item, itemAmount, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
 import { $class, $effect, $familiar, $item, $location, $monster, $skill, GreyGoose } from "libram";
 import { Properties } from "../Properties";
-import { GreyGooseLocations } from "../shinies/GreyGoose";
+import { gooseWeight, GreyGooseLocations } from "../shinies/GreyGoose";
 import { currentParkaMode, ParkaMode, spikesAvailable } from "../shinies/Parka";
 
 type RoundCallback<State> = (foe: Monster, state: State) => [string, State];
@@ -177,7 +177,7 @@ function checkDoDrones(foe: Monster): string | void {
     GreyGooseLocations.includes(myLocation()) &&
     myFamiliar() === $familiar`Grey Goose` &&
     GreyGoose.currentDrones() < 1 && 
-    GreyGoose.currentWeight() >= 6
+    gooseWeight() >= 6
   ) {
     return useSkill($skill`Emit Matter Duplicating Drones`);
   }

@@ -2,7 +2,7 @@ import { equippedAmount, Familiar, fullnessLimit, haveFamiliar, itemAmount, myFa
 import { $familiar, $item, $location, GreyGoose } from "libram";
 import { Constants } from "../Constants";
 import { availableCbbFoods } from "../shinies/Cookbookbat";
-import { GreyGooseLocations } from "../shinies/GreyGoose";
+import { gooseWeight, GreyGooseLocations } from "../shinies/GreyGoose";
 import { AdventureInfo } from "./AdventureInfo";
 import { stomachRemaining } from "./Organs";
 import { ascensionDaysLeft } from "./Utils";
@@ -72,10 +72,10 @@ const FamiliarPriority: PriorityInfo[] = [
   },
 
   // Default familiars
-  // Make sure goose can emit at least one drone
+  // Make sure goose can emit at least a few drones
   {
     familiar: $familiar`Grey Goose`,
-    shouldUse: (_: AdventureInfo) => GreyGoose.currentWeight() < 5 + Constants.MinGooseDrones,
+    shouldUse: (_: AdventureInfo) => gooseWeight() < 5 + Constants.MinGooseDrones,
   },
   {
     familiar: $familiar`Hobo in Sheep's Clothing`,

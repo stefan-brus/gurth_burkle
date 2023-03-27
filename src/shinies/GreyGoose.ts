@@ -1,5 +1,5 @@
 import { Location } from "kolmafia";
-import { $location } from "libram";
+import { $familiar, $location } from "libram";
 
 export const GreyGooseLocations: Location[] = [
   $location`The Laugh Floor`, // imp air
@@ -16,3 +16,7 @@ export const GreyGooseLocations: Location[] = [
   $location`The Red Zeppelin`, // glark cable
   $location`The Middle Chamber`, // tomb ratchet
 ];
+
+export function gooseWeight(): number {
+  return Math.min(Math.floor(Math.sqrt($familiar`Grey Goose`.experience)), 20);
+}
