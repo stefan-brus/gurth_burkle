@@ -1,4 +1,7 @@
 export const Config = {
+
+  // == PROMPTS == //
+
   /**
    * Pause and prompt the user for buffs.
    */
@@ -28,4 +31,12 @@ export const Config = {
    */
 
   PromptPotions: false,
+
+  // == TASKS == //
+
+  /**
+   * Whether or not to get a meat maid
+   */
+
+  TaskMeatMaid: false,
 };

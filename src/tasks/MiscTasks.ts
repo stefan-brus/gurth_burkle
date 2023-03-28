@@ -1,5 +1,6 @@
 import { adv1, buy, canAdventure, changeMcd, create, dispensaryAvailable, equip, equippedItem, getProperty, haveEquipped, haveOutfit, itemAmount, knollAvailable, myLevel, myMeat, runChoice, setProperty, use, visitUrl } from "kolmafia";
 import { $item, $location, $slot } from "libram";
+import { Config } from "../Config";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { Modifier } from "../lib/Modifier";
 import { ascensionDaysLeft, checkUseClover, myMainstat } from "../lib/Utils";
@@ -120,7 +121,7 @@ export const AcquireMeatMaidTask: Task = {
   subtasks: [
     {
       name: "Acquire meat maid",
-      available: () => canAdventure($location`The VERY Unquiet Garves`) && itemAmount($item`11-leaf clover`) > 0 && ascensionDaysLeft() > 1 && knollAvailable(),
+      available: () => Config.TaskMeatMaid && canAdventure($location`The VERY Unquiet Garves`) && itemAmount($item`11-leaf clover`) > 0 && ascensionDaysLeft() > 1 && knollAvailable(),
       progress: () => acquireMeatMaid(),
       completed: () => getProperty(Properties.Ascension.MeatMaidInstalled) === "true",
     },
