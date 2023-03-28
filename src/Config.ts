@@ -22,4 +22,10 @@ export const Config = {
    */
 
   PromptParka: false,
+
+  /**
+   * Pause and prompt the user for potions.
+   */
+
+  PromptPotions: false,
 };

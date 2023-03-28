@@ -1,5 +1,6 @@
 import { Effect, haveEffect, Item, itemAmount, use, userConfirm } from "kolmafia";
 import { $effect, $item } from "libram";
+import { Config } from "../Config";
 import { maxModifierReached } from "./Adventure";
 import { AdventureInfo } from "./AdventureInfo";
 import { Modifier } from "./Modifier";
@@ -128,7 +129,7 @@ function tryUsePotion(item: Item) {
     return;
   }
 
-  if (userConfirm("Use potion " + item.name + "?")) {
+  if (!Config.PromptPotions || userConfirm("Use potion " + item.name + "?")) {
     use(1, item);
   }
   else {
