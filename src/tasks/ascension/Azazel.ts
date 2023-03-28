@@ -15,6 +15,13 @@ export const AzazelTask: Task = {
       mainstat: $location`The Laugh Floor`.recommendedStat,
     },
     {
+      name: "Get Azazel's unicorn",
+      available: () => getProperty(AzazelQuestProperty) === "started",
+      progress: () => azazelUnicorn(),
+      completed: () => itemAmount($item`Azazel's unicorn`) > 0,
+      mainstat: $location`Infernal Rackets Backstage`.recommendedStat,
+    },
+    {
       name: "Get Azazel's lollipop",
       available: () => getProperty(AzazelQuestProperty) === "started",
       progress: () => azazelLollipop(),
@@ -22,11 +29,10 @@ export const AzazelTask: Task = {
       mainstat: $location`The Laugh Floor`.recommendedStat,
     },
     {
-      name: "Get Azazel's unicorn",
-      available: () => getProperty(AzazelQuestProperty) === "started",
-      progress: () => azazelUnicorn(),
-      completed: () => itemAmount($item`Azazel's unicorn`) > 0,
-      mainstat: $location`Infernal Rackets Backstage`.recommendedStat,
+      name: "Get imp airs",
+      available: () => itemAmount($item`imp air`) < 5,
+      progress: () => { return { location: $location`The Laugh Floor`, modifiers: [], }; },
+      completed: () => itemAmount($item`imp air`) >= 5 || itemAmount($item`Azazel's tutu`) > 0 || getProperty(AzazelQuestProperty) === "finished",
     },
     {
       name: "Get Azazel's tutu",

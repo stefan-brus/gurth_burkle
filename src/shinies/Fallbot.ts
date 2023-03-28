@@ -74,7 +74,6 @@ const LocationsToUnlock: Location[] = [
   $location`The Overgrown Lot`,
   $location`The Haunted Kitchen`,
   $location`Infernal Rackets Backstage`,
-  $location`The Laugh Floor`,
   $location`Sonofa Beach`,
   $location`The Goatlet`,
   $location`The Smut Orc Logging Camp`,
@@ -144,12 +143,6 @@ const FallbotTasks: FallbotTaskInfo[] = [
     location: $location`Infernal Rackets Backstage`,
     todo: () => getProperty("questM10Azazel") !== "finished" && 
                 itemAmount($item`bus pass`) < 5,
-  },
-  {
-    name: "Azazel imp airs",
-    location: $location`The Laugh Floor`,
-    todo: () => getProperty("questM10Azazel") !== "finished" && 
-                itemAmount($item`imp air`) < 5,
   },
   {
     name: "Barrels of gunpowder",
