@@ -99,7 +99,7 @@ function undefileCranny(): AdventureInfo {
   return {
     location: $location`The Defiled Cranny`,
     modifiers: [Modifier.NonCombat, Modifier.MonsterLevel],
-    getSpecialEffects: true,
+    getSpecialEffects: false,
   }
 }
 
