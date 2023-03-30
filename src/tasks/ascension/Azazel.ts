@@ -30,7 +30,7 @@ export const AzazelTask: Task = {
     },
     {
       name: "Get imp airs",
-      available: () => itemAmount($item`imp air`) < 5,
+      available: () => getProperty(AzazelQuestProperty) === "started" && itemAmount($item`imp air`) < 5,
       progress: () => { return { location: $location`The Laugh Floor`, modifiers: [], }; },
       completed: () => itemAmount($item`imp air`) >= 5 || itemAmount($item`Azazel's tutu`) > 0 || getProperty(AzazelQuestProperty) === "finished",
     },
