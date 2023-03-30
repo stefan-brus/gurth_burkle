@@ -1,4 +1,4 @@
-import { adv1, buy, canAdventure, changeMcd, create, dispensaryAvailable, equip, equippedItem, getProperty, haveEquipped, haveOutfit, itemAmount, knollAvailable, myLevel, myMeat, runChoice, setProperty, use, visitUrl } from "kolmafia";
+import { adv1, buy, canAdventure, changeMcd, cliExecute, create, dispensaryAvailable, equip, equippedItem, getProperty, haveEquipped, haveOutfit, itemAmount, knollAvailable, myLevel, myMeat, runChoice, setProperty, use, visitUrl } from "kolmafia";
 import { $item, $location, $slot } from "libram";
 import { Config } from "../Config";
 import { AdventureInfo } from "../lib/AdventureInfo";
@@ -174,3 +174,17 @@ function unlockHole(): AdventureInfo {
     modifiers: [Modifier.NonCombat],
   };
 }
+
+export const StrangeLeafletTask: Task = {
+  name: "Strange Leaflet Quest",
+  subtasks: [
+    {
+      name: "Do Strange Leaflet",
+      available: () => itemAmount($item`strange leaflet`) > 0,
+      progress: () => { cliExecute("leaflet"); },
+      completed: () => getProperty(LeafletProperty) === "true",
+    },
+  ],
+};
+
+const LeafletProperty = "leafletCompleted";

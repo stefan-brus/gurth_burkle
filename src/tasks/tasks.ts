@@ -33,7 +33,7 @@ import { L12Part1Task, L12Part2Task, L12Part3Task } from "./ascension/L12Mysteri
 import { L13SorceressTask } from "./ascension/L13Sorceress";
 import { SpookyravenFloor1Task, SpookyravenFloor2Task } from "./ascension/Spookyraven";
 import { ClassSpecificDailyTask, CloversTask, DailyDungeonTask, IngredientsTask, MayDayPackageTask, MrKlawTask, OliverFightsTask, PvpFightsTask, RockGardenTask } from "./Daily";
-import { AcquireMcdTask, AcquireMeatMaidTask, BitchinMeatcarTask, CreateBadassBeltTask, UnlockDispensaryTask, UnlockHoleInTheSkyTask, UnlockWhiteysGroveTask } from "./MiscTasks";
+import { AcquireMcdTask, AcquireMeatMaidTask, BitchinMeatcarTask, CreateBadassBeltTask, StrangeLeafletTask, UnlockDispensaryTask, UnlockHoleInTheSkyTask, UnlockWhiteysGroveTask } from "./MiscTasks";
 import { Task } from "./Task";
 
 export const AscensionTasks: Task[] = [
@@ -49,6 +49,7 @@ export const AscensionTasks: Task[] = [
   AcquireMeatMaidTask,
   CraftGrubbyWoolTask,
   LocketFratGearTask,
+  StrangeLeafletTask,
   L06Task,
   AzazelTask,
   SpookyravenFloor1Task,
