@@ -319,6 +319,20 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
     reservedSlots.push($slot`pants`);
   }
 
+  // Combat Lover's Locket
+  if (![$slot`acc1`, $slot`acc2`, $slot`acc3`].every(slot => reservedSlots.includes(slot))) {
+    let accSlot = $slot`none`;
+    if (equippedAmount($item`combat lover's locket`) < 1) {
+      accSlot = !reservedSlots.includes($slot`acc1`) ? $slot`acc1` : !reservedSlots.includes($slot`acc2`) ? $slot`acc2` : $slot`acc3`;
+      equip(accSlot, $item`combat lover's locket`);
+    }
+    else {
+      accSlot = findEquippedAccSlot($item`combat lover's locket`);
+    }
+
+    reservedSlots.push(accSlot);
+  }
+
   // Stillsuit
   if (!reservedSlots.includes($slot`familiar`)) {
     if (equippedAmount($item`tiny stillsuit`) < 1) {
