@@ -32,6 +32,9 @@ export const ModifierPotions: Map<Modifier, Item[]> = new Map([
     $item`gaffer's tape`,
     $item`votive of confidence`,
   ]],
+  [Modifier.NonCombat, [
+    $item`trampled ticket stub`,
+  ]],
   [Modifier.ItemDrop, [
     $item`Salsa Caliente&trade; candle`,
     $item`emergency glowstick`,
@@ -42,6 +45,7 @@ export const ModifierPotions: Map<Modifier, Item[]> = new Map([
     $item`flapper fly`,
     $item`Smoldering Clover&trade; candle`,
     $item`autumn dollar`,
+    $item`savings bond`,
   ]],
   [Modifier.Initiative, [
     $item`banana candle`,
@@ -87,6 +91,9 @@ export const PotionEffects = new Map<Item, Effect>([
   // moxie
   [$item`gaffer's tape`, $effect`Gaffe Free`],
 
+  // non-combat
+  [$item`trampled ticket stub`, $effect`Feeling Sneaky`],
+
   // item
   [$item`Salsa Caliente™ candle`, $effect`El Aroma de Salsa`],
   [$item`emergency glowstick`, $effect`Glowing Hands`],
@@ -97,6 +104,7 @@ export const PotionEffects = new Map<Item, Effect>([
   [$item`flapper fly`, $effect`Flapper Dancin'`],
   [$item`Smoldering Clover&trade; candle`, $effect`Good Things Are Coming, You Can Smell It`],
   [$item`autumn dollar`, $effect`Bet Your Autumn Dollar`],
+  [$item`savings bond`, $effect`Earning Interest`],
 
   // init
   [$item`banana candle`, $effect`Everything Is Bananas`],

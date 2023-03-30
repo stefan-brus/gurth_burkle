@@ -18,9 +18,12 @@ import { selectSpecialEffects } from "./lib/SpecialEffects";
 import { selectSpleen } from "./lib/Spleen";
 import { Properties } from "./Properties";
 import { selectSongs } from "./lib/Songs";
+import { setJuneCleaverChoices } from "./shinies/JuneCleaver";
 
 export function ascend() {
   print("Starting main ascension loop");
+
+  setJuneCleaverChoices();
 
   let currentTask = IdleTask;
   let currentSubtask = currentTask.subtasks[0];

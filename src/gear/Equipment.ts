@@ -310,6 +310,15 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
     reservedSlots.push($slot`shirt`);
   }
 
+  // June Cleaver
+  if (!reservedSlots.includes($slot`weapon`)) {
+    if (equippedAmount($item`June cleaver`) < 1) {
+      equip($slot`weapon`, $item`June cleaver`);
+    }
+
+    reservedSlots.push($slot`weapon`);
+  }
+
   // Designer Sweatpants
   if (!reservedSlots.includes($slot`pants`)) {
     if (equippedAmount($item`designer sweatpants`) < 1) {
