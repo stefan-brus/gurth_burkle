@@ -14,12 +14,7 @@ export const L08Task: Task = {
       completed: () => getProperty(L08QuestProperty) !== "started",
     },
     // Assume ore is collected by trainset
-    {
-      name: "Acquire goat cheese",
-      available: () => getProperty(L08QuestProperty) === "step1" && itemAmount($item`goat cheese`) < 3,
-      progress: () => { return { location: $location`The Goatlet`, modifiers: [Modifier.ItemDrop] }; },
-      completed: () => getProperty(L08QuestProperty) !== "step1" || itemAmount($item`goat cheese`) >= 3,
-    },
+    // Assume cheese is collected by fallbot
     {
       name: "Give items to trapper",
       available: () => getProperty(L08QuestProperty) === "step1" && itemAmount($item`goat cheese`) >= 3 && itemAmount($item`${getProperty(TrapperOreProperty)}`) >= 3,
