@@ -128,9 +128,6 @@ export const ModifierGear: Map<Modifier, Item[]> = new Map([
   [Modifier.StenchDmg, [
     // hats
     $item`grubby wool hat`,
-
-    // weapons
-    $item`combat fan`,
   ]],
   [Modifier.SleazeDmg, [
     // hats
