@@ -1,5 +1,6 @@
 import { canAdventure, getProperty, itemAmount, Location, userConfirm } from "kolmafia";
 import { $item, $location, AutumnAton } from "libram";
+import { Config } from "../Config";
 import { Constants } from "../Constants";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { estimateAdventuresRemaining } from "../lib/Organs";
@@ -102,6 +103,9 @@ function getUnlockableLocation(): AdventureInfo | void {
   Fallbot.refresh();
 
   for (const loc of Fallbot.locationsLeftToUnlock()) {
+    if (!Config.TaskAzazel && loc === $location`Infernal Rackets Backstage`)
+      continue;
+
     if (canAdventure(loc) && myMainstat() > loc.recommendedStat) {
       return {
         location: loc,
@@ -141,7 +145,8 @@ const FallbotTasks: FallbotTaskInfo[] = [
   {
     name: "Azazel bus passes",
     location: $location`Infernal Rackets Backstage`,
-    todo: () => getProperty("questM10Azazel") !== "finished" && 
+    todo: () => Config.TaskAzazel &&
+                getProperty("questM10Azazel") !== "finished" && 
                 itemAmount($item`bus pass`) < 5,
   },
   {

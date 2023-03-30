@@ -1,5 +1,6 @@
 import { drink, getProperty, inebrietyLimit, Item, itemAmount, toInt, visitUrl } from "kolmafia";
 import { $item, $location } from "libram";
+import { Config } from "../../Config";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Modifier } from "../../lib/Modifier";
 import { Task } from "../Task";
@@ -9,7 +10,7 @@ export const AzazelTask: Task = {
   subtasks: [
     {
       name: "Talk to Pandemonium people",
-      available: () => getProperty("questL06Friar") === "finished" && getProperty(AzazelQuestProperty) === "unstarted",
+      available: () => Config.TaskAzazel && getProperty("questL06Friar") === "finished" && getProperty(AzazelQuestProperty) === "unstarted",
       progress: () => startAzazel(),
       completed: () => getProperty(AzazelQuestProperty) !== "unstarted",
       mainstat: $location`The Laugh Floor`.recommendedStat,

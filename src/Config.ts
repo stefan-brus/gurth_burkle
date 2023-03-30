@@ -35,8 +35,14 @@ export const Config = {
   // == TASKS == //
 
   /**
-   * Whether or not to get a meat maid
+   * Whether or not to get a meat maid.
    */
 
   TaskMeatMaid: false,
+
+  /**
+   * Whether or not to do Azazel's quest.
+   */
+
+  TaskAzazel: false,
 };
