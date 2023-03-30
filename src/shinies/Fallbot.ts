@@ -79,7 +79,6 @@ const LocationsToUnlock: Location[] = [
   $location`The Goatlet`,
   $location`The Smut Orc Logging Camp`,
   $location`Twin Peak`,
-  $location`The Beanbat Chamber`,
   $location`The Hidden Temple`,
   $location`The Haunted Library`,
   $location`Whitey's Grove`,
@@ -175,15 +174,6 @@ const FallbotTasks: FallbotTaskInfo[] = [
                 AutumnAton.turnsForQuest() === 11 &&
                 parseInt(getProperty("twinPeakProgress")) < 15 &&
                 itemAmount($item`rusty hedge trimmers`) < 3,
-  },
-  {
-    name: "Enchanted bean",
-    location: $location`The Beanbat Chamber`,
-    todo: () => (
-                  getProperty("questL10Garbage") === "unstarted" || 
-                  getProperty("questL10Garbage") === "started"
-                ) &&
-                itemAmount($item`enchanted bean`) < 1,
   },
   {
     name: "Stone wool",
