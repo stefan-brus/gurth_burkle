@@ -25,7 +25,7 @@ export function fallbotRoutine() {
     return;
   }
 
-  if (AutumnAton.turnsForQuest() > estimateAdventuresRemaining() - Constants.ReservedAdventures) {
+  if (AutumnAton.turnsForQuest() > 55) {
     return;
   }
 
