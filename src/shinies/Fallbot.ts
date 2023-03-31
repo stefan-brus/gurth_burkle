@@ -90,6 +90,9 @@ function hasUnlockableLocation(): boolean {
   Fallbot.refresh();
 
   for (const loc of Fallbot.locationsLeftToUnlock()) {
+    if (!Config.TaskAzazel && loc === $location`Infernal Rackets Backstage`)
+      continue;
+      
     if (canAdventure(loc) && myMainstat() > loc.recommendedStat) {
       return true;
     }
