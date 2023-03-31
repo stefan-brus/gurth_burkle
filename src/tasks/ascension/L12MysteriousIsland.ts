@@ -25,7 +25,7 @@ export const L12Part1Task: Task = {
       name: "Get Frat Boy Ensemble",
       available: () => getProperty(L12QuestProperty) === "started" && islandUnlocked(),
       progress: () => getFratBoyEnsemble(),
-      completed: () => haveOutfit("Frat Boy Ensemble"),
+      completed: () => haveOutfit("Frat Boy Ensemble") || haveOutfit("Frat Warrior Fatigues"),
     },
     {
       name: "Get Frat Warrior Fatigues",
