@@ -34,7 +34,7 @@ export const L11BlackForestTask: Task = {
       name: "Get can of black paint",
       available: () => blackMarketFound() && myMeat() >= 1000,
       progress: () => { buy(1, $item`can of black paint`); },
-      completed: () => itemAmount($item`can of black paint`) > 0 || !gnasirWants($item`can of black paint`) || getProperty("questL11Desert") === "finished",
+      completed: () => itemAmount($item`can of black paint`) > 0 || !gnasirWants($item`can of black paint`),
     },
     {
       name: "Get MacGuffin diary",

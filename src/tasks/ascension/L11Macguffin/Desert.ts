@@ -37,13 +37,13 @@ export const L11DesertTask: Task = {
                        itemAmount($item`stone rose`) > 0 ||
                        itemAmount($item`worm-riding manual page`) >= 15),
       progress: () => doGnasir(),
-      completed: () => gnasirSatisfied() || getProperty(L11DesertProperty) === "finished",
+      completed: () => gnasirSatisfied(),
     },
     {
       name: "Get stone rose",
       available: () => parseInt(getProperty(Properties.Ascension.DesertAdventuresDone)) >= 10 && gnasirWants($item`stone rose`),
       progress: () => getStoneRose(),
-      completed: () => itemAmount($item`stone rose`) > 0 || getProperty(L11DesertProperty) === "finished",
+      completed: () => itemAmount($item`stone rose`) > 0,
     },
     {
       name: "Explore desert",
