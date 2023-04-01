@@ -24,6 +24,11 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
 
   const bowlingBallResult = checkUseCosmicBowlingBall(foe);
   if (bowlingBallResult !== undefined) {
+    const isCurveballBanish = bowlingBallResult.includes("opponent is so impressed");
+
+    if (isCurveballBanish)
+      return;
+
     lastResult = bowlingBallResult;
   }
 
