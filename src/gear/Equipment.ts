@@ -382,6 +382,10 @@ function selectShinyOffhand(info: AdventureInfo, reservedSlots: Slot[]) {
   if (offhandItem === $item`none`)
     throw new Error("Error choosing shiny offhand item")
 
+  if (equippedAmount(offhandItem) < 1) {
+    equip($slot`off-hand`, offhandItem);
+  }
+
   if (offhandItem === $item`unbreakable umbrella`) {
     selectUmbrellaMode(info);
   }
