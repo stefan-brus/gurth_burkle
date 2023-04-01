@@ -17,7 +17,7 @@ export function selectUmbrellaMode(info: AdventureInfo) {
 
 export function adjustUmbrella(mode: UmbrellaMode) {
   const cliArgStr = modeToCliStr(mode);
-  if (getProperty(UmbrellaProperty) !== cliArgStr) {
+  if (!getProperty(UmbrellaProperty).includes(cliArgStr)) {
     if (Config.PromptUmbrella && !userConfirm(`Change umbrella mode to ${cliArgStr}?`))
       throw new Error("User abort on umbrella mode change");
 
