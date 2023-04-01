@@ -27,6 +27,12 @@ export const Config = {
   PromptParka: false,
 
   /**
+   * Pause and prompt the user for umbrella adjustments.
+   */
+
+  PromptUmbrella: true,
+
+  /**
    * Pause and prompt the user for potions.
    */
 

@@ -8,6 +8,7 @@ import { Modifier, myNumericModifier, myNumericModifierBuff, myNumericModifierEf
 import { ModifierPotions, PotionEffects } from "./Potion";
 import { ModifierSpecial, tryGetEffects } from "./SpecialEffects";
 import { ModifierSpleen, SpleenEffects } from "./Spleen";
+import { adjustUmbrella, UmbrellaModeModifiers } from "../shinies/Umbrella";
 
 export function myMaximize(mod: Modifier, simulate: boolean = false, verbose: boolean = false): number {
   let result = myNumericModifier(mod);
@@ -46,6 +47,13 @@ export function myMaximize(mod: Modifier, simulate: boolean = false, verbose: bo
   if (verbose) {
     print(`Parka would add ${parkaResult} ${toMafiaModifier(mod)}`);
   }
+  result += parkaResult;
+
+  const umbrellaResult = maximizeUmbrella(mod, simulate, verbose);
+  if (verbose) {
+    print(`Umbrella would add ${umbrellaResult} ${toMafiaModifier(mod)}`);
+  }
+  result += umbrellaResult;
 
   return result;
 }
@@ -306,7 +314,7 @@ function maximizeParka(mod: Modifier, simulate: boolean, verbose: boolean): numb
       result = ParkaModifierAmounts.get(mod)!;
 
       if (verbose) {
-        print(`${mode.toString()} Mode would give ${result} ${toMafiaModifier(mod)}`);
+        print(`${mode.toString()} Parka Mode would give ${result} ${toMafiaModifier(mod)}`);
       }
 
       if (!simulate) {
@@ -314,6 +322,38 @@ function maximizeParka(mod: Modifier, simulate: boolean, verbose: boolean): numb
       }
 
       break;
+    }
+  }
+
+  return result;
+}
+
+function maximizeUmbrella(mod: Modifier, simulate: boolean, verbose: boolean): number {
+  let result = 0;
+
+  if (equippedAmount($item`unbreakable umbrella`) < 1) {
+    return result;
+  }
+
+  const UmbrellaModifierAmounts: Map<Modifier, number> = new Map([
+    [Modifier.MonsterLevel, myNumericModifier(Modifier.MonsterLevel) * 1.25],
+    [Modifier.DamageReduction, 25],
+    [Modifier.ItemDrop, 25],
+    [Modifier.WeaponDamage, 25],
+    [Modifier.SpellDamage, 25],
+    [Modifier.NonCombat, 10],
+  ]);
+
+  if (UmbrellaModeModifiers.has(mod)) {
+    const mode = UmbrellaModeModifiers.get(mod)!;
+    result = UmbrellaModifierAmounts.get(mod)!;
+
+    if (verbose) {
+      print(`${mode.toString()} Umbrella Mode would give ${result} ${toMafiaModifier(mod)}`);
+    }
+
+    if (!simulate) {
+      adjustUmbrella(mode);
     }
   }
 

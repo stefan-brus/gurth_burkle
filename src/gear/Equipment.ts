@@ -12,6 +12,7 @@ import { selectSaucerorGear } from "./GearSauceror";
 import { selectSealClubberGear } from "./GearSealClubber";
 import { selectTurtleTamerGear } from "./GearTurtleTamer";
 import { findEquippedAccSlot } from "./Utils";
+import { adjustUmbrella, selectUmbrellaMode, UmbrellaModeModifiers } from "../shinies/Umbrella";
 
 export function selectEquipment(info: AdventureInfo) {
   let reservedSlots = selectAdventureEquipment(info);
@@ -287,12 +288,9 @@ function selectModifierEquipment(info: AdventureInfo, reservedSlots: Slot[]): Sl
 }
 
 function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[] {
-  // CMG
-  if (!cmgDone() && !reservedSlots.includes($slot`off-hand`)) {
-    if (equippedAmount($item`cursed magnifying glass`) < 1) {
-      equip($slot`off-hand`, $item`cursed magnifying glass`);
-    }
-    
+  // Off-hand
+  if (!reservedSlots.includes($slot`off-hand`)) {
+    selectShinyOffhand(info, reservedSlots);
     reservedSlots.push($slot`off-hand`);
   }
 
@@ -349,6 +347,44 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
   }
 
   return reservedSlots;
+}
+
+type ShinyOffhandPriorityInfo = {
+  item: Item,
+  shouldUse: (info: AdventureInfo) => boolean,
+};
+
+const ShinyOffhandPriorities: ShinyOffhandPriorityInfo[] = [
+  {
+    item: $item`unbreakable umbrella`,
+    shouldUse: (info: AdventureInfo) => info.modifiers.some(mod => UmbrellaModeModifiers.has(mod)),
+  },
+  {
+    item: $item`cursed magnifying glass`,
+    shouldUse: () => !cmgDone(),
+  },
+  {
+    item: $item`unbreakable umbrella`,
+    shouldUse: () => true,
+  },
+];
+
+function selectShinyOffhand(info: AdventureInfo, reservedSlots: Slot[]) {
+  let offhandItem = $item`none`;
+
+  for (const prio of ShinyOffhandPriorities) {
+    if (prio.shouldUse(info)) {
+      offhandItem = prio.item;
+      break;
+    }
+  }
+
+  if (offhandItem === $item`none`)
+    throw new Error("Error choosing shiny offhand item")
+
+  if (offhandItem === $item`unbreakable umbrella`) {
+    selectUmbrellaMode(info);
+  }
 }
 
 function tryEquipGear(items: Item[], reservedSlots: Slot[]): Slot[] {
