@@ -30,7 +30,7 @@ export const Config = {
    * Pause and prompt the user for umbrella adjustments.
    */
 
-  PromptUmbrella: true,
+  PromptUmbrella: false,
 
   /**
    * Pause and prompt the user for potions.

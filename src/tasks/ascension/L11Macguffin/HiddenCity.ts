@@ -54,12 +54,14 @@ export const L11HiddenCityTask: Task = {
       available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
       progress: () => clearVines($location`An Overgrown Shrine (Northwest)`),
       completed: () => canAdventure($location`The Hidden Apartment Building`),
+      spikesTask: true,
     },
     {
       name: "Unlock The Hidden Office Building",
       available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
       progress: () => clearVines($location`An Overgrown Shrine (Northeast)`),
       completed: () => canAdventure($location`The Hidden Office Building`),
+      spikesTask: true,
     },
     {
       name: "Unlock The Hidden Hospital",
