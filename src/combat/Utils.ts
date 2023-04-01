@@ -1,4 +1,4 @@
-import { getProperty, haveEffect, haveSkill, Item, itemAmount, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
+import { getProperty, haveEffect, haveSkill, Item, itemAmount, Location, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
 import { $class, $effect, $familiar, $item, $location, $monster, $skill, GreyGoose } from "libram";
 import { Properties } from "../Properties";
 import { gooseWeight, GreyGooseLocations } from "../shinies/GreyGoose";
@@ -22,6 +22,11 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
     lastResult = dronesResult;
   }
 
+  const bowlingBallResult = checkUseCosmicBowlingBall(foe);
+  if (bowlingBallResult !== undefined) {
+    lastResult = bowlingBallResult;
+  }
+
   const freeKillResult = checkDoFreeKill(foe);
   if (freeKillResult !== undefined) {
     lastResult = freeKillResult;
@@ -42,6 +47,24 @@ export function shouldThrowFlyers(): boolean {
   const FlyeredMLProperty = "flyeredML";
   return itemAmount(Item.get("rock band flyers")) > 0 && parseInt(getProperty(FlyeredMLProperty)) < 10000;
 }
+
+export const BanishLocations: Location[] = [
+  $location`The Haunted Library`,
+  $location`The Haunted Bedroom`,
+  $location`The Defiled Niche`,
+  $location`The Defiled Nook`,
+  $location`Twin Peak`,
+  $location`The Hidden Temple`,
+  $location`The Hidden Hospital`,
+  $location`The Hidden Bowling Alley`,
+  $location`The Haunted Wine Cellar`,
+  $location`The Haunted Laundry Room`,
+  $location`The Haunted Boiler Room`,
+  $location`Inside the Palindome`,
+  $location`A Mob of Zeppelin Protesters`,
+  $location`The Red Zeppelin`,
+  $location`The Middle Chamber`,
+];
 
 export const ImportantFoes: Monster[] = [
   // killing jar and desk
@@ -180,6 +203,17 @@ function checkDoDrones(foe: Monster): string | void {
     gooseWeight() >= 6
   ) {
     return useSkill($skill`Emit Matter Duplicating Drones`);
+  }
+}
+
+function checkUseCosmicBowlingBall(foe: Monster): string | void {
+  if (itemAmount($item`cosmic bowling ball`) > 0) {
+    if (myLocation() === $location`The Hidden Bowling Alley`) {
+      return throwItem($item`cosmic bowling ball`);
+    }
+    else if (BanishLocations.includes(myLocation()) && !ImportantFoes.includes(foe) && !foe.boss) {
+      return useSkill($skill`Bowl a Curveball`);
+    }
   }
 }
 
