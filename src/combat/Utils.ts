@@ -316,6 +316,10 @@ function checkMonsterSpecificActions(foe: Monster): string | void {
   // Wall of Bones
   if (foe === $monster`wall of bones` && itemAmount($item`electric boning knife`) > 0)
     return throwItem($item`electric boning knife`);
+
+  // Tomb rat (summon rat king)
+  if (foe === $monster`tomb rat` && itemAmount($item`tangle of rat tails`) > 0)
+    return throwItem($item`tangle of rat tails`);
 }
 
 function myLevel0Skill(): Skill {
