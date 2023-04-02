@@ -176,6 +176,13 @@ function checkDoSpikes(foe: Monster): string | void {
     return;
   }
 
+  // Special case for The Hidden Apartment: Use spikes only if lawyers have not been relocated, or if we are thrice-cursed
+  const lawyersDone = parseInt(getProperty("relocatePygmyLawyer")) === parseInt(getProperty("knownAscensions"));
+  const thriceCursed = haveEffect($effect`Thrice-Cursed`) > 0;
+  if (myLocation() === $location`The Hidden Apartment Building` && lawyersDone && !thriceCursed) {
+    return;
+  }
+
   return useSkill($skill`Launch spikolodon spikes`);
 }
 
