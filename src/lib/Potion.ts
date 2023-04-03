@@ -48,7 +48,7 @@ export const ModifierPotions: Map<Modifier, Item[]> = new Map([
     $item`savings bond`,
   ]],
   [Modifier.Initiative, [
-    $item`banana candle`,
+    $item`ear candle`,
     $item`giraffe-necked turtle`,
     $item`ant agonist`,
     $item`Angry Farmer candy`,
@@ -107,7 +107,7 @@ export const PotionEffects = new Map<Item, Effect>([
   [$item`savings bond`, $effect`Earning Interest`],
 
   // init
-  [$item`banana candle`, $effect`Everything Is Bananas`],
+  [$item`ear candle`, $effect`Clear Ears, Can't Lose`],
   [$item`giraffe-necked turtle`, $effect`Adorable Lookout`],
   [$item`ant agonist`, $effect`All Fired Up`],
   [$item`Angry Farmer candy`, $effect`Sugar Rush`],
