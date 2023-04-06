@@ -1,25 +1,7 @@
 # gurth_burkle
 
-Gurth Burkle's scripts
+A suite of TypeScript and libram-based KoLmafia scripts tailored for the character Gurth Burkle (#3586778).
 
-# Development
+I would strongly recommend against running any of these scripts on your account. Any character that isn't Gurth Burkle will produce highly unpredictable results.
 
-First turn your TypeScript files into something KoLmafia can understand by running
-
-```bash
- run build
-```
-
-Then you can automatically create symlinks to your built files by running
-
-```bash
- run install-mafia
-```
-
-When you're developing you can have your files automatically rebuild by keeping
-
-```bash
- run dev
-```
-
-running in the background. If you've already built symlinks, your up-to-date script can be run instantly by entering `gurth-burkle` into the KoLmafia CLI.
+The purpose of these scripts is not to be a new autoscend, but simply for my own personal fun. I enjoy the process of gradually optimizing and refactoring them.
