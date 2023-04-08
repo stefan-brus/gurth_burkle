@@ -2,6 +2,7 @@ import { getProperty, visitUrl } from "kolmafia";
 import { $location } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Task } from "../Task";
+import { Modifier } from "../../lib/Modifier";
 
 export const L03Task: Task = {
   name: "L03: Typical Tavern",
@@ -36,6 +37,6 @@ function bartEnder() {
 function doL03TypicalTavern(): AdventureInfo {
   return {
     location: $location`The Typical Tavern Cellar`,
-    modifiers: [],
+    modifiers: [Modifier.MonsterLevel],
   };
 }
