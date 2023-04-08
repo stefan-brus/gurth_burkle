@@ -13,14 +13,14 @@ export const L11BlackForestTask: Task = {
   subtasks: [
     {
       name: "Unlock Black Market",
-      available: () => !blackMarketFound(),
+      available: () => getProperty(L11BlackForestProperty) !== "unstarted" && !blackMarketFound(),
       progress: () => doBlackForest(),
       completed: () => blackMarketFound(),
       mainstat: $location`The Black Forest`.recommendedStat,
     },
     {
       name: "Get beehive",
-      available: () => itemAmount($item`beehive`) < 1,
+      available: () => getProperty(L11BlackForestProperty) !== "unstarted" && itemAmount($item`beehive`) < 1,
       progress: () => doBlackForest(),
       completed: () => itemAmount($item`beehive`) > 0 || getProperty(L11BlackForestProperty) === "finished",
     },
