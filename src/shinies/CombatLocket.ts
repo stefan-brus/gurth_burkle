@@ -26,6 +26,12 @@ export const LocketTasks: Task = {
                       itemAmount($item`stone wool`) < 1,
       progress: () => locketRay($monster`Baa'baa'bu'ran`),
       completed: () => itemAmount($item`stone wool`) > 0,
+    },
+    {
+      name: "Locket + Yellow Ray a janitor",
+      available: () => CombatLoversLocket.reminiscesLeft() > 0 && haveEffect($effect`Everything Looks Yellow`) < 1 && availableAmount($item`Jurassic Parka`) > 0,
+      progress: () => locketRay($monster`pygmy janitor`),
+      completed: () => itemAmount($item`book of matches`) > 0,
       mainstat: 50,
     },
   ],
