@@ -94,7 +94,6 @@ export const ImportantFoes: Monster[] = [
 
   // stone wool
   $monster`baa-relief sheep`,
-  $monster`Baa'baa'bu'ran`,
 
   // doctor gear
   $monster`pygmy witch surgeon`,
