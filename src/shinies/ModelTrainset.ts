@@ -16,9 +16,20 @@ export const ConfigureTrainsetTask: Task = {
 };
 
 const TrainsetConfigOre: [Station, Station, Station, Station, Station, Station, Station, Station] = [
-  Station.COAL_HOPPER,
-  Station.GAIN_MEAT,
   Station.ORE_HOPPER,
+  Station.GAIN_MEAT,
+  Station.COAL_HOPPER,
+  Station.LOGGING_MILL,
+  Station.TOWER_FIZZY,
+  Station.BRAWN_SILO,
+  Station.BRAIN_SILO,
+  Station.GROIN_SILO,
+];
+
+const TrainsetConfigBridge: [Station, Station, Station, Station, Station, Station, Station, Station] = [
+  Station.WATER_BRIDGE,
+  Station.GAIN_MEAT,
+  Station.COAL_HOPPER,
   Station.LOGGING_MILL,
   Station.TOWER_FIZZY,
   Station.BRAWN_SILO,
@@ -39,6 +50,7 @@ const TrainsetConfigML: [Station, Station, Station, Station, Station, Station, S
 
 const TrapperQuestProperty = "questL08Trapper";
 const TrapperOreProperty = "trapperOre";
+const BridgeProgressProperty = "chasmBridgeProgress";
 
 function suggestedConfig(): [Station, Station, Station, Station, Station, Station, Station, Station] {
   const trapperQuest = getProperty(TrapperQuestProperty);
@@ -61,6 +73,10 @@ function suggestedConfig(): [Station, Station, Station, Station, Station, Statio
     ) {
       return TrainsetConfigOre;
     }
+  }
+
+  if (parseInt(getProperty(BridgeProgressProperty)) < 30) {
+    return TrainsetConfigBridge;
   }
 
   return TrainsetConfigML;
