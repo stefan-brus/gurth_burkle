@@ -11,11 +11,6 @@ export function selectParkaMode(info: AdventureInfo) {
     return;
   }
 
-  if (haveEffect($effect`Everything Looks Yellow`) < 1) {
-    adjustParka(ParkaMode.Dilophosaur);
-    return;
-  }
-
   for (const [parkaMods, mode] of ParkaModeModifiers.entries()) {
     if (info.modifiers.some(mod => parkaMods.includes(mod))) {
       adjustParka(mode);
