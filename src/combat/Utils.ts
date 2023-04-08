@@ -128,6 +128,12 @@ export const ImportantFoes: Monster[] = [
   $monster`tomb rat`,
 ];
 
+const YellowRayFoes: Monster[] = [
+  $monster`War Frat 151st Infantryman`,
+  $monster`Baa'baa'bu'ran`,
+  $monster`pygmy janitor`,
+];
+
 const CMGMonsters: Monster[] = [
   $monster`void guy`,
   $monster`void slab`,
@@ -190,7 +196,7 @@ function checkDoFreeKill(foe: Monster): string | void {
     return;
   }
 
-  if (currentParkaMode() === ParkaMode.Dilophosaur && haveEffect($effect`Everything Looks Yellow`) < 1) {
+  if (currentParkaMode() === ParkaMode.Dilophosaur && haveEffect($effect`Everything Looks Yellow`) < 1 && YellowRayFoes.includes(foe)) {
     return useSkill($skill`Spit jurassic acid`);
   }
 
