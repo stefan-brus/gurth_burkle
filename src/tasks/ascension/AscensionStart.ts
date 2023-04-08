@@ -125,7 +125,7 @@ function shiniesDeployed(): boolean {
 }
 
 function deployShinies() {
-  MyShinies.forEach(shiny => use(1, shiny));
+  MyShinies.forEach(shiny => { if (itemAmount(shiny) > 0) use(1, shiny); });
 
   // Visit workshed to refresh kolmafia trainset properties
   visitUrl("campground.php?action=workshed");
