@@ -36,10 +36,16 @@ export const L11PyramidTask: Task = {
     },
     {
       name: "Get crumbling wooden wheels",
-      available: () => getProperty(L11PyramidProperty) === "step3",
+      available: () => getProperty(L11PyramidProperty) === "step3" && false, // Disabled for now
       progress: () => getWoodenWheels(),
       completed: () => getProperty(Properties.Ascension.PyramidWheelsGathered) === "true",
       spikesTask: true,
+    },
+    {
+      name: "Get tomb ratchets",
+      available: () => getProperty(L11PyramidProperty) === "step3",
+      progress: () => getTombRatchets(),
+      completed: () => getProperty(Properties.Ascension.PyramidWheelsGathered) === "true",
     },
     {
       name: "Unlock Ed's tomb",
@@ -98,6 +104,18 @@ function getWoodenWheels(): AdventureInfo | void {
   return {
     location: $location`The Upper Chamber`,
     modifiers: [Modifier.NonCombat],
+  };
+}
+
+function getTombRatchets(): AdventureInfo | void {
+  if (itemAmount($item`crumbling wooden wheel`) + itemAmount($item`tomb ratchet`) >= 10) {
+    setProperty(Properties.Ascension.PyramidWheelsGathered, "true");
+    return;
+  }
+
+  return {
+    location: $location`The Middle Chamber`,
+    modifiers: [Modifier.ItemDrop],
   };
 }
 
