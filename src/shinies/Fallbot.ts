@@ -79,7 +79,6 @@ const LocationsToUnlock: Location[] = [
   $location`The Goatlet`,
   $location`The Smut Orc Logging Camp`,
   $location`Twin Peak`,
-  $location`The Hidden Temple`,
   $location`The Haunted Library`,
   $location`Whitey's Grove`,
   $location`The Hidden Bowling Alley`,
@@ -177,16 +176,6 @@ const FallbotTasks: FallbotTaskInfo[] = [
                 AutumnAton.turnsForQuest() === 11 &&
                 parseInt(getProperty("twinPeakProgress")) < 15 &&
                 itemAmount($item`rusty hedge trimmers`) < 3,
-  },
-  {
-    name: "Stone wool",
-    location: $location`The Hidden Temple`,
-    todo: () => (
-                  getProperty("questL11Worship") === "unstarted" ||
-                  getProperty("questL11Worship") === "started" ||
-                  getProperty("questL11Worship") === "step1"
-                ) &&
-                itemAmount($item`stone wool`) < 2,
   },
   {
     name: "Lion oil & bird rib",
