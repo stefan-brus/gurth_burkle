@@ -81,7 +81,6 @@ const LocationsToUnlock: Location[] = [
   $location`Twin Peak`,
   $location`The Haunted Library`,
   $location`Whitey's Grove`,
-  $location`The Hidden Bowling Alley`,
   $location`The Hole in the Sky`,
 ];
 
@@ -190,14 +189,6 @@ const FallbotTasks: FallbotTaskInfo[] = [
                   itemAmount($item`lion oil`) < 1 ||
                   itemAmount($item`bird rib`) < 1
                 ),
-  },
-  {
-    name: "Bowling balls",
-    location: $location`The Hidden Bowling Alley`,
-    todo: () => getProperty("questL11Spare") === "started" &&
-                AutumnAton.turnsForQuest() === 11 &&
-                parseInt(getProperty("hiddenBowlingAlleyProgress")) < 6 &&
-                itemAmount($item`bowling ball`) < (6 - parseInt(getProperty("hiddenBowlingAlleyProgress"))),
   },
   {
     name: "Star key parts",
