@@ -8,7 +8,6 @@ export const GreyGooseLocations: Location[] = [
   $location`The Defiled Nook`, // evil eye
   $location`The Goatlet`, // goat cheese
   $location`Oil Peak`, // bubblin' crude
-  $location`A-Boo Peak`, // A-Boo clue
   $location`Twin Peak`, // rusty hedge trimmer
   $location`The Hole in the Sky`, // star & line
   $location`The Hidden Bowling Alley`, // bowling ball
