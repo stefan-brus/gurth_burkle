@@ -21,6 +21,7 @@ export const L11PyramidTask: Task = {
       available: () => getProperty(L11PyramidProperty) === "started" && canAdventure($location`The Upper Chamber`),
       progress: () => unlockMiddleChamber(),
       completed: () => getProperty(L11PyramidProperty) !== "started",
+      spikesTask: true,
     },
     {
       name: "Unlock The Lower Chambers",
