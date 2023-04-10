@@ -7,9 +7,9 @@ export const LocketTasks: Task = {
   name: "Locket Tasks",
   subtasks: [
     {
-      name: "Locket Goblin Elite Guard Captain",
-      available: () => CombatLoversLocket.reminiscesLeft() > 0,
-      progress: () => locket($monster`Knob Goblin Elite Guard Captain`),
+      name: "Locket + Yellow Ray Goblin Elite Guard Captain",
+      available: () => CombatLoversLocket.reminiscesLeft() > 0 && haveEffect($effect`Everything Looks Yellow`) < 1 && availableAmount($item`Jurassic Parka`) > 0,
+      progress: () => locketRay($monster`Knob Goblin Elite Guard Captain`),
       completed: () => haveOutfit("Knob Goblin Elite Guard Uniform"),
     },
     {
