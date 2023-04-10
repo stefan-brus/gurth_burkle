@@ -17,10 +17,10 @@ export function useUpWishes(count: number) {
   while (count > 0) {
     let wishUsed = false;
     for (const wish of WishList) {
-      if (Config.PromptPaw && !userConfirm("Use monkey's paw to wish for " + wish.item.name + "?"))
-        throw new Error("User aborted on monkey's paw wish");
-
       if (wish.canWish() && wish.shouldWish()) {
+        if (Config.PromptPaw && !userConfirm("Use monkey's paw to wish for " + wish.item.name + "?"))
+          throw new Error("User aborted on monkey's paw wish");
+          
         useWish(wish.item.name);
         wishUsed = true;
         break;
