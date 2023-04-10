@@ -38,6 +38,12 @@ export const Config = {
 
   PromptPotions: false,
 
+  /**
+   * Pause and prompt the user for monkey's paw wishes.
+   */
+
+  PromptPaw: true,
+
   // == TASKS == //
 
   /**

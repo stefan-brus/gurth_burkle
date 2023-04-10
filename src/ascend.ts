@@ -19,6 +19,7 @@ import { selectSpleen } from "./lib/Spleen";
 import { Properties } from "./Properties";
 import { selectSongs } from "./lib/Songs";
 import { setJuneCleaverChoices } from "./shinies/JuneCleaver";
+import { monkeyPawRemainingWishes, useUpWishes } from "./shinies/MonkeyPaw";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -93,6 +94,10 @@ export function ascend() {
   }
 
   print("Done for the day");
+  if (getProperty("kingLiberated") !== "true") {
+    print("Still in run, doing end-of-day routine");
+    useUpWishes(monkeyPawRemainingWishes());
+  }
 }
 
 function isDayOver(): boolean {

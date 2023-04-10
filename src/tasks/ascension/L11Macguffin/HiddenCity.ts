@@ -5,6 +5,10 @@ import { AdventureInfo } from "../../../lib/AdventureInfo";
 import { Modifier } from "../../../lib/Modifier";
 import { Task } from "../../Task";
 
+export function tavernUnlocked(): boolean {
+  return parseInt(getProperty(TavernProperty)) === parseInt(getProperty("knownAscensions"));
+}
+
 export const L11HiddenTempleTask: Task = {
   name: "L11: Hidden Temple",
   subtasks: [
@@ -160,10 +164,6 @@ function unlockHiddenCity() {
   visitUrl("choice.php?");
   cliExecute("dvorak");
   visitUrl("choice.php?whichchoice=125&option=3&pwd=" + myHash());
-}
-
-function tavernUnlocked(): boolean {
-  return parseInt(getProperty(TavernProperty)) === parseInt(getProperty("knownAscensions"));
 }
 
 function doHiddenPark(): AdventureInfo | void {
