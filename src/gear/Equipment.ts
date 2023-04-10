@@ -324,18 +324,10 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
   }
 
   // Combat Lover's Locket
-  if (![$slot`acc1`, $slot`acc2`, $slot`acc3`].every(slot => reservedSlots.includes(slot))) {
-    let accSlot = $slot`none`;
-    if (equippedAmount($item`combat lover's locket`) < 1) {
-      accSlot = !reservedSlots.includes($slot`acc1`) ? $slot`acc1` : !reservedSlots.includes($slot`acc2`) ? $slot`acc2` : $slot`acc3`;
-      equip(accSlot, $item`combat lover's locket`);
-    }
-    else {
-      accSlot = findEquippedAccSlot($item`combat lover's locket`);
-    }
+  reservedSlots = tryEquipShinyAcc($item`combat lover's locket`, reservedSlots);
 
-    reservedSlots.push(accSlot);
-  }
+  // Cursed Monkey's Paw
+  reservedSlots = tryEquipShinyAcc($item`cursed monkey's paw`, reservedSlots);
 
   // Stillsuit
   if (!reservedSlots.includes($slot`familiar`)) {
@@ -389,6 +381,23 @@ function selectShinyOffhand(info: AdventureInfo, reservedSlots: Slot[]) {
   if (offhandItem === $item`unbreakable umbrella`) {
     selectUmbrellaMode(info);
   }
+}
+
+function tryEquipShinyAcc(acc: Item, reservedSlots: Slot[]): Slot[] {
+  if (![$slot`acc1`, $slot`acc2`, $slot`acc3`].every(slot => reservedSlots.includes(slot))) {
+    let accSlot = $slot`none`;
+    if (equippedAmount(acc) < 1) {
+      accSlot = !reservedSlots.includes($slot`acc1`) ? $slot`acc1` : !reservedSlots.includes($slot`acc2`) ? $slot`acc2` : $slot`acc3`;
+      equip(accSlot, acc);
+    }
+    else {
+      accSlot = findEquippedAccSlot(acc);
+    }
+
+    reservedSlots.push(accSlot);
+  }
+
+  return reservedSlots;
 }
 
 function tryEquipGear(items: Item[], reservedSlots: Slot[]): Slot[] {

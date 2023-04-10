@@ -1,8 +1,9 @@
-import { getProperty, haveEffect, haveSkill, Item, itemAmount, Location, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
+import { equippedAmount, getProperty, haveEffect, haveSkill, Item, itemAmount, Location, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
 import { $class, $effect, $familiar, $item, $location, $monster, $skill, GreyGoose } from "libram";
 import { Properties } from "../Properties";
 import { gooseWeight, GreyGooseLocations } from "../shinies/GreyGoose";
 import { currentParkaMode, ParkaMode, spikesAvailable } from "../shinies/Parka";
+import { monkeyPawRemainingWishes } from "../shinies/MonkeyPaw";
 
 type RoundCallback<State> = (foe: Monster, state: State) => [string, State];
 
@@ -17,11 +18,6 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
     lastResult = spikolodonResult;
   }
 
-  const dronesResult = checkDoDrones(foe);
-  if (dronesResult !== undefined) {
-    lastResult = dronesResult;
-  }
-
   const bowlingBallResult = checkUseCosmicBowlingBall(foe);
   if (bowlingBallResult !== undefined) {
     const isCurveballBanish = bowlingBallResult.includes("opponent is so impressed");
@@ -30,6 +26,16 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
       return;
 
     lastResult = bowlingBallResult;
+  }
+
+  const dronesResult = checkDoDrones(foe);
+  if (dronesResult !== undefined) {
+    lastResult = dronesResult;
+  }
+
+  const monkeyBanishResult = checkDoMonkeySlap(foe);
+  if (monkeyBanishResult !== undefined) {
+    lastResult = monkeyBanishResult;
   }
 
   const freeKillResult = checkDoFreeKill(foe);
@@ -189,6 +195,20 @@ function checkDoSpikes(foe: Monster): string | void {
   }
 
   return useSkill($skill`Launch spikolodon spikes`);
+}
+
+function checkDoMonkeySlap(foe: Monster): string | void {
+  if (equippedAmount($item`cursed monkey's paw`) < 1 || monkeyPawRemainingWishes() < 5) {
+    return;
+  }
+
+  if (foe.boss || ImportantFoes.includes(foe) || isFreeCombat(foe)) {
+    return;
+  }
+
+  if (BanishLocations.includes(myLocation()) && !ImportantFoes.includes(foe)) {
+    return useSkill($skill`Monkey Slap`);
+  }
 }
 
 function checkDoFreeKill(foe: Monster): string | void {
