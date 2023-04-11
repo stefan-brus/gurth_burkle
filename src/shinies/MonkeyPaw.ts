@@ -183,7 +183,7 @@ const WishList: ShouldWishInfo[] = [
   },
   {
     item: $item`stunt nuts`,
-    canWish: () => canAdventure($location`The Palindome`),
+    canWish: () => canAdventure($location`Inside The Palindome`),
     shouldWish: () => itemAmount($item`stunt nuts`) < 1 && itemAmount($item`wet stunt nut stew`) < 1 && !["step4", "step5", "finished"].some(val => val === getProperty("questL11Palindome")),
   },
   {
