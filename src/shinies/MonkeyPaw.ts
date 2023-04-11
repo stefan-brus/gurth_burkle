@@ -158,7 +158,7 @@ const WishList: ShouldWishInfo[] = [
   },
   {
     item: $item`drum machine`,
-    canWish: () => canAdventure($location`The Arid, Extra-Dry Desert`),
+    canWish: () => canAdventure($location`The Oasis`),
     shouldWish: () => itemAmount($item`drum machine`) < 1 && gnasirWants($item`drum machine`),
   },
   {
