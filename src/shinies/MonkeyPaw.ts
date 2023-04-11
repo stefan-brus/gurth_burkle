@@ -197,6 +197,11 @@ const WishList: ShouldWishInfo[] = [
     shouldWish: () => itemAmount($item`lowercase N`) < 1 && availableAmount($item`Wand of Nagamar`) < 1,
   },
   {
+    item: $item`ruby W`,
+    canWish: () => canAdventure($location`Pandamonium Slums`),
+    shouldWish: () => itemAmount($item`ruby W`) < 1 && availableAmount($item`Wand of Nagamar`) < 1,
+  },
+  {
     item: $item`star chart`,
     canWish: () => canAdventure($location`The Hole in the Sky`),
     shouldWish: () => !getProperty("nsTowerDoorKeysUsed").includes("Richard's star key") && itemAmount($item`Richard's star key`) < 1 && itemAmount($item`star chart`) < 1,
