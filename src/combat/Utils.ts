@@ -138,6 +138,7 @@ const YellowRayFoes: Monster[] = [
   $monster`War Frat 151st Infantryman`,
   $monster`Baa'baa'bu'ran`,
   $monster`pygmy janitor`,
+  $monster`Knob Goblin Elite Guard Captain`,
 ];
 
 const CMGMonsters: Monster[] = [

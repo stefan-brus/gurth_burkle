@@ -10,7 +10,7 @@ export const LocketTasks: Task = {
       name: "Locket + Yellow Ray Goblin Elite Guard Captain",
       available: () => CombatLoversLocket.reminiscesLeft() > 0 && haveEffect($effect`Everything Looks Yellow`) < 1 && availableAmount($item`Jurassic Parka`) > 0,
       progress: () => locketRay($monster`Knob Goblin Elite Guard Captain`),
-      completed: () => haveOutfit("Knob Goblin Elite Guard Uniform"),
+      completed: () => availableAmount($item`Knob Goblin Elite helm`) > 0 && availableAmount($item`Knob Goblin Elite polearm`) > 0 && availableAmount($item`Knob Goblin Elite pants`) > 0,
     },
     {
       name: "Locket + Yellow Ray Baa'baa'bu'ran",
