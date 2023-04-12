@@ -32,6 +32,10 @@ export const CraftGrubbyWoolTask: Task = {
   ],
 };
 
+export function haveWantedGrubbyItems(): boolean {
+  return availableAmount($item`grubby wool hat`) > 0 && availableAmount($item`grubby wool scarf`) > 0 && availableAmount($item`grubby wool trousers`) > 0;
+}
+
 const WoolinChoice = "choiceAdventure1490";
 
 function craftGrubbyItem(choice: number) {

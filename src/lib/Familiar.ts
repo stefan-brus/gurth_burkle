@@ -6,6 +6,8 @@ import { gooseWeight, GreyGooseLocations } from "../shinies/GreyGoose";
 import { AdventureInfo } from "./AdventureInfo";
 import { stomachRemaining } from "./Organs";
 import { ascensionDaysLeft } from "./Utils";
+import { Modifier } from "./Modifier";
+import { haveWantedGrubbyItems } from "../shinies/HoboSheep";
 
 export function selectFamiliar(info: AdventureInfo) {
   const chosenFamiliar = chooseFamiliar(info);
@@ -40,29 +42,25 @@ const FamiliarPriority: PriorityInfo[] = [
   // Zone-specific
   {
     familiar: $familiar`Reassembled Blackbird`,
-    shouldUse: (info: AdventureInfo) => {
-      return info.location === $location`The Black Forest` && itemAmount($item`reassembled blackbird`) < 1;
-    }
+    shouldUse: (info: AdventureInfo) => info.location === $location`The Black Forest` && itemAmount($item`reassembled blackbird`) < 1,
   },
+
+  // Modifier
   {
-    familiar: $familiar`Grey Goose`,
-    shouldUse: (info: AdventureInfo) => info.location === $location`The Defiled Nook`,
+    familiar: $familiar`Leprechaun`,
+    shouldUse: (info: AdventureInfo) => info.modifiers.includes(Modifier.MeatDrop),
   },
 
   // Drop necessary items
   {
     familiar: $familiar`Gelatinous Cubeling`,
-    shouldUse: (_: AdventureInfo) => {
-      return itemAmount($item`eleven-foot pole`) < 1 ||
+    shouldUse: (_: AdventureInfo) => itemAmount($item`eleven-foot pole`) < 1 ||
              (itemAmount($item`ring of Detect Boring Doors`) < 1 && equippedAmount($item`ring of Detect Boring Doors`) < 1) ||
-             itemAmount($item`Pick-O-Matic lockpicks`) < 1;
-    },
+             itemAmount($item`Pick-O-Matic lockpicks`) < 1,
   },
   {
     familiar: $familiar`Cookbookbat`,
-    shouldUse: (_: AdventureInfo) => {
-      return availableCbbFoods() < stomachRemaining();
-    },
+    shouldUse: (_: AdventureInfo) => availableCbbFoods() < stomachRemaining(),
   },
 
   // Duplicate necessary items
@@ -77,8 +75,14 @@ const FamiliarPriority: PriorityInfo[] = [
     familiar: $familiar`Grey Goose`,
     shouldUse: (_: AdventureInfo) => gooseWeight() < 5 + Constants.MinGooseDrones,
   },
+  // Use hobo sheep until all grubby stuff has been crafted
   {
     familiar: $familiar`Hobo in Sheep's Clothing`,
+    shouldUse: (_: AdventureInfo) => haveWantedGrubbyItems(),
+  },
+  // Level up goose
+  {
+    familiar: $familiar`Grey Goose`,
     shouldUse: (_: AdventureInfo) => true,
   },
 ];
