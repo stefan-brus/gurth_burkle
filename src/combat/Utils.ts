@@ -35,7 +35,7 @@ export function combatLoop<State>(foe: Monster, page: string, doRound: RoundCall
 
   const monkeyBanishResult = checkDoMonkeySlap(foe);
   if (monkeyBanishResult !== undefined) {
-    lastResult = monkeyBanishResult;
+    return;
   }
 
   const freeKillResult = checkDoFreeKill(foe);
