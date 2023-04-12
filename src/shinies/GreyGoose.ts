@@ -5,7 +5,6 @@ export const GreyGooseLocations: Location[] = [
   $location`The Laugh Floor`, // imp air
   $location`Infernal Rackets Backstage`, // bus pass
   $location`Guano Junction`, // sonar-in-a-biscuit
-  $location`The Defiled Nook`, // evil eye
   $location`The Goatlet`, // goat cheese
   $location`Oil Peak`, // bubblin' crude
   $location`Twin Peak`, // rusty hedge trimmer
