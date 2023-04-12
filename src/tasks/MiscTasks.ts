@@ -74,7 +74,7 @@ export const UnlockDispensaryTask: Task = {
   subtasks: [
     {
       name: "Unlock Dispensary",
-      available: () => haveOutfit("Knob Goblin Elite Guard Uniform"),
+      available: () => haveOutfit("Knob Goblin Elite Guard Uniform") && canAdventure($location`Cobb's Knob Barracks`),
       progress: () => { return { location: $location`Cobb's Knob Barracks`, modifiers: [] }},
       completed: () => getProperty("lastDispensaryOpen") === getProperty("knownAscensions"),
     },
