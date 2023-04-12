@@ -62,6 +62,16 @@ const WishList: ShouldWishInfo[] = [
     shouldWish: () => itemAmount($item`bus pass`) < 5 && Config.TaskAzazel && getProperty("questM10Azazel") !== "finished" && itemAmount($item`Azazel's tutu`) < 1,
   },
   {
+    item: $item`lion oil`,
+    canWish: () => canAdventure($location`Whitey's Grove`),
+    shouldWish: () => itemAmount($item`lion oil`) < 1 && itemAmount($item`wet stunt nut stew`) < 1 && !["step4", "step5", "finished"].some(val => val === getProperty("questL11Palindome")),
+  },
+  {
+    item: $item`bird rib`,
+    canWish: () => canAdventure($location`Whitey's Grove`),
+    shouldWish: () => itemAmount($item`bird rib`) < 1 && itemAmount($item`wet stunt nut stew`) < 1 && !["step4", "step5", "finished"].some(val => val === getProperty("questL11Palindome")),
+  },
+  {
     item: $item`enchanted bean`,
     canWish: () => canAdventure($location`The Beanbat Chamber`),
     shouldWish: () => itemAmount($item`enchanted bean`) < 1 && (getProperty("questL10Garbage") === "unstarted" || getProperty("questL10Garbage") === "started"),
@@ -170,16 +180,6 @@ const WishList: ShouldWishInfo[] = [
     item: $item`glark cable`,
     canWish: () => canAdventure($location`The Red Zeppelin`),
     shouldWish: () => itemAmount($item`glark cable`) < 1 && getProperty("questL11Ron") !== "finished",
-  },
-  {
-    item: $item`lion oil`,
-    canWish: () => canAdventure($location`Whitey's Grove`),
-    shouldWish: () => itemAmount($item`lion oil`) < 1 && itemAmount($item`wet stunt nut stew`) < 1 && !["step4", "step5", "finished"].some(val => val === getProperty("questL11Palindome")),
-  },
-  {
-    item: $item`bird rib`,
-    canWish: () => canAdventure($location`Whitey's Grove`),
-    shouldWish: () => itemAmount($item`bird rib`) < 1 && itemAmount($item`wet stunt nut stew`) < 1 && !["step4", "step5", "finished"].some(val => val === getProperty("questL11Palindome")),
   },
   {
     item: $item`stunt nuts`,
