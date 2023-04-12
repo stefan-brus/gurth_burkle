@@ -26,7 +26,7 @@ export const L11BlackForestTask: Task = {
     },
     {
       name: "Get forged identification documents",
-      available: () => blackMarketFound() && myMeat() >= 1000,
+      available: () => blackMarketFound() && myMeat() >= 5000,
       progress: () => { buy(1, $item`forged identification documents`); },
       completed: () => getProperty(L11BlackForestProperty) !== "step2" || itemAmount($item`forged identification documents`) > 0,
     },
