@@ -1,4 +1,4 @@
-import { council, getProperty, myAdventures, myClass, print, setProperty, userConfirm } from "kolmafia";
+import { council, getProperty, inebrietyLimit, myAdventures, myClass, myInebriety, print, setProperty, userConfirm } from "kolmafia";
 import { Constants } from "./Constants";
 import { mainAdventure } from "./lib/Adventure";
 import { selectEquipment } from "./gear/Equipment";
@@ -101,7 +101,7 @@ export function ascend() {
 }
 
 function isDayOver(): boolean {
-  return myAdventures() <= Constants.ReservedAdventures;
+  return myAdventures() <= Constants.ReservedAdventures || myInebriety() > inebrietyLimit();
 }
 
 function chooseTask(): Task {
