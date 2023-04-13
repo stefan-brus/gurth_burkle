@@ -1,4 +1,4 @@
-import { buy, cliExecute, getProperty, haveEffect, haveOutfit, Item, itemAmount, myAdventures, outfit, runCombat, sell, setProperty, use, userConfirm, visitUrl } from "kolmafia";
+import { buy, cliExecute, getProperty, haveEffect, haveOutfit, Item, itemAmount, myAdventures, myMeat, outfit, runCombat, sell, setProperty, use, userConfirm, visitUrl } from "kolmafia";
 import { $coinmaster, $effect, $item, $location } from "libram";
 import { Constants } from "../../Constants";
 import { AdventureInfo } from "../../lib/AdventureInfo";
@@ -16,7 +16,7 @@ export const L12Part1Task: Task = {
   subtasks: [
     {
       name: "Unlock Mysterious Island",
-      available: () => getProperty(L12QuestProperty) === "started" && myAdventures() >= (3 + Constants.ReservedAdventures) && !islandUnlocked(),
+      available: () => getProperty(L12QuestProperty) === "started" && myAdventures() >= (3 + Constants.ReservedAdventures) && !islandUnlocked() && myMeat() > 1500,
       progress: () => unlockIsland(),
       completed: () => islandUnlocked(),
       mainstat: $location`The Battlefield (Frat Uniform)`.recommendedStat,
