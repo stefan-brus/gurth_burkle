@@ -84,7 +84,7 @@ const WishList: ShouldWishInfo[] = [
   {
     item: $item`goat cheese`,
     canWish: () => canAdventure($location`The Goatlet`),
-    shouldWish: () => itemAmount($item`goat cheese`) < 3 && getProperty("questL08Trapper") === "started" || getProperty("questL08Trapper") === "step1",
+    shouldWish: () => itemAmount($item`goat cheese`) < 3 && (getProperty("questL08Trapper") === "started" || getProperty("questL08Trapper") === "step1"),
   },
   {
     item: $item`eXtreme scarf`,
