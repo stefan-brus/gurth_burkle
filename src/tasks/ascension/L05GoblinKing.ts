@@ -1,4 +1,4 @@
-import { create, getProperty, itemAmount, use } from "kolmafia";
+import { create, getProperty, itemAmount, myMeat, use } from "kolmafia";
 import { $item, $location } from "libram";
 import { AdventureInfo } from "../../lib/AdventureInfo";
 import { Modifier } from "../../lib/Modifier";
@@ -28,7 +28,7 @@ export const L05Task: Task = {
     },
     {
       name: "Bake Knob cake",
-      available: () => haveCakeIngredients(),
+      available: () => haveCakeIngredients() && myMeat() > 1000,
       progress: () => { create(1, $item`Knob cake`); },
       completed: () => itemAmount($item`Knob cake`) > 0,
     },
