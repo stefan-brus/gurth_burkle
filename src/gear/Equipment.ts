@@ -288,6 +288,15 @@ function selectModifierEquipment(info: AdventureInfo, reservedSlots: Slot[]): Sl
 }
 
 function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[] {
+  // June Cleaver
+  if (!reservedSlots.includes($slot`weapon`)) {
+    if (equippedAmount($item`June cleaver`) < 1) {
+      equip($slot`weapon`, $item`June cleaver`);
+    }
+
+    reservedSlots.push($slot`weapon`);
+  }
+  
   // Off-hand
   if (!reservedSlots.includes($slot`off-hand`)) {
     selectShinyOffhand(info, reservedSlots);
@@ -303,15 +312,6 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
     selectParkaMode(info);
 
     reservedSlots.push($slot`shirt`);
-  }
-
-  // June Cleaver
-  if (!reservedSlots.includes($slot`weapon`)) {
-    if (equippedAmount($item`June cleaver`) < 1) {
-      equip($slot`weapon`, $item`June cleaver`);
-    }
-
-    reservedSlots.push($slot`weapon`);
   }
 
   // Designer Sweatpants
