@@ -16,7 +16,7 @@ export const L12Part1Task: Task = {
   subtasks: [
     {
       name: "Unlock Mysterious Island",
-      available: () => getProperty(L12QuestProperty) === "started" && myAdventures() >= (3 + Constants.ReservedAdventures) && !islandUnlocked() && myMeat() > 1500,
+      available: () => getProperty(L12QuestProperty) === "started" && myAdventures() >= (3 + Constants.ReservedAdventures) && !islandUnlocked() && myMeat() > 3000,
       progress: () => unlockIsland(),
       completed: () => islandUnlocked(),
       mainstat: $location`The Battlefield (Frat Uniform)`.recommendedStat,
