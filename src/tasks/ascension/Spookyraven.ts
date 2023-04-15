@@ -90,14 +90,12 @@ export const SpookyravenFloor2Task: Task = {
       available: () => getProperty(Floor2QuestProperty) === "step1",
       progress: () => getDancingShoes(),
       completed: () => itemAmount($item`Lady Spookyraven's dancing shoes`) > 0,
-      spikesTask: true,
     },
     {
       name: "Get Lady Spookyraven's powder puff",
       available: () => getProperty(Floor2QuestProperty) === "step1",
       progress: () => getPowderPuff(),
       completed: () => itemAmount($item`Lady Spookyraven's powder puff`) > 0,
-      spikesTask: true,
     },
     {
       name: "Return items to Lady Spookyraven",
