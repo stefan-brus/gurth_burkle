@@ -249,7 +249,7 @@ function checkUseCosmicBowlingBall(foe: Monster): string | void {
     if (myLocation() === $location`The Hidden Bowling Alley`) {
       return throwItem($item`cosmic bowling ball`);
     }
-    else if (BanishLocations.includes(myLocation()) && !ImportantFoes.includes(foe) && !foe.boss) {
+    else if (BanishLocations.includes(myLocation()) && !ImportantFoes.includes(foe) && !foe.boss && !isFreeCombat(foe)) {
       return useSkill($skill`Bowl a Curveball`);
     }
   }
