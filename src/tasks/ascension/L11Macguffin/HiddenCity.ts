@@ -58,14 +58,12 @@ export const L11HiddenCityTask: Task = {
       available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
       progress: () => clearVines($location`An Overgrown Shrine (Northwest)`),
       completed: () => canAdventure($location`The Hidden Apartment Building`),
-      spikesTask: true,
     },
     {
       name: "Unlock The Hidden Office Building",
       available: () => itemAmount($item`antique machete`) > 0 || equippedAmount($item`antique machete`) > 0,
       progress: () => clearVines($location`An Overgrown Shrine (Northeast)`),
       completed: () => canAdventure($location`The Hidden Office Building`),
-      spikesTask: true,
     },
     {
       name: "Unlock The Hidden Hospital",
@@ -90,6 +88,7 @@ export const L11HiddenCityTask: Task = {
       available: () => canAdventure($location`The Hidden Apartment Building`),
       progress: () => doApartmentBuilding(),
       completed: () => parseInt(getProperty(ApartmentBuildingProperty)) === 8 && parseInt(getProperty(LawyerProperty)) === parseInt(getProperty("knownAscensions")),
+      spikesTask: true,
     },
     {
       name: "Do The Hidden Office Building",
@@ -103,14 +102,12 @@ export const L11HiddenCityTask: Task = {
       available: () => canAdventure($location`The Hidden Hospital`),
       progress: () => doHospital(),
       completed: () => parseInt(getProperty(HospitalProperty)) === 8,
-      spikesTask: true,
     },
     {
       name: "Do The Hidden Bowling Alley",
       available: () => canAdventure($location`The Hidden Bowling Alley`),
       progress: () => doBowlingAlley(),
       completed: () => parseInt(getProperty(BowlingAlleyProperty)) === 8,
-      spikesTask: true,
     },
     {
       name: "Get ancient amulet",
