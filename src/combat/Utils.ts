@@ -1,4 +1,4 @@
-import { equippedAmount, getProperty, haveEffect, haveSkill, Item, itemAmount, Location, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, useSkill } from "kolmafia";
+import { equippedAmount, getProperty, haveEffect, haveSkill, Item, itemAmount, Location, Monster, myClass, myFamiliar, myLocation, setProperty, Skill, throwItem, throwItems, toLocation, useSkill } from "kolmafia";
 import { $class, $effect, $familiar, $item, $location, $monster, $skill, GreyGoose } from "libram";
 import { Properties } from "../Properties";
 import { gooseWeight, GreyGooseLocations } from "../shinies/GreyGoose";
@@ -207,7 +207,10 @@ function checkDoMonkeySlap(foe: Monster): string | void {
     return;
   }
 
-  if (BanishLocations.includes(myLocation()) && !ImportantFoes.includes(foe)) {
+  const lastSlapLocationStr = getProperty(Properties.Daily.LastMonkeySlapLocation);
+  const lastSlapLocation = lastSlapLocationStr.length > 0 ? toLocation(lastSlapLocationStr) : $location`none`;
+  if (BanishLocations.includes(myLocation()) && !ImportantFoes.includes(foe) && lastSlapLocation !== myLocation()) {
+    setProperty(Properties.Daily.LastMonkeySlapLocation, myLocation().toString());
     return useSkill($skill`Monkey Slap`);
   }
 }

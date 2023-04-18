@@ -46,6 +46,9 @@ export const Properties = {
     // String (location name)
     LastBatterUpLocation: "_myLastBatterUpLocation",
 
+    // String (location name)
+    LastMonkeySlapLocation: "_myLastMonkeySlapLocation",
+
     // Boolean, if true, don't change the current subtask until it is completed
     FocusTask: "_myFocusTask",
   
