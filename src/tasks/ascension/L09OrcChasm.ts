@@ -109,7 +109,7 @@ const PantryChoice = "choiceAdventure608";
 const PaintingChoice = "choiceAdventure609";
 const DoubleChoice = "choiceAdventure610";
 
-function doTwinPeak(): AdventureInfo {
+function doTwinPeak(): AdventureInfo | void {
   const Room237Required = (parseInt(getProperty(TwinPeakProperty)) & 1) === 0;
   const PantryRequired = (parseInt(getProperty(TwinPeakProperty)) & 2) === 0;
   const PaintingRequired = (parseInt(getProperty(TwinPeakProperty)) & 4) === 0;
@@ -172,5 +172,6 @@ function doTwinPeak(): AdventureInfo {
     use(1, $item`rusty hedge trimmers`);
   }
 
-  return result;
+  if (Room237Required || PantryRequired || PaintingRequired || DoubleRequired)
+    return result;
 }
