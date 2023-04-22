@@ -3,6 +3,30 @@ export const Config = {
   // == PROMPTS == //
 
   /**
+   * Pause and prompt the user for task changes.
+   */
+
+  PromptTasks: false,
+
+  /**
+   * Pause and prompt the user for subtask changes.
+   */
+
+  PromptSubtasks: false,
+
+  /**
+   * Pause and prompt the user for familiar changes.
+   */
+
+  PromptFamiliar: false,
+
+  /**
+   * Pause and prompt the user for fallbot sends.
+   */
+
+  PromptFallbot: false,
+
+  /**
    * Pause and prompt the user for buffs.
    */
 
@@ -37,6 +61,12 @@ export const Config = {
    */
 
   PromptPotions: false,
+
+  /**
+   * Pause and prompt the user for quartermaster purchase.
+   */
+
+  PromptQuartermaster: false,
 
   /**
    * Pause and prompt the user for monkey's paw wishes.

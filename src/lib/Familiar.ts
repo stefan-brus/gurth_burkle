@@ -8,12 +8,13 @@ import { stomachRemaining } from "./Organs";
 import { ascensionDaysLeft } from "./Utils";
 import { Modifier } from "./Modifier";
 import { haveWantedGrubbyItems } from "../shinies/HoboSheep";
+import { Config } from "../Config";
 
 export function selectFamiliar(info: AdventureInfo) {
   const chosenFamiliar = chooseFamiliar(info);
 
   if (chosenFamiliar !== myFamiliar()) {
-    if (!userConfirm(`Switch to familiar: ${chosenFamiliar.name}?`)) {
+    if (Config.PromptFamiliar && !userConfirm(`Switch to familiar: ${chosenFamiliar.name}?`)) {
       throw new Error("User aborted on familiar " + chosenFamiliar.name);
     }
 

@@ -40,13 +40,11 @@ export function fallbotRoutine() {
       continue;
     }
 
-    if (userConfirm(`Send fallbot to ${task.location.toString()} for task ${task.name}?`)) {
-      AutumnAton.sendTo(task.location);
-      break;
-    }
-    else {
+    if (Config.PromptFallbot && !userConfirm(`Send fallbot to ${task.location.toString()} for task ${task.name}?`)) {
       throw new Error("User aborted on fallbot task " + task.name);
     }
+    
+    AutumnAton.sendTo(task.location);
   }
 }
 

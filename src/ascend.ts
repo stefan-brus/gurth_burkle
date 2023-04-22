@@ -20,6 +20,7 @@ import { Properties } from "./Properties";
 import { selectSongs } from "./lib/Songs";
 import { setJuneCleaverChoices } from "./shinies/JuneCleaver";
 import { monkeyPawRemainingWishes, useUpWishes } from "./shinies/MonkeyPaw";
+import { Config } from "./Config";
 
 export function ascend() {
   print("Starting main ascension loop");
@@ -34,7 +35,7 @@ export function ascend() {
     if (newTask !== currentTask) {
       currentTask = newTask;
 
-      if (!userConfirm("Start task " + currentTask.name + "?")) {
+      if (Config.PromptTasks && !userConfirm("Start task " + currentTask.name + "?")) {
         throw new Error("User aborted on task " + currentTask.name);
       }
 
@@ -46,7 +47,7 @@ export function ascend() {
       if (newSubtask !== currentSubtask) {
         currentSubtask = newSubtask;
 
-        if (!userConfirm("Start subtask " + currentSubtask.name + "?")) {
+        if (Config.PromptSubtasks && !userConfirm("Start subtask " + currentSubtask.name + "?")) {
           throw new Error("User aborted on subtask " + currentSubtask.name);
         }
 

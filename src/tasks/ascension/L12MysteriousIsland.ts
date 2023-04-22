@@ -6,6 +6,7 @@ import { Modifier } from "../../lib/Modifier";
 import { shoreAdventure } from "../../lib/ShoreInc";
 import { Properties } from "../../Properties";
 import { Task } from "../Task";
+import { Config } from "../../Config";
 
 // Part 1 - Unlock island, start war, start arena sidequest, start lighthouse sidequest
 // Part 2 - Do junkyard sidequest, clear 64 fratboys, do orchard
@@ -286,7 +287,7 @@ function tradeWithQuartersmaster() {
 
   const steinAmount = Math.floor((availableQuarters - (gauzeGarterAmount * 2)) / 5);
 
-  if (!userConfirm(`Buy ${gauzeGarterAmount} gauze garters and ${steinAmount} steins?`)) {
+  if (Config.PromptQuartermaster && !userConfirm(`Buy ${gauzeGarterAmount} gauze garters and ${steinAmount} steins?`)) {
     throw new Error("User aborted on buying war supplies");
   }
 
