@@ -38,7 +38,7 @@ export const L11BlackForestTask: Task = {
     },
     {
       name: "Get MacGuffin diary",
-      available: () => itemAmount($item`forged identification documents`) > 0  && itemAmount($item`your father's MacGuffin diary`) < 1 && myAdventures() > Constants.ReservedAdventures + 3,
+      available: () => itemAmount($item`forged identification documents`) > 0  && itemAmount($item`your father's MacGuffin diary`) < 1 && myAdventures() > Constants.ReservedAdventures + 3 && myMeat() > 1500,
       progress: () => shoreAdventure(),
       completed: () => itemAmount($item`your father's MacGuffin diary`) > 0,
     },
