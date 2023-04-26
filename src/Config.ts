@@ -63,6 +63,12 @@ export const Config = {
   PromptPotions: false,
 
   /**
+   * Pause and prompt the user for skill training.
+   */
+
+  PromptSkills: false,
+
+  /**
    * Pause and prompt the user for quartermaster purchase.
    */
 
