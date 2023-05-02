@@ -329,6 +329,9 @@ function selectShinyEquipment(info: AdventureInfo, reservedSlots: Slot[]): Slot[
   // Cursed Monkey's Paw
   reservedSlots = tryEquipShinyAcc($item`cursed monkey's paw`, reservedSlots);
 
+  // Cincho de Mayo
+  reservedSlots = tryEquipShinyAcc($item`Cincho de Mayo`, reservedSlots);
+
   // Stillsuit
   if (!reservedSlots.includes($slot`familiar`)) {
     if (equippedAmount($item`tiny stillsuit`) < 1) {
