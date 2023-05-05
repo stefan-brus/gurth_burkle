@@ -9,6 +9,7 @@ const watch = args.some((a) => a === "--watch" || a === "-w");
 
 build({
   entryPoints: { 
+    "gb": "src/gb/main.ts",
     "gurth-burkle": "src/main.ts", 
     "consult": "src/consult.ts", 
     "recovery": "src/recovery.ts", 
