@@ -1,5 +1,7 @@
+import { Arguments } from "./Arguments";
+
 export type Command = {
   name: string,
   description: string,
-  run: () => void,
+  run: (args: Arguments) => void,
 };
