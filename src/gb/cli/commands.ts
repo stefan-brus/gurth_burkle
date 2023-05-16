@@ -1,6 +1,6 @@
-import { ascendCommand } from "./Ascend";
+import { ascendCommand } from "./cmd/Ascend";
 import { Command } from "./Command";
-import { statusCommand } from "./Status";
+import { statusCommand } from "./cmd/Status";
 
 export const Commands: Map<string, Command> = new Map([
   ["status", {
