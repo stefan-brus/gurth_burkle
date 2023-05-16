@@ -36,7 +36,7 @@ export class Logger {
 }
 
 function genLogMessage(level: LogLevel, msg: string): string {
-  return `[${level.toString().toUpperCase()}] ${new Date().toISOString().split(".")[0].replace("T", " ")}: ${msg}`;
+  return `[${LogLevel[level].toUpperCase()}] ${new Date().toISOString().split(".")[0].replace("T", " ")}: ${msg}`;
 }
 
 function getLogFilename(): string { 
