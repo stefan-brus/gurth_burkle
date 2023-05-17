@@ -1,6 +1,6 @@
-import { print, printHtml } from "kolmafia";
+import { print } from "kolmafia";
 import { Commands } from "./cli/commands";
-import { parseArguments, printArguments } from "./cli/Arguments";
+import { parseArguments } from "./cli/Arguments";
 
 export function main(argStr: string) {
   if (!argStr) {
@@ -15,7 +15,6 @@ export function main(argStr: string) {
   const argv = argStr.split(" ");
   const cmdName = argv[0];
   const cmdArgs = parseArguments(argv.slice(1));
-  printHtml(printArguments(cmdArgs));
 
   if (!Commands.has(cmdName)) {
     print(`Unknown command: ${cmdName}`);
