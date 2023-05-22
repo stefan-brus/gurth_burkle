@@ -49,7 +49,7 @@ export const L11DesertTask: Task = {
       name: "Explore desert",
       available: () => parseInt(getProperty(Properties.Ascension.DesertAdventuresDone)) >= 10,
       progress: () => exploreDesert(),
-      completed: () => getProperty(L11DesertProperty) === "finished",
+      completed: () => getProperty(L11DesertProperty) === "finished" || parseInt(getProperty("desertExploration")) === 100,
     },
   ],
 };
