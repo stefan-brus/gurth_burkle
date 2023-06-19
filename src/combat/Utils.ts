@@ -306,7 +306,7 @@ function checkYossarianTools(foe: Monster, page: string): string | void {
       return throwItem($item`molybdenum magnet`);
     }
     else {
-      return useSkill(myLevel0Skill());
+      return useSkill($skill`Sing`);
     }
   }
 }
@@ -349,23 +349,4 @@ function checkMonsterSpecificActions(foe: Monster): string | void {
   // Tomb rat (summon rat king)
   if (foe === $monster`tomb rat` && itemAmount($item`tangle of rat tails`) > 0)
     return throwItem($item`tangle of rat tails`);
-}
-
-function myLevel0Skill(): Skill {
-  switch (myClass()) {
-    case $class`Seal Clubber`:
-      return $skill`Clobber`;
-    case $class`Turtle Tamer`:
-      return $skill`Toss`;
-    case $class`Pastamancer`:
-      return $skill`Spaghetti Spear`;
-    case $class`Sauceror`:
-      return $skill`Salsaball`;
-    case $class`Disco Bandit`:
-      return $skill`Suckerpunch`;
-    case $class`Accordion Thief`:
-      return $skill`Sing`;
-    default:
-      throw new Error("Unknown level 0 skill for class " + myClass().toString());
-  }
 }
