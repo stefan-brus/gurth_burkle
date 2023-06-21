@@ -57,7 +57,7 @@ function locationSpecific(macro: Macro, foe: Monster, loc: Location): boolean {
   
   // Shadow in Sorceress' tower
   if (loc === $location`Tower Level 5` && itemAmount($item`gauze garter`) > 2) {
-    macro.tryItem($item`gauze garter`, $item`gauze garter`);
+    macro.tryItem([$item`gauze garter`, $item`gauze garter`]);
     return true;
   }
 
