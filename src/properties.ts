@@ -52,7 +52,13 @@ export const Properties = {
     // Boolean, if true, don't change the current subtask until it is completed
     FocusTask: "_myFocusTask",
   
-    // Boolea, if true, use spikolodon spikes for the current tasks
+    // Boolean, if true, use spikolodon spikes for the current tasks
     SpikolodonTask: "_mySpikolodonTask",
+
+    // Boolean, if true, use spikolodon spikes in the next combat
+    CombatSpikes: "_myCombatSpikes",
+
+    // Boolean, if true, use jurassic acid in the next combat
+    CombatAcid: "_myCombatAcid",
   },
 };

@@ -1,5 +1,5 @@
-import { equippedAmount, getProperty } from "kolmafia";
-import { $item, $location } from "libram";
+import { Monster, equippedAmount, getProperty } from "kolmafia";
+import { $item, $location, $monster } from "libram";
 import { AdventureInfo } from "../lib/AdventureInfo";
 import { nextDelayLocation } from "../lib/Delay";
 import { Properties } from "../Properties";
@@ -20,6 +20,12 @@ export const CMGFreeFightsTask: Task = {
 export function cmgDone(): boolean {
   return parseInt(getProperty(Properties.Daily.CMGFightsDone)) >= 5;
 }
+
+export const CMGMonsters: Monster[] = [
+  $monster`void guy`,
+  $monster`void slab`,
+  $monster`void spider`,
+];
 
 const CMGCountProperty = "cursedMagnifyingGlassCount";
 
