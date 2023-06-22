@@ -22,7 +22,7 @@ export function runTask(task: Task, turns: number): number {
     });
   }
 
-  runActions(task.actions(), turns - turnsSpent);
+  turnsSpent += runActions(task.actions(), turns - turnsSpent);
 
   if (!task.completed()) {
     Logger.error(`Unable to complete ${task.name}`);

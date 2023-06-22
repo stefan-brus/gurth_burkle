@@ -2,7 +2,7 @@ import { myTurncount } from "kolmafia";
 import { Logger } from "../log/Logger";
 import { Action, ActionResult, WithCondition, WithModifiers } from "./Action";
 
-export function runActions(actions: Action[], turns: number) {
+export function runActions(actions: Action[], turns: number): number {
   Logger.info(`Running these ${actions.length} actions: ${actions.map(action => action.name).join(", ")}`);
 
   let turnsSpent = 0;
@@ -10,6 +10,8 @@ export function runActions(actions: Action[], turns: number) {
   actions.forEach(action => {
     turnsSpent += runAction(action, turns - turnsSpent);
   });
+
+  return turnsSpent;
 }
 
 const hasCondition = (object: any): boolean => "completed" in object

@@ -1,4 +1,4 @@
-import { getIngredients, haveEffect, haveEquipped, Item, itemAmount, myBuffedstat, myDaycount, myPrimestat, use, userConfirm } from "kolmafia";
+import { getIngredients, getProperty, haveEffect, haveEquipped, Item, itemAmount, myBuffedstat, myDaycount, myPrimestat, use, userConfirm } from "kolmafia";
 import { $effect, $item } from "libram";
 import { Constants } from "../Constants";
 
@@ -38,4 +38,11 @@ export function checkUseClover(reason: string) {
       throw new Error("User aborted on clover check");
     }
   }
+}
+
+export function questPropertyStepGTE(prop: string, step: number): boolean {
+  const propStr = getProperty(prop);
+  const stepNo = propStr.startsWith("step") ? parseInt(propStr.substring(4)) : 0;
+
+  return propStr === "finished" || stepNo >= step;
 }
